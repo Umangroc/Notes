@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  password: string="Initial Password";
+  confirm: string="Initial Password";
 }

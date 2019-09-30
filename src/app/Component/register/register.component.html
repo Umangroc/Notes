@@ -1,0 +1,68 @@
+<div class="container" fxLayout.xs="column" fxLayout.sm="column">
+  <!-- Left Side -->
+  <img src="/assets/Note-taking-pin-773x1024.png" class="left-image" fxFlex="40">
+
+  <!-- Right Side -->
+  <mat-card class="round-card" fxFlex="40">
+    <div class="center">
+      <img src='../../assets/Note-taking.png' class="logo">
+      <h1>Sign Up</h1>
+    </div>
+
+    <form novalidate name="registerForm">
+    <!-- First Name -->
+    <mat-form-field class="text" appearance="outline">
+      <mat-icon matPrefix>person</mat-icon>
+      <mat-label class="space">First Name</mat-label>
+      <input matInput class="space" placeholder="Email or phone">
+    </mat-form-field>
+
+    <!-- Last Name -->
+    <mat-form-field class="text" appearance="outline">
+      <mat-icon matPrefix>person</mat-icon>
+      <mat-label class="space">Last Name</mat-label>
+      <input matInput class="space" placeholder="Email or phone">
+    </mat-form-field>
+  
+    <!-- Email -->
+    <mat-form-field class="text" appearance="outline">
+      <mat-icon matPrefix>email</mat-icon>
+      <mat-label class="space">Email or phone</mat-label>
+      <input matInput class="space" placeholder="Email or phone">
+    </mat-form-field>
+    
+    <!-- Password -->
+    <mat-form-field class="text" appearance="outline">
+      <mat-icon matPrefix>lock</mat-icon>
+      <mat-label class="space">Password</mat-label>
+      <input matInput class="space" placeholder="Email or phone" [(ngModel)] = "password" name="password" required ng-minlength="6">
+      {{password}}
+      <span style="color:red" ng-show="registerForm.password.$dirty && registerForm.password.$invalid" >
+          <span ng-show="registerForm.password.$error.required">Password is required</span>
+          <span ng-show="registerForm.password.$error.minlength">Password is short, min length is 6
+                  characters.</span>
+  </span> 
+    </mat-form-field>
+
+    <!-- Confirm-Password -->
+    <mat-form-field class="text" appearance="outline">
+        <mat-icon matPrefix>lock_open</mat-icon>
+        <mat-label class="space">Confirm-Password</mat-label>
+        <input matInput class="space" placeholder="Confirm-Password" [(ngModel)] = "confirm" name="confirm" ng-pattern="password" required>
+        {{confirm}}
+        <span style="color:red" ng-show="registerForm.confirm.$dirty && registerForm.confirm.$invalid">
+            <span ng-show="registerForm.confirm.$error.required">Confirm Password is required</span>
+            <span ng-show="registerForm.confirm.$error.pattern">Password mismatch</span>
+    </span> 
+    
+      </mat-form-field>
+    </form>
+      <div class="login">
+          <button mat-raised-button color="warn" ng-disabled="(registerForm.password.$invalid)||( registerForm.confirm.$invalid)">Register</button>
+        </div>
+      
+    <br><a>Already have an account??</a>
+    <br><a routerLink="/login">Sign In</a>
+    
+  </mat-card>
+</div>

@@ -1,0 +1,34 @@
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+  <!-- Left Side -->
+  <img src="/assets/Note-taking-pin-773x1024.png" class="left-image" fxFlex="40">
+  
+  <!-- Right Side -->
+  <div fxFlex.sm="column" fxFlex.sm="100" fxFlex.xs="100" fxFlex="40">
+    <mat-card class="round-card" fxLayout="column" fxFlex.xs="100" fxFlex="100" fxFlex.sm="100">
+      <div class ="center">
+            <img src='../../assets/Note-taking.png' class="logo" mat-card-avatar>
+            <h1>Sign In</h1>
+            </div>
+            <!-- Email -->
+            <mat-form-field class="text" appearance="outline">
+                <mat-icon matPrefix>email</mat-icon>
+              <mat-label class="space">Email or phone</mat-label>
+              <input matInput class="space" placeholder="Email or phone">
+            </mat-form-field>
+      
+            <!-- Password -->
+            <mat-form-field class="text" appearance="outline">
+                <mat-icon matPrefix>lock</mat-icon>
+                <mat-label class="space">Password</mat-label>
+                <input matInput class="space" placeholder="Email or phone">
+              </mat-form-field>
+    
+              <div class="login" fxLayout="row" fxLayoutAlign="space-between center">
+                  <button mat-raised-button color="warn" >Login</button>
+          <a routerLink = "/forgot">Forgot Email?</a>
+        </div>
+          <br><br><a>Don't have an account??</a>
+         <div fxLayout="row" fxLayoutGap="5px"><a routerLink = "/register">Sign Up</a> <div>here</div></div>
+    </mat-card>
+  </div>
+  </div>

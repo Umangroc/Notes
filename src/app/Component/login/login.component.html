@@ -12,19 +12,26 @@
             <!-- Email -->
             <mat-form-field class="text" appearance="outline">
                 <mat-icon matPrefix>email</mat-icon>
-              <mat-label class="space">Email or phone</mat-label>
-              <input matInput class="space" placeholder="Email or phone">
+              <mat-label class="space">Email</mat-label>
+              <input matInput class="space" placeholder="Email" [formControl]="email" required type="email">
+              <mat-error *ngIf="email.invalid">{{EmailInvalidMessage()}}</mat-error>
             </mat-form-field>
       
             <!-- Password -->
             <mat-form-field class="text" appearance="outline">
                 <mat-icon matPrefix>lock</mat-icon>
                 <mat-label class="space">Password</mat-label>
-                <input matInput class="space" placeholder="Email or phone">
+                <input matInput class="space" placeholder="Email or phone"[formControl]="password"
+                [type]="hide ? 'password' : 'text'" required minlength="8">
+              <mat-error *ngIf="password.invalid">{{PasswordInvalidMessage()}}</mat-error>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
               </mat-form-field>
     
               <div class="login" fxLayout="row" fxLayoutAlign="space-between center">
-                  <button mat-raised-button color="warn" >Login</button>
+                  <button mat-raised-button color="warn" (click)="onLogin()">Login</button>
           <a routerLink = "/forgot">Forgot Email?</a>
         </div>
           <br><br><a>Don't have an account??</a>

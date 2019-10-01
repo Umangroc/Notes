@@ -12,6 +12,9 @@ import { RegisterComponent } from './Component/register/register.component';
 import { ForgotComponent } from './Component/forgot/forgot.component';
 import { ResetComponent } from './Component/reset/reset.component';
 import { FormsModule } from '@angular/forms';
+import { UserService } from './user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,9 +30,11 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ UserService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

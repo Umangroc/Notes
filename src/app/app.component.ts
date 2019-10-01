@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-  password: string="Initial Password";
-  confirm: string="Initial Password";
+  constructor(private svc:UserService, private http:HttpClient){
+    this.svc.print("service working");
+  }
+
+  ngOnInit(){
+  }
 }

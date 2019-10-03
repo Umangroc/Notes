@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from '../../user.service';
-import { User } from '../forgot/forgot.model';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../models/forgot.model';
 
 @Component({
   selector: 'app-forgot',
@@ -10,8 +10,9 @@ import { User } from '../forgot/forgot.model';
 })
 export class ForgotComponent implements OnInit {
 
- 
   userObj: User = new User();
+  result: any;
+  response: any;
   email = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(private svc: UserService) {
@@ -34,7 +35,11 @@ export class ForgotComponent implements OnInit {
       email: this.email.value,
       service: "basic"
     }
-    this.svc.forgotPassword(this.userObj);
+    this.result=this.svc.post(this.userObj,'reset');
+    this.result.subscribe((response) => {
+      this.response = response;
+      console.log(this.response);
+    })
   }
 
 }

@@ -1,0 +1,43 @@
+.header-icon {
+    padding: 0 14px;
+  }
+.header-spacer {
+    flex: 1 1 auto;
+  }
+
+.header-image{
+    width: 50%;
+    border-radius: 5px;
+}
+
+.search-size{
+    width: 70%;
+    padding-top:3%;
+    transform: scaleY(0.70);
+}
+.below-header{
+    min-height: 90vh;
+
+    .nav-card{
+        display: flex;
+        background-color: #F5F5F5;
+        width: 20%;
+        .list{
+            width:100%;
+        }
+    }
+
+    .rem-card{
+        background-color: #6dbbae;
+        min-height: 90vh;
+    }
+
+    a:hover {
+        background-color: lightgrey;
+      }
+
+      .hover-round{
+          border-radius: 0px 20px 20px 0px;
+      }
+}
+

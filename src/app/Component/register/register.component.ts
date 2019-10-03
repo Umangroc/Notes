@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../user.service';
+import { UserService } from 'src/app/services/user.service';
 import { FormControl, Validators } from '@angular/forms';
-import { User } from '../register/register.model';
+import { User } from '../../models/register.model';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
   userObj: User = new User();
-  hide =true;
+  hide = true;
+  result: any;
+  response: any;
   firstName = new FormControl('', [Validators.required]);
   lastName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -23,7 +26,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   FirstNameInvalidMessage() {
     if (this.firstName.hasError("required"))
       return "First Name is required"
@@ -33,13 +36,12 @@ export class RegisterComponent implements OnInit {
     if (this.lastName.hasError("required"))
       return "Last Name is required"
   }
+
   EmailInvalidMessage() {
     if (this.email.hasError("required"))
       return "Email is required"
-
     if (this.email.hasError("email"))
       return "Enter a valid email"
-
   }
 
   PasswordInvalidMessage() {
@@ -49,11 +51,7 @@ export class RegisterComponent implements OnInit {
     if (this.password.hasError("minlength")) {
       return "Password must be 8 characters"
     }
-
   }
-
-
- 
 
   onRegister() {
 
@@ -64,6 +62,10 @@ export class RegisterComponent implements OnInit {
       password: this.password.value,
       service: "basic"
     }
-    this.svc.registration(this.userObj);
+    this.result = this.svc.post(this.userObj,'userSignUp');
+    this.result.subscribe((response) => {
+      this.response = response;
+      console.log(this.response);
+    })
   }
 }

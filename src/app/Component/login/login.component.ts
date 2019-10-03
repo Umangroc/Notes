@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from '../../user.service';
-import { User } from '../login/login.model';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../../models/login.model';
 
 
 @Component({
@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
 
   userObj: User = new User();
   hide = true;
+  result: any;
+  response: any;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
@@ -48,7 +50,11 @@ export class LoginComponent implements OnInit {
       service: "basic"
 
     }
-    this.svc.loginUser(this.userObj);
+    this.result=this.svc.post(this.userObj,'login');
+    this.result.subscribe((response) => {
+      this.response = response;
+      console.log(this.response);
+    })
   }
 
 }

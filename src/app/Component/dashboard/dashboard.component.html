@@ -1,0 +1,39 @@
+<!-- Header Line -->
+<mat-toolbar fxFlexLayout="row">
+  <div fxLayoutAlign="start" fxLayoutGap="10px" fxFlex="25">
+  <button mat-icon-button class="header-icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <img src="../../../assets/header-name.png" class="header-image">
+</div>
+    <mat-form-field class="search-size" appearance="outline">
+        <input matInput placeholder="Placeholder">
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+  <span class="header-spacer"></span>
+  <mat-icon class="header-icon">refresh</mat-icon>
+  <mat-icon class="header-icon">view_list</mat-icon>
+  <mat-icon class="header-icon">settings_applications</mat-icon>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<!-- Below Header -->
+<mat-sidenav-container class="below-header">
+  <!-- SideBar -->
+  <mat-sidenav class="nav-card" #sidenav mode="side">
+      <mat-nav-list class="list">
+      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon" >description</mat-icon>Notes</mat-list-item>
+      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">today</mat-icon>Reminders</mat-list-item>
+      <mat-divider></mat-divider>
+      <h2 mat-subheader>Labels</h2>
+      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">create</mat-icon>Edit labels</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">archive</mat-icon>Archive</mat-list-item>
+      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">delete</mat-icon>Trash</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!-- Other than NavBar -->
+    <mat-sidenav-content class="rem-card">
+    List
+    </mat-sidenav-content>
+</mat-sidenav-container>

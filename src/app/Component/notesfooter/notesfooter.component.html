@@ -1,0 +1,14 @@
+<div fxLayoutAlign="space-around">
+    <button mat-icon-button title="Remind me"><mat-icon>notifications</mat-icon></button>
+    <button mat-icon-button title="Collaborator"><mat-icon>person_add</mat-icon></button>
+    <button mat-icon-button title="Change color"><mat-icon>color_lens</mat-icon></button>
+    <button mat-icon-button title="Add image"><mat-icon>image</mat-icon></button>
+    <button mat-icon-button title="Archive"><mat-icon>archive</mat-icon></button>
+    <button mat-icon-button title="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Add label</button>
+        <button mat-menu-item>Add drawing</button>
+        <button mat-menu-item>Show checkboxes</button>
+      </mat-menu>
+  <button mat-button>Close</button>
+    </div>

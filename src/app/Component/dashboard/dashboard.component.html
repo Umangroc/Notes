@@ -7,7 +7,7 @@
   <img src="../../../assets/header-name.png" class="header-image">
 </div>
     <mat-form-field class="search-size" appearance="outline">
-        <input matInput placeholder="Placeholder">
+        <input matInput placeholder="Search">
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
   <span class="header-spacer"></span>
@@ -33,7 +33,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <!-- Other than NavBar -->
-    <mat-sidenav-content class="rem-card">
-    List
+ 
+    <mat-sidenav-content class="rem-card" fxLayoutAlign="center">
+    <app-notes></app-notes>
+   
     </mat-sidenav-content>
 </mat-sidenav-container>

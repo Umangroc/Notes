@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from './user.service';
+import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

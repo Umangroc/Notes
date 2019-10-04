@@ -1,0 +1,15 @@
+<div style= "display:flex">
+  <mat-expansion-panel class="boxborder">
+    <mat-expansion-panel-header class="firstLine">
+        <input matInput placeholder="Title">
+    </mat-expansion-panel-header>
+    
+    <div class="fullsize">
+      <textarea matInput cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize"
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="20" placeholder="Make a note..."></textarea>
+    </div>
+    <app-notesfooter></app-notesfooter>
+  </mat-expansion-panel>
+</div>

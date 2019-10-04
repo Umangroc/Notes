@@ -12,9 +12,12 @@ import { RegisterComponent } from './Component/register/register.component';
 import { ForgotComponent } from './Component/forgot/forgot.component';
 import { ResetComponent } from './Component/reset/reset.component';
 import { FormsModule } from '@angular/forms';
-import { UserService } from './user.service';
+import { UserService } from 'src/app/services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { NotesComponent } from './Component/notes/notes.component';
+import { NotesfooterComponent } from './Component/notesfooter/notesfooter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     ForgotComponent,
-    ResetComponent
+    ResetComponent,
+    DashboardComponent,
+    NotesComponent,
+    NotesfooterComponent
   ],
   imports: [
     BrowserModule,

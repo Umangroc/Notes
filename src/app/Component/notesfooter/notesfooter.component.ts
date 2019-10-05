@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,11 +15,6 @@ export class NotesfooterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.svc.currentMessage.subscribe(message => this.message = message)
-  }
-
-  newMessage() {
-    this.svc.changeMessage("Hello from Sibling")
   }
 
 }

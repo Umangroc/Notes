@@ -1,19 +1,33 @@
 <!-- Header Line -->
-<mat-toolbar fxFlexLayout="row">
-  <div fxLayoutAlign="start" fxLayoutGap="10px" fxFlex="25">
-  <button mat-icon-button class="header-icon" (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <img src="../../../assets/header-name.png" class="header-image">
-</div>
-    <mat-form-field class="search-size" appearance="outline">
-        <input matInput placeholder="Search">
-        <mat-icon matPrefix>search</mat-icon>
-      </mat-form-field>
-  <span class="header-spacer"></span>
-  <mat-icon class="header-icon">refresh</mat-icon>
-  <mat-icon class="header-icon">view_list</mat-icon>
-  <mat-icon class="header-icon">settings_applications</mat-icon>
+<mat-toolbar fxFlexLayout="row" class="color">
+  <!-- Header Left-Side -->
+  <div fxFlexLayout="row" fxLayoutAlign="start center" fxFlex="30">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img src="../../../assets/google-keep-2-569459.png" class="header-image">
+    <h1>Keep</h1>
+  </div>
+
+  <div fxFlex="50">
+    <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
+<mat-icon matPrefix>search</mat-icon>
+<input matInput placeholder="Search">
+</mat-form-field>
+    <!-- <mat-card class="searchcard" fxLayout="row">
+      <button mat-icon-button><mat-icon>search</mat-icon></button>
+      <textarea type="text" class="search-size" matInput placeholder="Search"></textarea>
+    </mat-card> -->
+  </div> 
+
+  <div fxFlex="20">
+    <button mat-icon-button class="header-hover" title="Google apps">
+      <mat-icon>apps</mat-icon>
+    </button>
+    <button mat-icon-button class="header-hover" title="Google Account">
+      <mat-icon>face</mat-icon>
+    </button>
+  </div>
 </mat-toolbar>
 <mat-divider></mat-divider>
 
@@ -21,21 +35,31 @@
 <mat-sidenav-container class="below-header">
   <!-- SideBar -->
   <mat-sidenav class="nav-card" #sidenav mode="side">
-      <mat-nav-list class="list">
-      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon" >description</mat-icon>Notes</mat-list-item>
-      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">today</mat-icon>Reminders</mat-list-item>
+    <mat-nav-list class="list">
+      <mat-list-item routerLink="." class="hover-round">
+        <mat-icon class="icon-spacer">description</mat-icon>Notes
+      </mat-list-item>
+      <mat-list-item routerLink="." class="hover-round">
+        <mat-icon class="icon-spacer">today</mat-icon>Reminders
+      </mat-list-item>
       <mat-divider></mat-divider>
       <h2 mat-subheader>Labels</h2>
-      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">create</mat-icon>Edit labels</mat-list-item>
+      <mat-list-item routerLink="." class="hover-round">
+        <mat-icon class="icon-spacer">create</mat-icon>Edit labels
+      </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">archive</mat-icon>Archive</mat-list-item>
-      <mat-list-item routerLink="." class="hover-round"><mat-icon class="header-icon">delete</mat-icon>Trash</mat-list-item>
+      <mat-list-item routerLink="." class="hover-round">
+        <mat-icon class="icon-spacer">archive</mat-icon>Archive
+      </mat-list-item>
+      <mat-list-item routerLink="." class="hover-round">
+        <mat-icon class="icon-spacer">delete</mat-icon>Trash
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <!-- Other than NavBar -->
- 
-    <mat-sidenav-content class="rem-card" fxLayoutAlign="center">
+
+  <mat-sidenav-content class="rem-card" fxLayoutAlign="space-evenly">
     <app-notes></app-notes>
-   
-    </mat-sidenav-content>
+
+  </mat-sidenav-content>
 </mat-sidenav-container>

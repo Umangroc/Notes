@@ -1,26 +1,40 @@
-.header-icon {
-    padding: 0 14px;
-  }
-.header-spacer {
-    flex: 1 1 auto;
-  }
-
-.header-image{
-    width: 50%;
-    border-radius: 5px;
+@import '../../appstyle/colors.scss';
+.color{
+    background-color: $theme;
+    
+    .header-spacer {
+        flex: 1 1 auto;
+      }
+    
+    .header-image{
+        width: 20%;
+        border-radius: 5px;
+    }
+    
+    .searchcard{
+        width : 300px;
+        height : 0px;
+        border-radius: 10px;
+    .search-size{
+        border-radius: 10px;
+        padding-left: 10px;
+        outline: none;
+    }
 }
-
-.search-size{
-    width: 70%;
-    transform: translateY(+0.5em) scaleY(0.70);
+    .header-hover:hover{
+        color: $hovercolor;
+    }
 }
+.icon-spacer {
+    padding-right: 14px;
+  }
 
 .below-header{
     min-height: 90vh;
 
     .nav-card{
         display: flex;
-        background-color: #F5F5F5;
+        background-color: $theme;
         width: 20%;
         .list{
             width:100%;
@@ -28,14 +42,16 @@
     }
 
     .rem-card{
-        background-color: #6dbbae;
+        background-color: $theme;
         min-height: 90vh;
         padding-top: 5%;
+        height: 100%;
+        width: 100%;
     }
 
     .hover-round:hover{
-        background-color: lightgrey;
-        border-radius: 0px 20px 20px 0px;
+        background-color: $hovercolor;
+        border-radius: 0px 50px 50px 0px;
       }
 }
 

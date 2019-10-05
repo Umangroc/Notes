@@ -1,16 +1,17 @@
-.boxborder{
-    border-radius: 20px;
-    .firstLine{
-        width: 70%;
-        margin-left:18px;
-    }
-    .fullsize{
-        width: 100%;
-        min-height: 100px;
-        max-height: 100%;
+.first-card{
+    width: 360px;
+    border-radius: 10px;
+    .field{
+        width:100%;
     }
 }
-
+.second-card{
+    width: 360px;
+    border-radius: 10px;
+    .take-note-size{
+        min-height: 50px;
+    }
+}
 
 
 

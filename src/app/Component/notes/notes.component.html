@@ -1,15 +1,45 @@
-<div style= "display:flex">
-  <mat-expansion-panel class="boxborder">
-    <mat-expansion-panel-header class="firstLine">
-        <input matInput placeholder="Title">
-    </mat-expansion-panel-header>
-    
-    <div class="fullsize">
-      <textarea matInput cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="1"
-      cdkAutosizeMaxRows="20" placeholder="Make a note..."></textarea>
-    </div>
-    <app-notesfooter></app-notesfooter>
-  </mat-expansion-panel>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div style="display:flex">
+  <!-- First half -->
+  <div (click)="show = !show" *ngIf="show" >
+    <!-- MatCard -->
+    <mat-card class="first-card">
+      <!-- Field -->
+      <div fxLayout="row">
+        <textarea matInput cdkTextareaAutosize placeholder="Take a note..." ></textarea>
+        <!-- <button mat-icon-button matSuffix><i class="fa fa-thumb-tack"></i></button> -->
+      </div>
+      <!-- ------------ -->
+    </mat-card>
+    <!-- ------- -->
+  </div>
+
+  <!-- Other half -->
+  <div *ngIf="!show">
+    <!-- MatCard -->
+    <mat-card fxLayout="column" class="second-card" fxLayoutGap="20px" fxLayoutAlign="space-between">
+      <!-- Title Line -->
+      <div >
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" placeholder="Title"></textarea>
+      </div>
+
+      <!-- Note Line -->
+      <div class="take-note-size">
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" placeholder="Take a note..."></textarea>
+      </div>
+
+      <!-- Notes Footer -->
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <app-notesfooter></app-notesfooter>
+        </div>
+        <div><button mat-button (click)="show = !show">Close</button></div>
+      </div>
+      <!-- ------------- -->
+    </mat-card>
+  </div>
+  <!-- ---------- -->
 </div>

@@ -10,10 +10,9 @@ export class NotesComponent implements OnInit{
 
   constructor(private svc: UserService) { }
 
-  message:string;
+  show: boolean =true;
 
   ngOnInit() {
-    this.svc.currentMessage.subscribe(message => this.message = message)
   }
 
 }

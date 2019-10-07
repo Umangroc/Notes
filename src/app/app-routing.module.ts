@@ -5,6 +5,7 @@ import { RegisterComponent } from './Component/register/register.component';
 import { ForgotComponent } from './Component/forgot/forgot.component';
 import { ResetComponent } from './Component/reset/reset.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
+import { AuthGuard } from './auth/auth.guard';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path:'**', redirectTo: '/login'},
 ];
 

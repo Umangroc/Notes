@@ -2,7 +2,7 @@
 
 <div style="display:flex">
   <!-- First half -->
-  <div (click)="show = !show" *ngIf="show" >
+  <div (click)="toggle()" *ngIf="show" >
     <!-- MatCard -->
     <mat-card class="first-card">
       <!-- Field -->
@@ -22,13 +22,13 @@
       <!-- Title Line -->
       <div >
         <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" placeholder="Title"></textarea>
+          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title"></textarea>
       </div>
 
       <!-- Note Line -->
-      <div class="take-note-size">
-        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" placeholder="Take a note..."></textarea>
+      <div >
+        <textarea class="take-note-size" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="Take a note..."></textarea>
       </div>
 
       <!-- Notes Footer -->
@@ -36,7 +36,7 @@
         <div>
           <app-notesfooter></app-notesfooter>
         </div>
-        <div><button mat-button (click)="show = !show">Close</button></div>
+        <div><button mat-button (click)="receiveData()">Close</button></div>
       </div>
       <!-- ------------- -->
     </mat-card>

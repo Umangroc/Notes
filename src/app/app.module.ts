@@ -12,12 +12,14 @@ import { RegisterComponent } from './Component/register/register.component';
 import { ForgotComponent } from './Component/forgot/forgot.component';
 import { ResetComponent } from './Component/reset/reset.component';
 import { FormsModule } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/http/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { NotesComponent } from './Component/notes/notes.component';
 import { NotesfooterComponent } from './Component/notesfooter/notesfooter.component';
+import { AuthGuard } from './auth/auth.guard';
+import { DispComponent } from './Component/disp/disp.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { NotesfooterComponent } from './Component/notesfooter/notesfooter.compon
     ResetComponent,
     DashboardComponent,
     NotesComponent,
-    NotesfooterComponent
+    NotesfooterComponent,
+    DispComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,7 @@ import { NotesfooterComponent } from './Component/notesfooter/notesfooter.compon
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [ UserService,],
+  providers: [ UserService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

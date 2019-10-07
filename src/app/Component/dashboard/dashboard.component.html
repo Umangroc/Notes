@@ -2,7 +2,7 @@
 <mat-toolbar fxFlexLayout="row" class="color">
   <!-- Header Left-Side -->
   <div fxFlexLayout="row" fxLayoutAlign="start center" fxFlex="30">
-    <button mat-icon-button (click)="sidenav.toggle()">
+    <button mat-icon-button matTooltip="Main menu" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/google-keep-2-569459.png" class="header-image">
@@ -20,13 +20,19 @@
     </mat-card> -->
   </div> 
 
-  <div fxFlex="20">
-    <button mat-icon-button class="header-hover" title="Google apps">
-      <mat-icon>apps</mat-icon>
-    </button>
-    <button mat-icon-button class="header-hover" title="Google Account">
-      <mat-icon>face</mat-icon>
-    </button>
+  <div fxFlex="20" fxLayoutAlign="space-around">
+      <button mat-icon-button class="header-hover" matTooltip="Google apps">
+          <mat-icon>apps</mat-icon>
+        </button>
+    <button mat-icon-button [matMenuTriggerFor]="Userdetails" class="header-hover" matTooltip="Google Account">
+        <mat-icon>face</mat-icon>
+        <mat-menu #Userdetails>
+          <div fxLayout="row">
+            <div><button mat-menu-item >Add account</button></div>
+          <div><button mat-menu-item (click)="logout()" routerLink="login">Sign out</button></div>
+        </div> </mat-menu>
+      </button>
+    
   </div>
 </mat-toolbar>
 <mat-divider></mat-divider>
@@ -60,6 +66,8 @@
 
   <mat-sidenav-content class="rem-card" fxLayoutAlign="space-evenly">
     <app-notes></app-notes>
-
+    
+   
+  
   </mat-sidenav-content>
 </mat-sidenav-container>

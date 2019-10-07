@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { User } from '../../models/reset.model';
 
 @Component({
@@ -17,7 +17,7 @@ export class ResetComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.password.value)]);
 
-  constructor(private svc: UserService) {
+  constructor(private svc: UserserviceService) {
     this.svc.print("inside reset password");
   }
 
@@ -49,7 +49,11 @@ export class ResetComponent implements OnInit {
     this.userObj = {
       newPassword: this.password.value
     }
-    this.result = this.svc.post(this.userObj,'reset-password/:token')
+    let obj={
+      data: this.userObj,
+      url: 'reset-password/:token'
+      }
+    this.result = this.svc.PostwithoutToken(obj)
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

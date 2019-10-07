@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { User } from '../../models/forgot.model';
 
 @Component({
@@ -15,7 +15,7 @@ export class ForgotComponent implements OnInit {
   response: any;
   email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private svc: UserService) {
+  constructor(private svc: UserserviceService) {
     this.svc.print("inside forgot password");
   }
 
@@ -35,7 +35,11 @@ export class ForgotComponent implements OnInit {
       email: this.email.value,
       service: "basic"
     }
-    this.result=this.svc.post(this.userObj,'reset');
+    let obj={
+      data: this.userObj,
+      url: 'reset'
+      }
+    this.result=this.svc.PostwithoutToken(obj);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

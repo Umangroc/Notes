@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
+import { UserserviceService } from 'src/app/services/user/userservice.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from '../../models/login.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
-  constructor(private svc: UserService) { 
+  constructor(private svc: UserserviceService,private auth: AuthService, private router: Router) {
     this.svc.print("inside login");
   }
 
@@ -43,17 +45,28 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-   
+
     this.userObj = {
       email: this.email.value,
       password: this.password.value,
       service: "basic"
-
     }
-    this.result=this.svc.post(this.userObj,'login');
+    let obj = {
+      data: this.userObj,
+      url: 'login'
+    }
+    this.result = this.svc.PostwithoutToken(obj);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);
+      localStorage.setItem('id', response.id);   
+      //console.log("1111111111111",response.id);
+         
+      this.auth.sendToken(response.id);
+      this.router.navigate(['/dashboard']);
+    },(error)=>{
+      console.log(error);
+      
     })
   }
 

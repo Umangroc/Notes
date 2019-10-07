@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/register.model';
 
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
 
 
-  constructor(private svc: UserService) {
+  constructor(private svc: UserserviceService) {
     this.svc.print("inside register");
   }
 
@@ -62,7 +62,11 @@ export class RegisterComponent implements OnInit {
       password: this.password.value,
       service: "basic"
     }
-    this.result = this.svc.post(this.userObj,'userSignUp');
+    let obj={
+      data: this.userObj,
+      url: 'userSignUp'
+      }
+    this.result = this.svc.PostwithoutToken(obj);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

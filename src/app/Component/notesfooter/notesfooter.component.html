@@ -1,11 +1,11 @@
 <div fxLayoutAlign="space-around" style="display:flex">
-    <button mat-icon-button title="Remind me"><mat-icon>notifications</mat-icon></button>
-    <button mat-icon-button title="Collaborator"><mat-icon>person_add</mat-icon></button>
-    <button mat-icon-button title="Change color"><mat-icon>color_lens</mat-icon></button>
-    <button mat-icon-button title="Add image"><mat-icon>image</mat-icon></button>
-    <button mat-icon-button title="Archive"><mat-icon>archive</mat-icon></button>
-    <button mat-icon-button title="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-    <mat-menu #menu="matMenu">
+    <button mat-icon-button matTooltip="Remind me"><mat-icon>notifications</mat-icon></button>
+    <button mat-icon-button matTooltip="Collaborator"><mat-icon>person_add</mat-icon></button>
+    <button mat-icon-button matTooltip="Change color"><mat-icon>color_lens</mat-icon></button>
+    <button mat-icon-button matTooltip="Add image"><mat-icon>image</mat-icon></button>
+    <button mat-icon-button matTooltip="Archive"><mat-icon>archive</mat-icon></button>
+    <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu>
         <button mat-menu-item>Add label</button>
         <button mat-menu-item>Add drawing</button>
         <button mat-menu-item>Show checkboxes</button>

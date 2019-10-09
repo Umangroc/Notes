@@ -45,4 +45,9 @@ export class UserService {
     }
     return formBody.join('&');
     }
+
+    getWithTokensapi(userObj,options)
+{
+  return this.http.get(this.baseUrl1+userObj.url,options);
+}
   }

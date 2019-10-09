@@ -19,7 +19,10 @@ import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { NotesComponent } from './Component/notes/notes.component';
 import { NotesfooterComponent } from './Component/notesfooter/notesfooter.component';
 import { AuthGuard } from './auth/auth.guard';
-import { DispComponent } from './Component/disp/disp.component';
+import { DispComponent} from './Component/disp/disp.component';
+import { NoteComponent } from './Component/note/note.component';
+import { DialogComponent } from './Component/dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { DispComponent } from './Component/disp/disp.component';
     NotesComponent,
     NotesfooterComponent,
     DispComponent,
+    NoteComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { DispComponent } from './Component/disp/disp.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
+  entryComponents: [DialogComponent],
   providers: [ UserService, AuthGuard],
   bootstrap: [AppComponent]
 })

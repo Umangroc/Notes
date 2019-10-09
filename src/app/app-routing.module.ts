@@ -7,6 +7,8 @@ import { ResetComponent } from './Component/reset/reset.component';
 import { DashboardComponent } from './Component/dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
 
+import { NoteComponent } from './Component/note/note.component';
+
 
 const routes: Routes = [
  
@@ -15,7 +17,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:token', component: ResetComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard], 
+  children: [
+{
+  path: 'note', component: NoteComponent 
+}
+  ]},
   { path:'**', redirectTo: '/login'},
 ];
 

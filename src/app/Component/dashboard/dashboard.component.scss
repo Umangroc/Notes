@@ -41,13 +41,7 @@
         }
     }
 
-    .rem-card{
-        background-color: $theme;
-        min-height: 90vh;
-        padding-top: 5%;
-        height: 100%;
-        width: 100%;
-    }
+   
 
     .hover-round:hover{
         background-color: $hovercolor;
@@ -66,4 +60,10 @@
     content: "";
     display: table;
     clear: both;
+  }
+
+  .searchbar{
+      padding-top: 80px;
+width: 100%;
+transform: translateY(-1.1em) scale(.75);
   }

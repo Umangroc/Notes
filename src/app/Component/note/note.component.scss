@@ -1,0 +1,9 @@
+@import '../../appstyle/colors.scss';
+
+.rem-card{
+    background-color: $theme;
+    min-height: 90vh;
+    padding-top: 5%;
+    height: 100%;
+    width: 100%;
+}

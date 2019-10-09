@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { User } from '../../models/reset.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reset',
@@ -16,12 +17,15 @@ export class ResetComponent implements OnInit {
   response: any;
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.password.value)]);
+  token : string;
 
-  constructor(private svc: UserserviceService) {
+  constructor(private svc: UserserviceService,private route : ActivatedRoute) {
     this.svc.print("inside reset password");
   }
 
   ngOnInit() {
+    this.token=this.route.snapshot.paramMap.get('token');
+    localStorage.setItem('token',this.token);
   }
   PasswordInvalidMessage() {
     if (this.password.hasError("required")) {
@@ -47,16 +51,17 @@ export class ResetComponent implements OnInit {
 
   onResetPassword() {
     this.userObj = {
-      newPassword: this.password.value
+      newPassword: this.password.value,
+      service: "basic"
     }
     let obj={
       data: this.userObj,
-      url: 'reset-password/:token'
-      }
-    this.result = this.svc.PostwithoutToken(obj)
-    this.result.subscribe((response) => {
-      this.response = response;
-      console.log(this.response);
-    })
+      url: 'reset-password'
+    }
+    this.svc.postwithToken(obj)
+      .subscribe((response) => {
+        response = response;
+        console.log(response);
+      })
   }
 }

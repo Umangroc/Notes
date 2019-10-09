@@ -1,22 +1,13 @@
-<mat-card fxLayout="column" class="second-card" fxLayoutGap="20px" fxLayoutAlign="space-between">
-    <!-- Title Line -->
-    <div >
-      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title"></textarea>
+<div class="container" fxLayout="row wrap" fxLayoutGap="15px">
+  <mat-card fxFlex="30" class="dcard" *ngFor="let note of notes" fxFlex.sm="40" fxFlex.xs="80">
+    <div (click)="openDialog(note)">
+        <p>{{note.title}}</p>
     </div>
-
-    <!-- Note Line -->
-    <div class="take-note-size">
-      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="20" [formControl]="description" placeholder="Take a note..."></textarea>
+    <div (click)="openDialog(note)">
+        <p>{{note.description}}</p>
     </div>
-
-    <!-- Notes Footer -->
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-      <div>
-        <app-notesfooter></app-notesfooter>
-      </div>
-      <div><button mat-button (click)="receiveData()">Close</button></div>
+    <div>
+      <app-notesfooter></app-notesfooter>
     </div>
-    <!-- ------------- -->
   </mat-card>
+</div>

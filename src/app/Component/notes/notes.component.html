@@ -2,7 +2,7 @@
 
 <div style="display:flex">
   <!-- First half -->
-  <div (click)="toggle()" *ngIf="show" >
+  <div (click)="toggle()" *ngIf="show" style="padding-top: 4%">
     <!-- MatCard -->
     <mat-card class="first-card">
       <!-- Field -->
@@ -16,7 +16,7 @@
   </div>
 
   <!-- Other half -->
-  <div *ngIf="!show">
+  <div *ngIf="!show" style="padding-top: 4%">
     <!-- MatCard -->
     <mat-card fxLayout="column" class="second-card" fxLayoutGap="20px" fxLayoutAlign="space-between">
       <!-- Title Line -->

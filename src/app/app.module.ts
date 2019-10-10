@@ -22,6 +22,8 @@ import { AuthGuard } from './auth/auth.guard';
 import { DispComponent} from './Component/disp/disp.component';
 import { NoteComponent } from './Component/note/note.component';
 import { DialogComponent } from './Component/dialog/dialog.component';
+import { TrashComponent } from './Component/trash/trash.component';
+import { ArchiveComponent } from './Component/archive/archive.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { DialogComponent } from './Component/dialog/dialog.component';
     NotesfooterComponent,
     DispComponent,
     NoteComponent,
-    DialogComponent
+    DialogComponent,
+    TrashComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,

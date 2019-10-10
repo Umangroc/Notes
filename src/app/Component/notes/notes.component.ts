@@ -40,6 +40,7 @@ export class NotesComponent implements OnInit {
     }
     else {
       this.result = this.svc.postwithToken(obj)
+
       this.result.subscribe((response) => {
         this.response = response;
         this.dataSvc.changeMessage("Hello from Sibling")
@@ -47,8 +48,6 @@ export class NotesComponent implements OnInit {
       });
 
       this.toggle();
-      this.title.value == null;
-      this.description.value == null;
     }
   }
 

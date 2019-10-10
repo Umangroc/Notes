@@ -9,9 +9,10 @@
         </div>  
       </mat-menu>
     <button mat-icon-button matTooltip="Add image"><mat-icon>image</mat-icon></button>
-    <button mat-icon-button matTooltip="Archive"><mat-icon>archive</mat-icon></button>
+    <button mat-icon-button (click)="archive(noteId)" matTooltip="Archive"><mat-icon>archive</mat-icon></button>
     <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
     <mat-menu #menu [overlapTrigger]="false">
+        <button mat-menu-item (click)="trash(noteId)">Delete Note</button>
         <button mat-menu-item>Add label</button>
         <button mat-menu-item>Add drawing</button>
         <button mat-menu-item>Show checkboxes</button>

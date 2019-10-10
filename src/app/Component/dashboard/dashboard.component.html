@@ -28,7 +28,7 @@
         <mat-icon>face</mat-icon>
         <mat-menu #Userdetails [overlapTrigger]="false">
           <div fxLayout="row">
-            <div><button mat-menu-item >Add account</button></div>
+            <div><button mat-menu-item routerLink="login">Add account</button></div>
           <div><button mat-menu-item (click)="logout()" routerLink="login">Sign out</button></div>
         </div> </mat-menu>
       </button>
@@ -42,7 +42,7 @@
   <!-- SideBar -->
   <mat-sidenav class="nav-card" #sidenav mode="side">
     <mat-nav-list class="list">
-      <mat-list-item routerLink="." class="hover-round">
+      <mat-list-item routerLink="/note" class="hover-round">
         <mat-icon class="icon-spacer">description</mat-icon>Notes
       </mat-list-item>
       <mat-list-item routerLink="." class="hover-round">
@@ -54,10 +54,10 @@
         <mat-icon class="icon-spacer">create</mat-icon>Edit labels
       </mat-list-item>
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="." class="hover-round">
+      <mat-list-item routerLink="/archive" class="hover-round">
         <mat-icon class="icon-spacer">archive</mat-icon>Archive
       </mat-list-item>
-      <mat-list-item routerLink="." class="hover-round">
+      <mat-list-item routerLink="/trash" class="hover-round">
         <mat-icon class="icon-spacer">delete</mat-icon>Trash
       </mat-list-item>
     </mat-nav-list>

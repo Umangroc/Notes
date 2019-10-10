@@ -1,11 +1,16 @@
 <div >
     <div>
-        <p>{{data.title}}</p>
+        <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{data.title}}"></textarea></p>
     </div>
     <div >
-        <p>{{data.description}}</p>
+        <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="description" value="{{data.description}}"></textarea></p>
     </div>
-    <div>
-      <app-notesfooter></app-notesfooter>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <app-notesfooter></app-notesfooter>
+      </div>
+      <div><button mat-button (click)="updateData()">Close</button></div>
     </div>
   </div>

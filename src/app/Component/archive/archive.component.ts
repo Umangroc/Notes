@@ -5,12 +5,11 @@ import { DialogComponent } from '../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-disp',
-  templateUrl: './disp.component.html',
-  styleUrls: ['./disp.component.scss']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss']
 })
-export class DispComponent implements OnInit {
-
+export class ArchiveComponent implements OnInit {
   notes: any;
   options: any;
   message: String;
@@ -50,9 +49,10 @@ export class DispComponent implements OnInit {
 
   filterarchive(allnote){
     var notes =  allnote.filter(function(note) {
-      return (note.isArchived == false && note.isDeleted == false) ;
+      return note.isArchived == true && note.isDeleted == false;
     });
     return notes;
   }
+
 
 }

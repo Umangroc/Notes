@@ -5,12 +5,11 @@ import { DialogComponent } from '../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-disp',
-  templateUrl: './disp.component.html',
-  styleUrls: ['./disp.component.scss']
+  selector: 'app-trash',
+  templateUrl: './trash.component.html',
+  styleUrls: ['./trash.component.scss']
 })
-export class DispComponent implements OnInit {
-
+export class TrashComponent implements OnInit {
   notes: any;
   options: any;
   message: String;
@@ -40,7 +39,7 @@ export class DispComponent implements OnInit {
       }
     this.svc.getWithTokens(this.options).subscribe((response: any) => {
       // console.log('response form the getnote data',response);
-      this.notes = this.filterarchive(response.data.data);
+      this.notes = this.trasharchive(response.data.data);
       this.notes.reverse();
       
     }, (error) => {
@@ -48,11 +47,12 @@ export class DispComponent implements OnInit {
     });
   }
 
-  filterarchive(allnote){
+  trasharchive(allnote){
     var notes =  allnote.filter(function(note) {
-      return (note.isArchived == false && note.isDeleted == false) ;
+      return note.isDeleted == true && note.isArchived == false;
     });
     return notes;
   }
+
 
 }

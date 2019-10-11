@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
 import { NoteService } from 'src/app/services/note/note.service';
 
@@ -11,6 +11,10 @@ import { NoteService } from 'src/app/services/note/note.service';
  
 export class NotesfooterComponent implements OnInit {
   @Input() noteId: any;
+  @Input() archieve: any;
+  @Output() messageEvent= new EventEmitter<string>();
+  message: string='save';
+ 
   result: any;
   response: any;
   colorArray: any = [
@@ -23,11 +27,49 @@ export class NotesfooterComponent implements OnInit {
   }
 
   ngOnInit() {
+   // console.log(this.archieve);
+    
+  }
+
+  changeColor(id,colour){
+    let chcolor = {
+      color: colour,
+      noteIdList: [id],
+    }
+    
+    let obj = {
+      data: chcolor,
+      url: 'changesColorNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.messageEvent.emit(this.message);
+      //console.log(this.response);
+    });
   }
 
   archive(noteId){
     let archive = {
       isArchived: true,
+      noteIdList: [noteId],
+    }
+    
+    let obj = {
+      data: archive,
+      url: 'archiveNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.dataSvc.changeMessage("Hello from Sibling")
+      //console.log(this.response);
+    });
+  }
+
+  unarchive(noteId){
+    let archive = {
+      isArchived: false,
       noteIdList: [noteId],
     }
     

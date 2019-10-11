@@ -10,12 +10,14 @@ import { DataService } from 'src/app/services/data/data.service';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
+  archi = "true";
   show: boolean = true;
   response: any;
   result: any;
   title = new FormControl;
   description = new FormControl;
   note: Note;
+
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
   toggle() {
@@ -24,6 +26,7 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
   }
+ 
   receiveData() {
     this.note = {
       title: this.title.value,

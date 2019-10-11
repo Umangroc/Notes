@@ -5,11 +5,15 @@
     [matMenuTriggerFor]="menu_color" matTooltip="Change color"><mat-icon>color_lens</mat-icon></button>
     <mat-menu #menu_color [overlapTrigger]="false">
         <div class="center">
-            <button *ngFor="let color1 of colorArray" [ngStyle]="{'background':color1.color}" (click)="changeColor(card,color1.color)" class= "icon-palette"></button>
+            <button *ngFor="let color1 of colorArray" [ngStyle]="{'background':color1.color}" (click)="changeColor(noteId,color1.color)" class= "icon-palette"></button>
         </div>  
       </mat-menu>
     <button mat-icon-button matTooltip="Add image"><mat-icon>image</mat-icon></button>
-    <button mat-icon-button (click)="archive(noteId)" matTooltip="Archive"><mat-icon>archive</mat-icon></button>
+    
+
+    <button  mat-icon-button *ngIf="archieve=='true'"  (click)="archive(noteId)" matTooltip="Archive"><mat-icon>archive</mat-icon></button>
+    <button  mat-icon-button  *ngIf="archieve=='false'" (click)="unarchive(noteId)" matTooltip="Unarchive"><mat-icon>unarchive</mat-icon></button>
+
     <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
     <mat-menu #menu [overlapTrigger]="false">
         <button mat-menu-item (click)="trash(noteId)">Delete Note</button>

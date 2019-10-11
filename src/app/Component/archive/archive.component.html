@@ -1,13 +1,13 @@
-<div class="container" fxLayout="row wrap" fxLayoutGap="15px">
-  <mat-card  fxFlex="30" class="dcard" *ngFor="let note of notes" fxFlex.sm="40" fxFlex.xs="80">
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+  <mat-card  fxFlex="30" class="dcard" *ngFor="let note of notes" [ngStyle]="{background:note.color}" fxFlex.sm="40" fxFlex.xs="80">
     <div (click)="openDialog(note)">
-        <p>{{note.title}}</p>
+        <p style="word-break: break-all;">{{note.title}}</p>
     </div>
     <div (click)="openDialog(note)">
-        <p>{{note.description}}</p>
+        <p style="word-break: break-all;">{{note.description}}</p>
     </div>
     <div >
-      <app-notesfooter [noteId]="note.id"></app-notesfooter>
+      <app-notesfooter (messageEvent)="receiveMessage($event)" [noteId]="note.id" [archieve]=archi></app-notesfooter>
     </div>
   </mat-card>
 </div>

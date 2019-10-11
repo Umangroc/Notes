@@ -19,13 +19,16 @@ export class DialogComponent implements OnInit {
   noteId: any;
   title = new FormControl;
   description = new FormControl;
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService, private dataSvc: DataService, public dialogRef: MatDialogRef<NoteComponent>) { }
+  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService, private dataSvc: DataService, public dialogRef: MatDialogRef<NoteComponent>) {
+   }
 
   ngOnInit() {
+    
   }
 
   updateData() {
+    
     this.dialog = {
       title: this.title.value,
       description: this.description.value,
@@ -55,6 +58,47 @@ export class DialogComponent implements OnInit {
     });
 
     this.dialogRef.close();
+  }
+
+  deleteforever(noteId){
+    console.log(noteId);
+    
+    let delfor = {
+      isDeleted: true,
+      noteIdList: [noteId],
+    }
+    
+    let obj = {
+      data: delfor,
+      url: 'deleteForeverNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.dataSvc.changeMessage("Hello from Sibling")
+      console.log(this.response);
+      this.dialogRef.close();
+    });
+  }
+
+  restore(noteId){
+    
+    let delfor = {
+      isDeleted: false,
+      noteIdList: [noteId],
+    }
+    
+    let obj = {
+      data: delfor,
+      url: 'trashNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.dataSvc.changeMessage("Hello from Sibling")
+      console.log(this.response);
+      this.dialogRef.close();
+    });
   }
 
 }

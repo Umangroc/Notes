@@ -13,6 +13,8 @@ export class TrashComponent implements OnInit {
   notes: any;
   options: any;
   message: String;
+  result: any;
+  response: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService,public dialog: MatDialog) { }
 
@@ -22,10 +24,13 @@ export class TrashComponent implements OnInit {
       this.getNoteData();
     })
   }
-
+  receiveMessage($event) {
+    this.message = $event;
+    this.getNoteData();
+  }
   openDialog(notes) {
     const dialogRef = this.dialog.open(DialogComponent, {
-      data: {title: notes.title, description: notes.description, noteId: notes.id}
+      data: {title: notes.title, description: notes.description, noteId: notes.id, recycle: false}
     });
     
     dialogRef.afterClosed().subscribe(result => {
@@ -39,7 +44,7 @@ export class TrashComponent implements OnInit {
       }
     this.svc.getWithTokens(this.options).subscribe((response: any) => {
       // console.log('response form the getnote data',response);
-      this.notes = this.trasharchive(response.data.data);
+      this.notes = this.trash(response.data.data);
       this.notes.reverse();
       
     }, (error) => {
@@ -47,12 +52,50 @@ export class TrashComponent implements OnInit {
     });
   }
 
-  trasharchive(allnote){
+  trash(allnote){
     var notes =  allnote.filter(function(note) {
-      return note.isDeleted == true && note.isArchived == false;
+      return note.isDeleted == true;
     });
     return notes;
   }
 
+  deleteforever(noteId){
+    console.log(noteId);
+    
+    let delfor = {
+      isDeleted: true,
+      noteIdList: [noteId],
+    }
+    
+    let obj = {
+      data: delfor,
+      url: 'deleteForeverNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.dataSvc.changeMessage("Hello from Sibling")
+      console.log(this.response);
+    });
+  }
+
+  restore(noteId){
+    
+    let delfor = {
+      isDeleted: false,
+      noteIdList: [noteId],
+    }
+    
+    let obj = {
+      data: delfor,
+      url: 'trashNotes'
+    }
+    this.result = this.svc.postwithToken(obj)
+    this.result.subscribe((response) => {
+      this.response = response;
+      this.dataSvc.changeMessage("Hello from Sibling")
+      console.log(this.response);
+    });
+  }
 
 }

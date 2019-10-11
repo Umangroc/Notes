@@ -1,4 +1,4 @@
-<div >
+<div *ngIf="data.recycle==true">
     <div>
         <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
           cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{data.title}}"></textarea></p>
@@ -9,8 +9,24 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div>
-        <app-notesfooter></app-notesfooter>
+        <app-notesfooter [noteId]="data.noteId"></app-notesfooter>
       </div>
       <div><button mat-button (click)="updateData()">Close</button></div>
+    </div>
+  </div>
+
+  <div *ngIf="data.recycle==false">
+    <div>
+        <p>{{data.title}}</p>
+    </div>
+    <div >
+        <p>{{data.description}}</p>
+    </div>
+    <div>
+      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon >more_vert</mat-icon></button>
+      <mat-menu #menu [overlapTrigger]="false">
+        <button mat-menu-item (click)="deleteforever(data.noteId)">Delete forever</button>
+        <button mat-menu-item (click)="restore(data.noteId)">Restore</button>
+      </mat-menu>
     </div>
   </div>

@@ -11,28 +11,31 @@
 
   <div fxFlex="50">
     <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
-<button mat-icon-button matPrefix><mat-icon>search</mat-icon></button>
-<input matInput class="search-spacer" placeholder="Search">
-</mat-form-field>
-    <!-- <mat-card class="searchcard" fxLayout="row">
-      <button mat-icon-button><mat-icon>search</mat-icon></button>
-      <textarea type="text" class="search-size" matInput placeholder="Search"></textarea>
-    </mat-card> -->
-  </div> 
+      <button mat-icon-button matPrefix>
+        <mat-icon>search</mat-icon>
+      </button>
+      <input matInput class="search-spacer" placeholder="Search">
+    </mat-form-field>
+  </div>
 
   <div fxFlex="20" fxLayoutAlign="space-around">
-      <button mat-icon-button class="header-hover" matTooltip="Google apps">
-          <mat-icon>apps</mat-icon>
-        </button>
+    <button mat-icon-button class="header-hover" matTooltip="Google apps">
+      <mat-icon>apps</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="Userdetails" class="header-hover" matTooltip="Google Account">
-        <mat-icon>face</mat-icon>
-        <mat-menu #Userdetails [overlapTrigger]="false">
-          <div fxLayout="row">
-            <div><button mat-menu-item routerLink="login">Add account</button></div>
+      <mat-icon>face</mat-icon>
+      <mat-menu #Userdetails [overlapTrigger]="false">
+        <div>
+          <button>Change image</button>
+           <mat-divider></mat-divider>
+        <div fxLayout="row">
+          <div><button mat-menu-item routerLink="login">Add account</button></div>
           <div><button mat-menu-item (click)="logout()" routerLink="login">Sign out</button></div>
-        </div> </mat-menu>
-      </button>
-    
+        </div>
+      </div>
+      </mat-menu>
+    </button>
+
   </div>
 </mat-toolbar>
 <mat-divider></mat-divider>
@@ -63,9 +66,9 @@
     </mat-nav-list>
   </mat-sidenav>
   <!-- Other than NavBar -->
-  <mat-sidenav-content class="rem-card">
+  <mat-sidenav-content class="disp">
     <router-outlet></router-outlet>
   </mat-sidenav-content>>
 
-  
+
 </mat-sidenav-container>

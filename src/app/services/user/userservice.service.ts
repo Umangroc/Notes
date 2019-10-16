@@ -14,20 +14,28 @@ export class UserserviceService {
     console.log(arg);
   }
   
-  PostwithoutToken(userObj){
-  return this.svc.post(userObj);
+  loginuserservice(Obj){
+    let url= 'user/login'
+    let auth = false;
+    return this.svc.post(Obj,url,auth);
   }
-  
-  postwithToken(userObj)
-  {
-  let httpOptions={
-  headers:new HttpHeaders({
-  'Content-type':'application/x-www-form-urlencoded',
-  'Authorization':localStorage.getItem('token')
-  })
+
+  registeruserservice(Obj){
+    let url= 'user/userSignUp'
+    let auth = false;
+    return this.svc.post(Obj,url,false);
   }
-  return this.svc.postWithTokens(userObj,httpOptions);
+
+  forgotuserservice(Obj){
+    let url= 'user/reset'
+    let auth = false;
+    return this.svc.post(Obj,url,auth);
   }
-  
+
+  resetuserservice(Obj){
+    let url= 'user/reset-password'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
   
 }

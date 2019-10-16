@@ -1,0 +1,7 @@
+<button mat-icon-button 
+    [matMenuTriggerFor]="menu_color" matTooltip="Change color"><mat-icon>color_lens</mat-icon></button>
+    <mat-menu #menu_color [overlapTrigger]="false">
+        <div class="center">
+            <button *ngFor="let color1 of colorArray" [ngStyle]="{'background':color1.color}" (click)="changeColor(id,color1.color)" class= "icon-palette"></button>
+        </div>  
+      </mat-menu>

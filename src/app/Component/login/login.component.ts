@@ -51,11 +51,7 @@ export class LoginComponent implements OnInit {
       password: this.password.value,
       service: "basic"
     }
-    let obj = {
-      data: this.userObj,
-      url: 'login'
-    }
-    this.result = this.svc.PostwithoutToken(obj);
+    this.result = this.svc.loginuserservice(this.userObj);
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);

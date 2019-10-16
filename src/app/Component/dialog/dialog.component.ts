@@ -46,11 +46,7 @@ export class DialogComponent implements OnInit {
     }
     console.log(this.dialog);
 
-    let obj = {
-      data: this.dialog,
-      url: 'updateNotes'
-    }
-    this.result = this.svc.postwithToken(obj)
+    this.result = this.svc.updatenoteservice(this.dialog)
     this.result.subscribe((response) => {
       this.response = response;
       this.dataSvc.changeMessage("Hello from Sibling")
@@ -68,11 +64,7 @@ export class DialogComponent implements OnInit {
       noteIdList: [noteId],
     }
     
-    let obj = {
-      data: delfor,
-      url: 'deleteForeverNotes'
-    }
-    this.result = this.svc.postwithToken(obj)
+    this.result = this.svc.deleteforevernoteservice(delfor)
     this.result.subscribe((response) => {
       this.response = response;
       this.dataSvc.changeMessage("Hello from Sibling")
@@ -87,12 +79,7 @@ export class DialogComponent implements OnInit {
       isDeleted: false,
       noteIdList: [noteId],
     }
-    
-    let obj = {
-      data: delfor,
-      url: 'trashNotes'
-    }
-    this.result = this.svc.postwithToken(obj)
+    this.result = this.svc.trashnoteservice(delfor)
     this.result.subscribe((response) => {
       this.response = response;
       this.dataSvc.changeMessage("Hello from Sibling")

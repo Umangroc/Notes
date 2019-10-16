@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,12 @@ import { environment } from '../../../environments/environment';
 export class UserService {
   error: any;
   baseUrl = environment.base;
-  baseUrl1 = environment.base1;
+  httpOptions={
+    headers:new HttpHeaders({
+    'Content-type':'application/json',
+    'Authorization':localStorage.getItem('id')
+    })
+    }
 
   constructor(private http: HttpClient) {
   }
@@ -17,18 +24,22 @@ export class UserService {
     console.log(arg);
   }
 
-  post(userObj) {
-    return this.http.post(this.baseUrl + userObj.url, userObj.data);
+  post(userObj,url,auth) {
+    if(auth==false){
+      return this.http.post(this.baseUrl + url, userObj);
+    }
+    else{
+      return this.http.post(this.baseUrl + url, userObj, this.httpOptions);
+    }
   }
 
-  postWithTokens(userObj, options) {
-    return this.http.post(this.baseUrl + userObj.url, this.getEncodedData(userObj.data), options);
-  }
-
-  //adding note in the api
-
-  postWithTokensapi(userObj, options) {    
-    return this.http.post(this.baseUrl1 + userObj.url, (userObj.data), options);
+  get(url,auth) {
+    if(auth==false){
+      return this.http.get(this.baseUrl + url);
+    }
+    else{
+      return this.http.get(this.baseUrl + url,this.httpOptions);
+    }
   }
 
   getEncodedData(data) {
@@ -39,9 +50,5 @@ export class UserService {
       formBody.push(encodedKey + '=' + encodedValue);
     }
     return formBody.join('&');
-  }
-
-  getWithTokensapi(userObj, options) {
-    return this.http.get(this.baseUrl1 + userObj.url, options);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { Note } from '../../models/note.model';
 import { FormControl } from '@angular/forms';
@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/data/data.service';
   styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent implements OnInit {
-  archi = "true";
+  @Input() component: any;
   show: boolean = true;
   response: any;
   result: any;
@@ -33,17 +33,11 @@ export class NotesComponent implements OnInit {
       description: this.description.value,
       service: "basic"
     }
-
-    let obj = {
-      data: this.note,
-      url: 'addNotes'
-    }
     if (this.title.value == null && this.description.value == null) {
       this.toggle();
     }
     else {
-      this.result = this.svc.postwithToken(obj)
-
+      this.result = this.svc.addnoteservice(this.note)
       this.result.subscribe((response) => {
         this.response = response;
         this.dataSvc.changeMessage("Hello from Sibling")

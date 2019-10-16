@@ -10,8 +10,8 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
-  archi = "false";
-  notes: any;
+  name: String = "archive";
+  archive: any;
   options: any;
   message: String;
 
@@ -39,14 +39,9 @@ export class ArchiveComponent implements OnInit {
     this.getNoteData();
   }
   getNoteData() {
-    this.options =
-      {
-        url: 'getNotesList',
-      }
-    this.svc.getWithTokens(this.options).subscribe((response: any) => {
-      // console.log('response form the getnote data',response);
-      this.notes = this.filterarchive(response.data.data);
-      this.notes.reverse();
+    this.svc.archivedisplaynoteservice().subscribe((response: any) => {
+      this.archive = this.filterarchive(response.data.data);
+      //this.archive.reverse();
       
     }, (error) => {
       console.log(error);
@@ -55,7 +50,7 @@ export class ArchiveComponent implements OnInit {
 
   filterarchive(allnote){
     var notes =  allnote.filter(function(note) {
-      return note.isArchived == true && note.isDeleted == false;
+      return note.isDeleted == false;
     });
     return notes;
   }

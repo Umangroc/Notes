@@ -54,12 +54,7 @@ export class ResetComponent implements OnInit {
       newPassword: this.password.value,
       service: "basic"
     }
-    let obj={
-      data: this.userObj,
-      url: 'reset-password'
-    }
-    this.svc.postwithToken(obj)
-      .subscribe((response) => {
+    this.svc.resetuserservice(this.userObj).subscribe((response) => {
         response = response;
         console.log(response);
       })

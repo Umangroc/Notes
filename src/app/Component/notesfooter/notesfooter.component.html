@@ -1,24 +1,33 @@
-<div fxLayoutAlign="space-around" style="display:flex">
-    <button mat-icon-button matTooltip="Remind me"><mat-icon>notifications</mat-icon></button>
-    <button mat-icon-button matTooltip="Collaborator"><mat-icon>person_add</mat-icon></button>
-    <button mat-icon-button 
-    [matMenuTriggerFor]="menu_color" matTooltip="Change color"><mat-icon>color_lens</mat-icon></button>
-    <mat-menu #menu_color [overlapTrigger]="false">
-        <div class="center">
-            <button *ngFor="let color1 of colorArray" [ngStyle]="{'background':color1.color}" (click)="changeColor(noteId,color1.color)" class= "icon-palette"></button>
-        </div>  
-      </mat-menu>
-    <button mat-icon-button matTooltip="Add image"><mat-icon>image</mat-icon></button>
-    
+<div *ngIf="function=='all'" fxLayoutAlign="space-around" style="display:flex">
+  <button mat-icon-button matTooltip="Remind me">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Collaborator">
+    <mat-icon>person_add</mat-icon>
+  </button>
+  <app-color-icon [id]="noteId"></app-color-icon>
+  <button mat-icon-button matTooltip="Add image">
+    <mat-icon>image</mat-icon>
+  </button>
+  <app-archive-icon [id]="noteId"></app-archive-icon>
+  <app-matmenu-icon [mat]=function [id]="noteId"></app-matmenu-icon>
+</div>
 
-    <button  mat-icon-button *ngIf="archieve=='true'"  (click)="archive(noteId)" matTooltip="Archive"><mat-icon>archive</mat-icon></button>
-    <button  mat-icon-button  *ngIf="archieve=='false'" (click)="unarchive(noteId)" matTooltip="Unarchive"><mat-icon>unarchive</mat-icon></button>
+<div *ngIf="function=='archive'" fxLayoutAlign="space-around" style="display:flex">
+  <button mat-icon-button matTooltip="Remind me">
+    <mat-icon>notifications</mat-icon>
+  </button>
+  <button mat-icon-button matTooltip="Collaborator">
+    <mat-icon>person_add</mat-icon>
+  </button>
+  <app-color-icon [id]="noteId"></app-color-icon>
+  <button mat-icon-button matTooltip="Add image">
+    <mat-icon>image</mat-icon>
+  </button>
+  <app-unarchive-icon [id]="noteId"></app-unarchive-icon>
+  <app-matmenu-icon [mat]=function [id]="noteId"></app-matmenu-icon>
+</div>
 
-    <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-    <mat-menu #menu [overlapTrigger]="false">
-        <button mat-menu-item (click)="trash(noteId)">Delete Note</button>
-        <button mat-menu-item>Add label</button>
-        <button mat-menu-item>Add drawing</button>
-        <button mat-menu-item>Show checkboxes</button>
-      </mat-menu>
-    </div>
+<div *ngIf="function=='trash'" fxLayoutAlign="space-around" style="display:flex">
+  <app-matmenu-icon [mat]=function [id]="noteId"></app-matmenu-icon>
+</div>

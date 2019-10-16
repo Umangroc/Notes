@@ -24,6 +24,10 @@ import { NoteComponent } from './Component/note/note.component';
 import { DialogComponent } from './Component/dialog/dialog.component';
 import { TrashComponent } from './Component/trash/trash.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
+import { ArchiveIconComponent } from './Component/Icons/archive-icon/archive-icon.component';
+import { MatmenuIconComponent } from './Component/Icons/matmenu-icon/matmenu-icon.component';
+import { UnarchiveIconComponent } from './Component/Icons/unarchive-icon/unarchive-icon.component';
+import { ColorIconComponent } from './Component/Icons/color-icon/color-icon.component';
 
 
 @NgModule({
@@ -40,7 +44,11 @@ import { ArchiveComponent } from './Component/archive/archive.component';
     NoteComponent,
     DialogComponent,
     TrashComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    ArchiveIconComponent,
+    MatmenuIconComponent,
+    UnarchiveIconComponent,
+    ColorIconComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -10,18 +10,15 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./disp.component.scss']
 })
 export class DispComponent implements OnInit {
-  archi = "true";
-  notes: any;
+  @Input() display: any;
+  @Input() component: any;
   options: any;
   message: String;
 
   constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getNoteData();
-    this.dataSvc.currentMessage.subscribe((res: any) => {
-      this.getNoteData();
-    })
+    this.display;
   }
 
   openDialog(notes) {
@@ -36,29 +33,5 @@ export class DispComponent implements OnInit {
 
   receiveMessage($event) {
     this.message = $event;
-    this.getNoteData();
   }
-  getNoteData() {
-    this.options =
-      {
-        url: 'getNotesList',
-      }
-    this.svc.getWithTokens(this.options).subscribe((response: any) => {
-
-      this.notes = this.filterarchive(response.data.data);
-      //console.log('response form the getnote data',this.notes);
-      this.notes.reverse();
-
-    }, (error) => {
-      console.log(error);
-    });
-  }
-
-  filterarchive(allnote) {
-    var notes = allnote.filter(function (note) {
-      return (note.isArchived == false && note.isDeleted == false);
-    });
-    return notes;
-  }
-
 }

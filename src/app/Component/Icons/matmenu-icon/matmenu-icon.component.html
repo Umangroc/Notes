@@ -1,0 +1,16 @@
+<div *ngIf="(mat=='all'|| mat =='archive')">
+<button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu [overlapTrigger]="false">
+        <button mat-menu-item (click)="trash(id)">Delete Note</button>
+        <button mat-menu-item>Add label</button>
+        <button mat-menu-item>Add drawing</button>
+        <button mat-menu-item>Show checkboxes</button>
+      </mat-menu>
+    </div>
+    <div *ngIf="mat=='trash'">
+      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon >more_vert</mat-icon></button>
+      <mat-menu #menu [overlapTrigger]="false">
+        <button mat-menu-item (click)="deleteforever(id)">Delete forever</button>
+        <button mat-menu-item (click)="restore(id)">Restore</button>
+      </mat-menu>
+    </div>

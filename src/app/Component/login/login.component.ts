@@ -55,6 +55,8 @@ export class LoginComponent implements OnInit {
     this.result.subscribe((response) => {
       this.response = response;
       console.log(this.response);
+      localStorage.setItem('email', response.email);   
+      localStorage.setItem('name', response.firstName+response.lastName);   
       localStorage.setItem('id', response.id);   
       //console.log("1111111111111",response.id);
          

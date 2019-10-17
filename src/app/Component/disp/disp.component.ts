@@ -25,10 +25,6 @@ export class DispComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: { title: notes.title, description: notes.description, noteId: notes.id, recycle: true }
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   receiveMessage($event) {

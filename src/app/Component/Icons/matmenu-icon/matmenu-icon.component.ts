@@ -15,9 +15,7 @@ export class MatmenuIconComponent implements OnInit {
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
-  ngOnInit() {
-    console.log(this.mat);
-    
+  ngOnInit() {  
   }
   trash(noteId){
     let trash = {

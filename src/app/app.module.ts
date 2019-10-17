@@ -28,6 +28,8 @@ import { ArchiveIconComponent } from './Component/Icons/archive-icon/archive-ico
 import { MatmenuIconComponent } from './Component/Icons/matmenu-icon/matmenu-icon.component';
 import { UnarchiveIconComponent } from './Component/Icons/unarchive-icon/unarchive-icon.component';
 import { ColorIconComponent } from './Component/Icons/color-icon/color-icon.component';
+import { SearchPipe } from './search.pipe';
+import { SearchComponent } from './Component/search/search.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { ColorIconComponent } from './Component/Icons/color-icon/color-icon.comp
     ArchiveIconComponent,
     MatmenuIconComponent,
     UnarchiveIconComponent,
-    ColorIconComponent
+    ColorIconComponent,
+    SearchPipe,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

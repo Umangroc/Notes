@@ -44,13 +44,13 @@ export class DialogComponent implements OnInit {
     if ((this.dialog.title == "") && (this.dialog.description == "")) {
       this.dialog.title = "Empty Note";
     }
-    console.log(this.dialog);
+    //console.log(this.dialog);
 
     this.result = this.svc.updatenoteservice(this.dialog)
     this.result.subscribe((response) => {
       this.response = response;
       this.dataSvc.changeMessage("Hello from Sibling")
-      console.log(this.response);
+      //console.log(this.response);
     });
 
     this.dialogRef.close();

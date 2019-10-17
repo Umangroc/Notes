@@ -10,6 +10,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { NoteComponent } from './Component/note/note.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
 import { TrashComponent } from './Component/trash/trash.component';
+import { SearchComponent } from './Component/search/search.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     children: [
       { path: 'note', component: NoteComponent },
       { path: 'archive', component: ArchiveComponent },
-      { path: 'trash', component: TrashComponent }
+      { path: 'trash', component: TrashComponent },
+      { path: 'search', component: SearchComponent }
     ]
   },
   { path: '**', redirectTo: '/login' },

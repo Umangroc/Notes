@@ -11,10 +11,10 @@
 
   <div fxFlex="50">
     <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
-      <button mat-icon-button matPrefix>
+      <button mat-icon-button matPrefix (click)=search() routerLink="/search">
         <mat-icon>search</mat-icon>
       </button>
-      <input matInput class="search-spacer" placeholder="Search">
+      <input matInput class="search-spacer" [(ngModel)]="searchText" placeholder="Search">
     </mat-form-field>
   </div>
 
@@ -26,7 +26,18 @@
       <mat-icon>face</mat-icon>
       <mat-menu #Userdetails [overlapTrigger]="false">
         <div>
-          <button>Change image</button>
+          <div fxLayout="row">
+              <div><div class="image-container">
+                  <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" class=""> <br/>
+                  <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">
+                  <span class="message">Tap here to select your picture</span>
+                 </div></div>
+            <div>
+          <p>{{name}}</p>
+          <p>{{email}}</p>
+        </div>
+        
+        </div>
            <mat-divider></mat-divider>
         <div fxLayout="row">
           <div><button mat-menu-item routerLink="login">Add account</button></div>

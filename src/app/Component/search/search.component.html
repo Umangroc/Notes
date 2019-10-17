@@ -1,0 +1,13 @@
+<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
+  <mat-card  fxFlex="30" class="dcard" *ngFor="let note of notes | search:searchText" [ngStyle]="{background:note.color}"  fxFlex.sm="48" fxFlex.xs="80">
+    <div (click)="openDialog(note)">
+        <p style="word-break: break-all;">{{note.title}}</p>
+    </div>
+    <div (click)="openDialog(note)">
+        <p style="word-break: break-all;">{{note.description}}</p>
+    </div>
+    <div >
+      <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id"></app-notesfooter>
+    </div>
+  </mat-card>
+</div>

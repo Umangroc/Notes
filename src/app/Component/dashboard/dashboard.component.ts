@@ -33,12 +33,17 @@ export class DashboardComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(ImagedialogComponent, {width: '500px',height: '500px'});
+    this.dialog.open(ImagedialogComponent, {width: '1031px',height: '636px'});
   }
 
   changeimage(){
     this.backurl = localStorage.getItem('imageUrl');  
-    this.url = 'http://fundoonotes.incubation.bridgelabz.com/' + this.backurl;
+    if(this.backurl){
+      this.url = 'http://fundoonotes.incubation.bridgelabz.com/' + this.backurl;
+    }else{
+      this.url="";
+    }
+    
   }
   
 }

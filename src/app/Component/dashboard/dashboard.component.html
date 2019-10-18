@@ -23,30 +23,29 @@
       <mat-icon>apps</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="Userdetails" class="header-hover" matTooltip="Google Account">
-      <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+      <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'"></button>
+      
       <mat-menu #Userdetails [overlapTrigger]="false">
-        <div>
-          <div fxLayout="row">
-              <div><div class="image-container">
-                  <img [src]="url"> <br/>
+        <div class="accountmatcard" fxLayout="column" fxLayoutAlign="space-around center" >
+          <div fxLayout="row" fxLayoutAlign="space-around center">
+              <div class="image-container">
+                  <img [src]="url? url : 'https://www.w3schools.com/howto/img_avatar.png'"> <br/>
                   <span (click)=openDialog() class="message">Tap here to select your picture</span>
-                 </div></div>
-            <div>
+                 </div>
+                <div>
           <p>{{name}}</p>
           <p>{{email}}</p>
         </div>
-        
-        </div>
+          </div>
            <mat-divider></mat-divider>
         <div fxLayout="row">
           <div><button mat-menu-item routerLink="login">Add account</button></div>
           <div><button mat-menu-item (click)="logout()" routerLink="login">Sign out</button></div>
         </div>
-      </div>
+        </div>
       </mat-menu>
-    </button>
-
   </div>
+
 </mat-toolbar>
 <mat-divider></mat-divider>
 

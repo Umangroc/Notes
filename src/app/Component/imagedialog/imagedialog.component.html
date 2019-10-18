@@ -1,9 +1,32 @@
-<input type='file' (change)="fileChangeEvent($event)">
+<div fxFlex="100" style="width: 100%;" fxLayout="column">
 
+  <div fxFlex="40" >
+<h2>Select profile photo</h2>
+<!-- <input type='file' (change)="fileChangeEvent($event)"> -->
+<mat-button-toggle-group #group="matButtonToggleGroup">
+    <mat-button-toggle value="left" aria-label="Text align left">
+      <mat-icon>format_align_left</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="center" aria-label="Text align center">
+      <mat-icon>format_align_center</mat-icon>
+    </mat-button-toggle>
+ </mat-button-toggle-group>  
+ <div class="example-selected-value">Selected value: {{group.value}}</div>
+ <mat-divider></mat-divider>
+</div>
+
+
+
+<div fxFlex="40">
 <image-cropper
     [imageChangedEvent]="imageChangedEvent"
      (imageCropped)="imageCropped($event)"
 ></image-cropper>
+</div>
 
+<div fxFlex="20">
+<button mat-raised-button color="primary" (click)="uploadimage()">Set as profile photo</button>
+<button mat-raised-button (click)="close()">Cancel</button>
+</div>
 
-<button (click)="uploadimage()">Ok</button>
+</div>

@@ -1,5 +1,6 @@
 import {
     MatButtonModule,
+    MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatDialogModule,
@@ -21,6 +22,7 @@ import {TextFieldModule} from '@angular/cdk/text-field';
 @NgModule({
     imports: [
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
         MatDialogModule,
@@ -38,6 +40,7 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     ],
     exports: [
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
         MatCheckboxModule,
         MatDialogModule,

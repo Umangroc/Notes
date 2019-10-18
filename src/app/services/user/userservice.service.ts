@@ -37,5 +37,10 @@ export class UserserviceService {
     let auth = true;
     return this.svc.post(Obj,url,auth);
   }
+
+  profileimageuserservice(Obj){
+    let url= '/user/uploadProfileImage';
+    return this.svc.postImage(Obj,url);
+  }
   
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
+import { MatDialog } from '@angular/material';
+import { ImagedialogComponent } from '../imagedialog/imagedialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,23 +11,17 @@ import { DataService } from 'src/app/services/data/data.service';
 export class DashboardComponent implements OnInit {
   searchText: any;
   email = localStorage.getItem('email');   
-  name = localStorage.getItem('name');    
-  url = '';
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  name = localStorage.getItem('name');
+  backurl: any;
+  url: any;
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
-      }
-    }
-  }
-  constructor(private dataSvc: DataService) { }
+  constructor(private dataSvc: DataService, public dialog: MatDialog) { }
 
   ngOnInit() {
-      
+    this.dataSvc.currentMessage.subscribe((res) => {
+     // console.log("In ng on init");
+      this.changeimage();
+    });    
   }
 
   logout(){
@@ -34,6 +30,15 @@ export class DashboardComponent implements OnInit {
 
   search(){    
     this.dataSvc.changeMessage(this.searchText);
+  }
+
+  openDialog() {
+    this.dialog.open(ImagedialogComponent, {width: '500px',height: '500px'});
+  }
+
+  changeimage(){
+    this.backurl = localStorage.getItem('imageUrl');  
+    this.url = 'http://fundoonotes.incubation.bridgelabz.com/' + this.backurl;
   }
   
 }

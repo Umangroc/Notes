@@ -58,7 +58,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('email', response.email);   
       localStorage.setItem('name', response.firstName+response.lastName);   
       localStorage.setItem('id', response.id);   
-      //console.log("1111111111111",response.id);
+      localStorage.setItem('imageUrl', response.imageUrl);   
+      //console.log("1111111111111",response.imageUrl);
          
       this.auth.sendToken(response.id);
       this.router.navigate(['/note']);

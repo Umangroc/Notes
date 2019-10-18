@@ -42,6 +42,16 @@ export class UserService {
     }
   }
 
+  postImage(Obj,url){
+    let httpOptions1={
+      headers:new HttpHeaders({
+      'Authorization':localStorage.getItem('id')
+      })
+      }
+  
+    return this.http.post(this.baseUrl + url, Obj, httpOptions1);
+  }
+
   getEncodedData(data) {
     const formBody = [];
     for (const property in data) {

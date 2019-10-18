@@ -40,7 +40,7 @@ export class NoteComponent implements OnInit {
   getNoteData() {
     this.svc.displaynoteservice().subscribe((response: any) => {
       this.note = this.filterlist(response.data.data);
-      //this.display.reverse();
+      this.note.reverse();
 
     }, (error) => {
       console.log(error);

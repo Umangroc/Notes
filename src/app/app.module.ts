@@ -30,6 +30,8 @@ import { UnarchiveIconComponent } from './Component/Icons/unarchive-icon/unarchi
 import { ColorIconComponent } from './Component/Icons/color-icon/color-icon.component';
 import { SearchPipe } from './search.pipe';
 import { SearchComponent } from './Component/search/search.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImagedialogComponent } from './Component/imagedialog/imagedialog.component';
 
 
 @NgModule({
@@ -52,7 +54,8 @@ import { SearchComponent } from './Component/search/search.component';
     UnarchiveIconComponent,
     ColorIconComponent,
     SearchPipe,
-    SearchComponent
+    SearchComponent,
+    ImagedialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +65,10 @@ import { SearchComponent } from './Component/search/search.component';
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule 
   ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, ImagedialogComponent],
   providers: [ UserService, AuthGuard],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,9 @@
+<input type='file' (change)="fileChangeEvent($event)">
+
+<image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+     (imageCropped)="imageCropped($event)"
+></image-cropper>
+
+
+<button (click)="uploadimage()">Ok</button>

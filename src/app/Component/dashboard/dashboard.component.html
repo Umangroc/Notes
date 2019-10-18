@@ -23,14 +23,13 @@
       <mat-icon>apps</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="Userdetails" class="header-hover" matTooltip="Google Account">
-      <mat-icon>face</mat-icon>
+      <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'">
       <mat-menu #Userdetails [overlapTrigger]="false">
         <div>
           <div fxLayout="row">
               <div><div class="image-container">
-                  <img [src]="url ? url : 'https://www.w3schools.com/howto/img_avatar.png'" class=""> <br/>
-                  <input type='file' (change)="onSelectFile($event)" class="select-profile-picture">
-                  <span class="message">Tap here to select your picture</span>
+                  <img [src]="url"> <br/>
+                  <span (click)=openDialog() class="message">Tap here to select your picture</span>
                  </div></div>
             <div>
           <p>{{name}}</p>

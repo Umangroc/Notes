@@ -41,7 +41,7 @@ export class TrashComponent implements OnInit {
   getNoteData() {
     this.svc.trashdisplaynoteservice().subscribe((response: any) => {
       this.trashComp = response.data.data;
-      //this.trashComp.reverse();
+      this.trashComp.reverse();
     }, (error) => {
       console.log(error);
     });

@@ -22,13 +22,13 @@
       <!-- Title Line -->
       <div >
         <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title"></textarea>
+          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" [(ngModel)]="titlemodel"></textarea>
       </div>
 
       <!-- Note Line -->
       <div >
         <textarea class="take-note-size" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="Take a note..."></textarea>
+          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="Take a note..." [(ngModel)]="descriptionmodel"></textarea>
       </div>
 
       <!-- Notes Footer -->

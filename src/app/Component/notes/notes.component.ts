@@ -17,6 +17,8 @@ export class NotesComponent implements OnInit {
   title = new FormControl;
   description = new FormControl;
   note: Note;
+  titlemodel: any;
+  descriptionmodel: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -43,7 +45,8 @@ export class NotesComponent implements OnInit {
         this.dataSvc.changeMessage("Hello from Sibling")
         console.log(this.response);
       });
-
+      this.titlemodel='';
+      this.descriptionmodel='';
       this.toggle();
     }
   }

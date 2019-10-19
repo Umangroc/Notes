@@ -2,7 +2,7 @@
 <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
     <mat-menu #menu [overlapTrigger]="false">
         <button mat-menu-item (click)="trash(id)">Delete Note</button>
-        <button mat-menu-item>Add label</button>
+        <button mat-menu-item [matMenuTriggerFor]="addlabel">Add label</button>
         <button mat-menu-item>Add drawing</button>
         <button mat-menu-item>Show checkboxes</button>
       </mat-menu>
@@ -14,3 +14,10 @@
         <button mat-menu-item (click)="restore(id)">Restore</button>
       </mat-menu>
     </div>
+
+    <mat-menu #addlabel [overlapTrigger]="false">
+        <button mat-menu-item>Add label</button>
+      <div *ngFor="let label of labels">
+        <button mat-menu-item (click)="addlabeltonotes(label,id)">{{label.label}}</button>
+      </div>
+      </mat-menu>

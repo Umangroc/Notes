@@ -64,4 +64,33 @@ export class NoteService {
     return this.svc.post(Obj,url,auth);
   }
 
+  addlabelnoteservice(Obj){
+    let url= 'noteLabels'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  getlabellistnoteservice(){
+    let url= 'noteLabels/getNoteLabelList'
+    let auth = true;
+    return this.svc.get(url,auth);
+  }
+
+  deletelabelnoteservice(Obj){
+    let url= 'noteLabels/'+ Obj.id + '/deleteNoteLabel'
+    return this.svc.delete(url);
+  }
+
+  updatelabelnoteservice(Obj){
+    let url= 'noteLabels/' + Obj.id + '/updateNoteLabel'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  addlabeltonotesnoteservice(Obj){
+    let url= 'notes/' + Obj.noteId + '/addLabelToNotes/' + Obj.id + '/add'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
 }

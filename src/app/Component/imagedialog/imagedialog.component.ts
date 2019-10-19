@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { FormControl } from '@angular/forms';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-imagedialog',
@@ -35,7 +36,7 @@ export class ImagedialogComponent implements OnInit {
     this.svc.profileimageuserservice(fd).subscribe((response:any) => {
       localStorage.setItem('imageUrl', response.status.imageUrl);   
       this.dataSvc.changeMessage("Hello from Sibling")
-     // console.log(response);
+      console.log("Image Url while uploading ...",response.status.imageUrl);
     });
    
   }

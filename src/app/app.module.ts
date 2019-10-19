@@ -32,6 +32,7 @@ import { SearchPipe } from './search.pipe';
 import { SearchComponent } from './Component/search/search.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImagedialogComponent } from './Component/imagedialog/imagedialog.component';
+import { LabeldialogComponent } from './Component/labeldialog/labeldialog.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { ImagedialogComponent } from './Component/imagedialog/imagedialog.compon
     ColorIconComponent,
     SearchPipe,
     SearchComponent,
-    ImagedialogComponent
+    ImagedialogComponent,
+    LabeldialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,7 @@ import { ImagedialogComponent } from './Component/imagedialog/imagedialog.compon
     ReactiveFormsModule,
     ImageCropperModule 
   ],
-  entryComponents: [DialogComponent, ImagedialogComponent],
+  entryComponents: [DialogComponent, ImagedialogComponent,LabeldialogComponent],
   providers: [ UserService, AuthGuard],
   bootstrap: [AppComponent]
 })

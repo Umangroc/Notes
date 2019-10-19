@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
 import { MatDialog } from '@angular/material';
 import { ImagedialogComponent } from '../imagedialog/imagedialog.component';
+import { LabeldialogComponent } from '../labeldialog/labeldialog.component';
+import { NoteService } from 'src/app/services/note/note.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,14 +16,18 @@ export class DashboardComponent implements OnInit {
   name = localStorage.getItem('name');
   backurl: any;
   url: any;
+  labels: any;
 
-  constructor(private dataSvc: DataService, public dialog: MatDialog) { }
+  constructor(private dataSvc: DataService, public dialog: MatDialog, private svc: NoteService) { }
 
   ngOnInit() {
+    this.getlabellist();
     this.dataSvc.currentMessage.subscribe((res) => {
-     // console.log("In ng on init");
-      this.changeimage();
+     //console.log("In ng on init");
+     this.getlabellist();
+    this.changeimage();
     });    
+ 
   }
 
   logout(){
@@ -43,7 +49,18 @@ export class DashboardComponent implements OnInit {
     }else{
       this.url="";
     }
-    
+  }
+
+  openlabelDialog() {
+    this.dialog.open(LabeldialogComponent, {width: '300px'});
+  }
+
+  getlabellist() {
+    this.svc.getlabellistnoteservice().subscribe((response: any) => {
+      this.labels = response.data.details.reverse();
+      // console.log(response);
+      // console.log("labelsss........", response.data.details);
+    });
   }
   
 }

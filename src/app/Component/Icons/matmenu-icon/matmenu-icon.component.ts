@@ -12,12 +12,14 @@ export class MatmenuIconComponent implements OnInit {
   @Input() mat: any;
   result: any;
   response: any;
+  labels: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
-  ngOnInit() {  
+  ngOnInit() {
+    this.getlabellist();
   }
-  trash(noteId){
+  trash(noteId) {
     let trash = {
       isDeleted: true,
       noteIdList: [noteId],
@@ -30,9 +32,9 @@ export class MatmenuIconComponent implements OnInit {
     });
   }
 
-  deleteforever(noteId){
+  deleteforever(noteId) {
     console.log(noteId);
-    
+
     let delfor = {
       isDeleted: true,
       noteIdList: [noteId],
@@ -45,8 +47,8 @@ export class MatmenuIconComponent implements OnInit {
     });
   }
 
-  restore(noteId){
-    
+  restore(noteId) {
+
     let delfor = {
       isDeleted: false,
       noteIdList: [noteId],
@@ -59,4 +61,24 @@ export class MatmenuIconComponent implements OnInit {
     });
   }
 
+  getlabellist() {
+    this.svc.getlabellistnoteservice().subscribe((response: any) => {
+      this.labels = response.data.details.reverse();
+      // console.log(response);
+      // console.log("labelsss........", response.data.details);
+    });
+  }
+
+  addlabeltonotes(label, noteid) {
+    let data = {
+      id: label.id,
+      noteId: noteid
+    }
+    console.log("label value.......", data);
+    this.svc.addlabeltonotesnoteservice(data).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling")
+      console.log(response);
+    });
+
+  }
 }

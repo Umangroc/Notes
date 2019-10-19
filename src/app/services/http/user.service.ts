@@ -10,12 +10,12 @@ import { HttpHeaders } from '@angular/common/http';
 export class UserService {
   error: any;
   baseUrl = environment.base;
-  httpOptions={
-    headers:new HttpHeaders({
-    'Content-type':'application/json',
-    'Authorization':localStorage.getItem('id')
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': localStorage.getItem('id')
     })
-    }
+  }
 
   constructor(private http: HttpClient) {
   }
@@ -24,34 +24,37 @@ export class UserService {
     console.log(arg);
   }
 
-  post(userObj,url,auth) {
-    if(auth==false){
+  post(userObj, url, auth) {
+    if (auth == false) {
       return this.http.post(this.baseUrl + url, userObj);
     }
-    else{
+    else {
       return this.http.post(this.baseUrl + url, userObj, this.httpOptions);
     }
   }
 
-  get(url,auth) {
-    if(auth==false){
+  get(url, auth) {
+    if (auth == false) {
       return this.http.get(this.baseUrl + url);
     }
-    else{
-      return this.http.get(this.baseUrl + url,this.httpOptions);
+    else {
+      return this.http.get(this.baseUrl + url, this.httpOptions);
     }
   }
 
-  postImage(Obj,url){
-    let httpOptions1={
-      headers:new HttpHeaders({
-      'Authorization':localStorage.getItem('id')
+  postImage(Obj, url) {
+    let httpOptions1 = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem('id')
       })
-      }
-  
+    }
+
     return this.http.post(this.baseUrl + url, Obj, httpOptions1);
   }
 
+  delete(url) {
+    return this.http.delete(this.baseUrl + url, this.httpOptions)
+  }
   getEncodedData(data) {
     const formBody = [];
     for (const property in data) {

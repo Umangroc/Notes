@@ -9,12 +9,15 @@
     <h1>Keep</h1>
   </div>
 
-  <div fxFlex="50">
+  <div fxFlex="50" >
     <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
       <button mat-icon-button matPrefix (click)=search() routerLink="/search">
         <mat-icon>search</mat-icon>
       </button>
       <input matInput class="search-spacer" [(ngModel)]="searchText" placeholder="Search">
+      <button matSuffix mat-icon-button (click)="searchText=''">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
   </div>
 
@@ -30,14 +33,14 @@
           <div fxLayout="row" fxLayoutAlign="space-around center">
               <div class="image-container">
                   <img [src]="url? url : 'https://www.w3schools.com/howto/img_avatar.png'"> <br/>
-                  <span (click)=openDialog() class="message">Tap here to select your picture</span>
+                  <span (click)=openDialog() class="message">Change</span>
                  </div>
                 <div>
           <p>{{name}}</p>
           <p>{{email}}</p>
         </div>
           </div>
-           <mat-divider></mat-divider>
+          <mat-divider></mat-divider>
         <div fxLayout="row">
           <div><button mat-menu-item routerLink="login">Add account</button></div>
           <div><button mat-menu-item (click)="logout()" routerLink="login">Sign out</button></div>
@@ -62,7 +65,12 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <h2 mat-subheader>Labels</h2>
-      <mat-list-item routerLink="." class="hover-round">
+      <div *ngFor="let label of labels">
+          <mat-list-item class="hover-round">
+              <mat-icon class="icon-spacer">label</mat-icon>{{label.label}}
+            </mat-list-item>
+      </div>
+      <mat-list-item (click)="openlabelDialog()" class="hover-round">
         <mat-icon class="icon-spacer">create</mat-icon>Edit labels
       </mat-list-item>
       <mat-divider></mat-divider>

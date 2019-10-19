@@ -58,12 +58,6 @@ transform: translateY(-1.1em) scale(.75);
   .disp{
     background-color: $theme;
   }
-
-
-
-  p {
-    font-family: Lato;
-  }
   
   .image-container {
     position: relative;
@@ -72,7 +66,6 @@ transform: translateY(-1.1em) scale(.75);
     img {
       height: 100px;
       width: 100px;
-      border: 5px solid #000;
       border-radius: 50%;
     }
   }
@@ -80,19 +73,13 @@ transform: translateY(-1.1em) scale(.75);
   .message {
     position: absolute;
     width: 90%;
-    top: 50%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, 100%);
-    transition: all 1s;
-    opacity: 0;
-    color: white;
+    opacity: 1;
   }
-  
-  .image-container:hover .message {
-    transform: translate(-50%, -50%);
-    opacity: 1;}
 
-      .accountmatcard{
-        height: 165px;
-        width: 250px;
+  .accountmatcard{
+    height: 165px;
+    width: 250px;
       }

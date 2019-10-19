@@ -40,7 +40,7 @@ export class ArchiveComponent implements OnInit {
   }
   getNoteData() {
     this.svc.archivedisplaynoteservice().subscribe((response: any) => {
-      this.archive = this.filterarchive(response.data.data);
+      this.archive = this.filterarchive(response.data.data);      
       this.archive.reverse();
       
     }, (error) => {

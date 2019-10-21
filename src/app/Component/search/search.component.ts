@@ -11,7 +11,7 @@ import {SearchPipe} from '../../search.pipe';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  component = "all";
+  name = "all";
   searchText:string;
   filterPipe: SearchPipe = new SearchPipe();
   filteredRecords:any;
@@ -27,22 +27,11 @@ export class SearchComponent implements OnInit {
        this.getNoteData();
      })
   }
-
-  openDialog(notes) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: { title: notes.title, description: notes.description, noteId: notes.id, recycle: true }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  receiveMessage($event) {
-    this.message = $event;
-  }
+  
   getNoteData() {
     this.dataSvc.currentMessage.subscribe((searchText) => {
+      console.log("In Search........",searchText);
+      
       this.searchText = searchText
     });
     this.svc.displaynoteservice().subscribe((response: any) => {

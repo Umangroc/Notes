@@ -24,19 +24,6 @@ export class NoteComponent implements OnInit {
      })
   }
 
-  openDialog(notes) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: { title: notes.title, description: notes.description, noteId: notes.id, recycle: true }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  receiveMessage($event) {
-    this.message = $event;
-  }
   getNoteData() {
     this.svc.displaynoteservice().subscribe((response: any) => {
       this.note = this.filterlist(response.data.data);

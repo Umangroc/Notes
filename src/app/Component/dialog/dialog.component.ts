@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { DataService } from 'src/app/services/data/data.service';
@@ -19,11 +19,18 @@ export class DialogComponent implements OnInit {
   noteId: any;
   title = new FormControl;
   description = new FormControl;
+  message: any;
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService, private dataSvc: DataService, public dialogRef: MatDialogRef<NoteComponent>) {
    }
 
   ngOnInit() {
+    
+  }
+  receiveMessage($event) {
+    this.message = $event;
+    console.log(this.message);
+    this.dialogRef.close();
     
   }
 
@@ -54,38 +61,6 @@ export class DialogComponent implements OnInit {
     });
 
     this.dialogRef.close();
-  }
-
-  deleteforever(noteId){
-    console.log(noteId);
-    
-    let delfor = {
-      isDeleted: true,
-      noteIdList: [noteId],
-    }
-    
-    this.result = this.svc.deleteforevernoteservice(delfor)
-    this.result.subscribe((response) => {
-      this.response = response;
-      this.dataSvc.changeMessage("Hello from Sibling")
-      console.log(this.response);
-      this.dialogRef.close();
-    });
-  }
-
-  restore(noteId){
-    
-    let delfor = {
-      isDeleted: false,
-      noteIdList: [noteId],
-    }
-    this.result = this.svc.trashnoteservice(delfor)
-    this.result.subscribe((response) => {
-      this.response = response;
-      this.dataSvc.changeMessage("Hello from Sibling")
-      console.log(this.response);
-      this.dialogRef.close();
-    });
   }
 
 }

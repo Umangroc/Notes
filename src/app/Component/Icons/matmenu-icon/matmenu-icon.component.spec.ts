@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatmenuIconComponent } from './matmenu-icon.component';
+import { MaterialModule } from 'src/app/material';
+import { HttpClientTestingModule} from '@angular/common/http/testing';
+
 
 describe('MatmenuIconComponent', () => {
   let component: MatmenuIconComponent;
@@ -8,7 +11,9 @@ describe('MatmenuIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatmenuIconComponent ]
+      imports: [MaterialModule, HttpClientTestingModule],
+      declarations: [ MatmenuIconComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

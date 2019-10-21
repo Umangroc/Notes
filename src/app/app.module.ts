@@ -33,6 +33,7 @@ import { SearchComponent } from './Component/search/search.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImagedialogComponent } from './Component/imagedialog/imagedialog.component';
 import { LabeldialogComponent } from './Component/labeldialog/labeldialog.component';
+import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { LabeldialogComponent } from './Component/labeldialog/labeldialog.compon
     SearchPipe,
     SearchComponent,
     ImagedialogComponent,
-    LabeldialogComponent
+    LabeldialogComponent,
+    LabeldisplayComponent
   ],
   imports: [
     BrowserModule,

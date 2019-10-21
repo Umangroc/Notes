@@ -12,8 +12,6 @@ import {MatDialog} from '@angular/material/dialog';
 export class ArchiveComponent implements OnInit {
   name: String = "archive";
   archive: any;
-  options: any;
-  message: String;
 
   constructor(private svc: NoteService, private dataSvc: DataService,public dialog: MatDialog) { }
 
@@ -22,21 +20,6 @@ export class ArchiveComponent implements OnInit {
     this.dataSvc.currentMessage.subscribe((res: any) => {
       this.getNoteData();
     })
-  }
-
-  openDialog(notes) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: {title: notes.title, description: notes.description, noteId: notes.id, recycle: true}
-    });
-    
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-  }
-
-  receiveMessage($event) {
-    this.message = $event;
-    this.getNoteData();
   }
   getNoteData() {
     this.svc.archivedisplaynoteservice().subscribe((response: any) => {

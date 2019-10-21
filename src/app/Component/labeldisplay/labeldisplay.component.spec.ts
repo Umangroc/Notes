@@ -1,16 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { LabeldisplayComponent } from './labeldisplay.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MaterialModule } from 'src/app/material';
-import { HttpClientTestingModule} from '@angular/common/http/testing';
-import { ArchiveComponent } from './archive.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('ArchiveComponent', () => {
-  let component: ArchiveComponent;
-  let fixture: ComponentFixture<ArchiveComponent>;
+describe('LabeldisplayComponent', () => {
+  let component: LabeldisplayComponent;
+  let fixture: ComponentFixture<LabeldisplayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveComponent ],
+      declarations: [ LabeldisplayComponent ],
       imports: [MaterialModule, HttpClientTestingModule],
       schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
@@ -18,7 +19,7 @@ describe('ArchiveComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArchiveComponent);
+    fixture = TestBed.createComponent(LabeldisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

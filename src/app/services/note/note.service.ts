@@ -93,4 +93,16 @@ export class NoteService {
     return this.svc.post(Obj,url,auth);
   }
 
+  deletelabelfromnotesnoteservice(Obj){
+    let url= 'notes/' + Obj.noteId + '/addLabelToNotes/' + Obj.id + '/remove'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  labeldisplaynoteservice(Obj){
+    let url= 'notes/getNotesListByLabel/' + Obj.labelName
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
 }

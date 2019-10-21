@@ -11,6 +11,7 @@ import { NoteComponent } from './Component/note/note.component';
 import { ArchiveComponent } from './Component/archive/archive.component';
 import { TrashComponent } from './Component/trash/trash.component';
 import { SearchComponent } from './Component/search/search.component';
+import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'note', component: NoteComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'trash', component: TrashComponent },
-      { path: 'search', component: SearchComponent }
+      { path: 'search', component: SearchComponent },
+      { path: 'label/:labelname', component: LabeldisplayComponent }
     ]
   },
   { path: '**', redirectTo: '/login' },

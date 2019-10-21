@@ -11,10 +11,10 @@
 
   <div fxFlex="50" >
     <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
-      <button mat-icon-button matPrefix (click)=search() routerLink="/search">
+      <button mat-icon-button matPrefix (click)=search()  routerLink="/search">
         <mat-icon>search</mat-icon>
       </button>
-      <input matInput class="search-spacer" [(ngModel)]="searchText" placeholder="Search">
+      <input matInput class="search-spacer" (ngModelChange)="valuechange($event)" [(ngModel)]="searchText" placeholder="Search">
       <button matSuffix mat-icon-button (click)="searchText=''">
         <mat-icon>close</mat-icon>
       </button>
@@ -66,7 +66,7 @@
       <mat-divider></mat-divider>
       <h2 mat-subheader>Labels</h2>
       <div *ngFor="let label of labels">
-          <mat-list-item class="hover-round">
+          <mat-list-item class="hover-round" routerLink="/label/{{label.label}}" (click)=openlabel(label.label)>
               <mat-icon class="icon-spacer">label</mat-icon>{{label.label}}
             </mat-list-item>
       </div>

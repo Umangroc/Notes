@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { ImagedialogComponent } from '../imagedialog/imagedialog.component';
 import { LabeldialogComponent } from '../labeldialog/labeldialog.component';
 import { NoteService } from 'src/app/services/note/note.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,9 @@ export class DashboardComponent implements OnInit {
   backurl: any;
   url: any;
   labels: any;
+  values: any;
 
-  constructor(private dataSvc: DataService, public dialog: MatDialog, private svc: NoteService) { }
+  constructor(private dataSvc: DataService, public dialog: MatDialog, private svc: NoteService, private router: Router) { }
 
   ngOnInit() {
     this.getlabellist();
@@ -62,6 +64,24 @@ export class DashboardComponent implements OnInit {
       // console.log("labelsss........", response.data.details);
     });
   }
+
+  valuechange(newValue) {
+    if(newValue.length==0 || newValue==null ){
+      this.router.navigate(['/note']);
+    }
+    if(newValue.length>2){ 
+      this.router.navigate(['/search']);
+      this.dataSvc.changeMessage(newValue);
+     // this.router.navigate[("/search")]
+      console.log(newValue)
+    }   
+  }
   
+openlabel(data){
+  //console.log("lgagggggggggggggggggg",data);
+  
+  this.dataSvc.changeMessage(data);
+  // this.router.navigate[("/label/{{label.label}}")]
+}
 }
 

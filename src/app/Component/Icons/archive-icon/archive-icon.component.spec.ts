@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ArchiveIconComponent } from './archive-icon.component';
+import { MaterialModule } from 'src/app/material';
+import { HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('ArchiveIconComponent', () => {
   let component: ArchiveIconComponent;
@@ -8,7 +10,9 @@ describe('ArchiveIconComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveIconComponent ]
+      imports: [MaterialModule, HttpClientTestingModule],
+      declarations: [ ArchiveIconComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

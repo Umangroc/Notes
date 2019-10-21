@@ -1,14 +1,21 @@
-<div fxLayout="row wrap" fxLayoutAlign="space-evenly start">
-  <mat-card  fxFlex="30" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}"  fxFlex.sm="48" fxFlex.xs="80">
+<div fxLayout="row wrap">
+  <mat-card  fxFlex="33" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}"  fxFlex.sm="48" fxFlex.xs="80">
     <div (click)="openDialog(note)">
         <p style="word-break: break-all;">{{note.title}}</p>
     </div>
     <div (click)="openDialog(note)">
         <p style="word-break: break-all;">{{note.description}}</p>
     </div>
-        <div *ngFor="let noteLabel of note.noteLabels" >
-            <mat-chip>{{noteLabel.label}}</mat-chip>
-            </div>
+        <div *ngFor="let noteLabel of note.noteLabels">
+            <mat-chip-list>
+                <mat-chip class="hide">{{noteLabel.label}}
+                <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, note.id)">
+                <mat-icon>close</mat-icon>
+                </button>
+                </mat-chip>
+                <span></span>
+                </mat-chip-list>
+                  </div>
     <div >
       <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id"></app-notesfooter>
     </div>

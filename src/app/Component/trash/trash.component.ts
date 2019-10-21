@@ -12,10 +12,6 @@ import {MatDialog} from '@angular/material/dialog';
 export class TrashComponent implements OnInit {
   name: String = "trash";
   trashComp: any;
-  options: any;
-  message: String;
-  result: any;
-  response: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService,public dialog: MatDialog) { }
 
@@ -24,19 +20,6 @@ export class TrashComponent implements OnInit {
     this.dataSvc.currentMessage.subscribe((res: any) => {
       this.getNoteData();
     })
-  }
-  receiveMessage($event) {
-    this.message = $event;
-    this.getNoteData();
-  }
-  openDialog(notes) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: {title: notes.title, description: notes.description, noteId: notes.id, recycle: false}
-    });
-    
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
   getNoteData() {
     this.svc.trashdisplaynoteservice().subscribe((response: any) => {

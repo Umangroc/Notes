@@ -14,6 +14,7 @@ export class DispComponent implements OnInit {
   @Input() component: any;
   options: any;
   message: String;
+  @Input() trash: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
 
@@ -21,13 +22,26 @@ export class DispComponent implements OnInit {
     this.display;
   }
 
-  openDialog(notes) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data: { title: notes.title, description: notes.description, noteId: notes.id, recycle: true }
+  openDialog(notes) {    
+    this.dialog.open(DialogComponent, {
+      data: { title: notes.title, description: notes.description, noteId: notes.id, dialogfunction: this.component}
     });
   }
 
   receiveMessage($event) {
     this.message = $event;
+  }
+
+  deletelabelfromnotes(label, noteid) {
+    let data = {
+      id: label,
+      noteId: noteid
+    }
+    //console.log("label value.......", data);
+    this.svc.deletelabelfromnotesnoteservice(data).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling")
+      //console.log(response);
+    });
+
   }
 }

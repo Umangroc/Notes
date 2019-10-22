@@ -18,7 +18,7 @@
   <!-- Other half -->
   <div *ngIf="!show" style="padding-top: 4%">
     <!-- MatCard -->
-    <mat-card fxLayout="column" class="second-card" fxLayoutGap="20px" fxLayoutAlign="space-between">
+    <mat-card fxLayout="column" [ngStyle]="{background:color}" class="second-card" fxLayoutGap="20px" fxLayoutAlign="space-between">
       <!-- Title Line -->
       <div >
         <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
@@ -34,7 +34,7 @@
       <!-- Notes Footer -->
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
-          <app-notesfooter [function]=component></app-notesfooter>
+          <app-notesfooter (messageEvent)="receiveMessage($event)" [function]=component></app-notesfooter>
         </div>
         <div><button mat-button (click)="receiveData()">Close</button></div>
       </div>

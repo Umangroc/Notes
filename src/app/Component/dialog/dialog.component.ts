@@ -25,8 +25,8 @@ export class DialogComponent implements OnInit {
    }
 
   ngOnInit() {
-    
   }
+  
   receiveMessage($event) {
     this.message = $event;
     console.log(this.message);

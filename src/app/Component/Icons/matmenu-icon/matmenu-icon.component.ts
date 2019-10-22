@@ -28,7 +28,7 @@ export class MatmenuIconComponent implements OnInit {
     this.result.subscribe((response) => {
       this.response = response;
       this.dataSvc.changeMessage("Hello from Sibling")
-      console.log(this.response);
+      //console.log(this.response);
     });
   }
 

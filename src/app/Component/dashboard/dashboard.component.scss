@@ -57,6 +57,8 @@ transform: translateY(-1.1em) scale(.75);
 
   .disp{
     background-color: $theme;
+    padding-left: 5%;
+    padding-right: 5%;
   }
   
   .image-container {
@@ -77,6 +79,9 @@ transform: translateY(-1.1em) scale(.75);
     left: 50%;
     transform: translate(-50%, 100%);
     opacity: 1;
+    // border-radius: 50%;
+    // background-color: rgba(0,0,0,0.54);
+    // color: white;
   }
 
   .accountmatcard{

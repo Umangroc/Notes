@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 
 @Component({
@@ -11,12 +11,19 @@ import { Component, OnInit, Input } from '@angular/core';
 export class NotesfooterComponent implements OnInit {
   @Input() noteId: any;
   @Input() function: any;
+  message: any;
+  @Output() messageEvent= new EventEmitter<string>();
   
   constructor() {
 
   }
 
-  ngOnInit() {       
+  ngOnInit() {      
   }
 
+  receiveMessage($event) {
+    this.message = $event;
+    this.messageEvent.emit($event);
+    console.log(this.message);
+  }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
 import { NoteService } from 'src/app/services/note/note.service';
 import { MatDialog } from '@angular/material';
-import { DialogComponent } from '../dialog/dialog.component';
-import {SearchPipe} from '../../search.pipe';
+import { SearchPipe } from 'src/app/search.pipe';
+
 
 @Component({
   selector: 'app-search',
@@ -13,8 +13,8 @@ import {SearchPipe} from '../../search.pipe';
 export class SearchComponent implements OnInit {
   name = "all";
   searchText:string;
-  filterPipe: SearchPipe = new SearchPipe();
   filteredRecords:any;
+  filterpipe: SearchPipe = new SearchPipe;
   notes: any;
   options: any;
   message: String;
@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
     });
     this.svc.displaynoteservice().subscribe((response: any) => {
       this.notes = this.filterlist(response.data.data);
-      this.filteredRecords=this.filterPipe.transform(this.notes,this.searchText);
+      this.filteredRecords=this.filterpipe.transform(this.notes,this.searchText);
       //this.display.reverse();
     }, (error) => {
       console.log(error);
@@ -49,4 +49,5 @@ export class SearchComponent implements OnInit {
     });
     return notes;
   }
+
 }

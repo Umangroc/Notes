@@ -19,6 +19,7 @@ export class NotesComponent implements OnInit {
   note: Note;
   titlemodel: any;
   descriptionmodel: any;
+  color: any = '#fff';
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -33,6 +34,7 @@ export class NotesComponent implements OnInit {
     this.note = {
       title: this.title.value,
       description: this.description.value,
+      color: this.color,
       service: "basic"
     }
     if (this.title.value == null && this.description.value == null) {
@@ -47,8 +49,14 @@ export class NotesComponent implements OnInit {
       });
       this.titlemodel='';
       this.descriptionmodel='';
+      this.color='';
       this.toggle();
     }
+  }
+
+  receiveMessage($event) {
+    this.color =$event;
+    console.log("hell.....",$event);
   }
 
 

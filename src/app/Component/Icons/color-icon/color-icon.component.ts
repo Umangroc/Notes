@@ -10,9 +10,7 @@ import { DataService } from 'src/app/services/data/data.service';
 export class ColorIconComponent implements OnInit {
   @Input() id: any;
   @Output() messageEvent= new EventEmitter<string>();
-  message: string='save';
   result: any;
-  response: any;
   colorArray: any = [
     {color:'#ECEEEE'}, {color:'#F28B82'}, {color:'#F7BC04'}, {color:'#FAF474'}, 
     {color:'#CBFF90'}, {color:'#AAFEEB'}, {color:'#CBF0F8'},{color: '#ADCBFA'},
@@ -24,17 +22,25 @@ export class ColorIconComponent implements OnInit {
   }
 
   changeColor(id,colour){
-    let chcolor = {
-      color: colour,
-      noteIdList: [id],
+    if(id){
+      let chcolor = {
+        color: colour,
+        noteIdList: [id],
+      }
+      console.log(chcolor);
+      this.result = this.svc.changecolornoteservice(chcolor)
+      this.result.subscribe((response) => {
+        this.messageEvent.emit(colour);
+        //console.log(this.response);
+      });
+      this.dataSvc.changeMessage("Hello from Sibling")
+      
+    }else{
+      console.log("Helllosadasds");
+      this.messageEvent.emit(colour);
     }
-    this.result = this.svc.changecolornoteservice(chcolor)
-    this.result.subscribe((response) => {
-      this.response = response;
-      this.messageEvent.emit(this.message);
-      //console.log(this.response);
-    });
-    this.dataSvc.changeMessage("Hello from Sibling")
+    
+    
   }
 
 }

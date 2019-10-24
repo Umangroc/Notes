@@ -1,15 +1,16 @@
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <!-- Header Line -->
 <mat-toolbar fxFlexLayout="row" class="color">
   <!-- Header Left-Side -->
-  <div fxFlexLayout="row" fxLayoutAlign="start center" fxFlex="30">
+  <div fxFlexLayout="row" fxLayoutAlign="start center" fxFlex="20">
     <button mat-icon-button matTooltip="Main menu" (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/google-keep-2-569459.png" class="header-image">
-    <h1>Keep</h1>
+    <h1>fundooNotes</h1>
   </div>
 
-  <div fxFlex="50" >
+  <div fxFlex="60" fxLayoutAlign="space-around">
     <mat-form-field class="searchbar" appearance="outline" fxHide.xs="true" fxShow="true">
       <button mat-icon-button matPrefix (click)=search()  routerLink="/search">
         <mat-icon>search</mat-icon>
@@ -56,38 +57,42 @@
 <mat-sidenav-container class="below-header">
   <!-- SideBar -->
   
-  <mat-sidenav class="nav-card" #sidenav mode="side">
+  <mat-sidenav id="myDiv" class="nav-card" #sidenav mode="side">
     <mat-nav-list class="list">
-      <mat-list-item routerLink="/note" class="hover-round">
-        <mat-icon class="icon-spacer">description</mat-icon>Notes
-      </mat-list-item>
-      <mat-list-item routerLink="." class="hover-round">
-        <mat-icon class="icon-spacer">today</mat-icon>Reminders
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h2 mat-subheader>Labels</h2>
-      <div *ngFor="let label of labels">
-          <mat-list-item class="hover-round" routerLink="/label/{{label.label}}" (click)=openlabel(label.label)>
-              <mat-icon class="icon-spacer">label</mat-icon>{{label.label}}
-            </mat-list-item>
+      <div class="hover-round" routerLinkActive="cd" routerLink="/note" fxLayoutAlign="none center">
+        <i class="material-icons-outlined icon-spacer">emoji_objects</i>Notes
+    </div>
+    
+      <div routerLinkActive="cd" routerLink="/reminders" class="hover-round" fxLayoutAlign="none center">
+          <i class="material-icons-outlined icon-spacer">notifications_none</i>Reminders
       </div>
-      <mat-list-item (click)="openlabelDialog()" class="hover-round">
-        <mat-icon class="icon-spacer">create</mat-icon>Edit labels
-      </mat-list-item>
+
       <mat-divider></mat-divider>
-      <mat-list-item routerLink="/archive" class="hover-round">
-        <mat-icon class="icon-spacer">archive</mat-icon>Archive
-      </mat-list-item>
-      <mat-list-item routerLink="/trash" class="hover-round">
-        <mat-icon class="icon-spacer">delete</mat-icon>Trash
-      </mat-list-item>
+      <h6 mat-subheader>LABELS</h6>
+
+      <div *ngFor="let label of labels">
+          <div class="hover-round" routerLinkActive="cd" routerLink="/label/{{label.label}}" fxLayoutAlign="none center" (click)=openlabel(label.label)>
+            <i class="material-icons-outlined icon-spacer">label</i>{{label.label}}
+          </div>
+      </div>
+      <div (click)="openlabelDialog()" class="hover-round" fxLayoutAlign="none center">
+          <i class="material-icons-outlined icon-spacer">create</i>Edit labels
+      </div>
+      
+      <mat-divider></mat-divider>
+      <div routerLinkActive="cd" routerLink="/archive" class="hover-round" fxLayoutAlign="none center">
+        <i class="material-icons-outlined icon-spacer">archive</i>Archive
+      </div>
+      <div routerLinkActive="cd" routerLink="/trash" class="hover-round" fxLayoutAlign="none center">
+        <i class="material-icons-outlined icon-spacer">delete</i>Trash
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
   <!-- Other than NavBar -->
   <mat-sidenav-content class="disp" >
     <router-outlet></router-outlet>
-  </mat-sidenav-content>>
+  </mat-sidenav-content>
 
 
 </mat-sidenav-container>

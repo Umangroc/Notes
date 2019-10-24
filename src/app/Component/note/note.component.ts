@@ -25,10 +25,11 @@ export class NoteComponent implements OnInit {
   }
 
   getNoteData() {
+    
     this.svc.displaynoteservice().subscribe((response: any) => {
       this.note = this.filterlist(response.data.data);
+      console.log("in note component",this.note);
       this.note.reverse();
-
     }, (error) => {
       console.log(error);
     });

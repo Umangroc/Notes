@@ -34,6 +34,11 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImagedialogComponent } from './Component/imagedialog/imagedialog.component';
 import { LabeldialogComponent } from './Component/labeldialog/labeldialog.component';
 import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
+import { RouterModule } from '@angular/router';
+import { ReminderIconComponent } from './Component/Icons/reminder-icon/reminder-icon.component';
+import { MatNativeDateModule } from '@angular/material';
+import { RemindersComponent } from './Component/reminders/reminders.component';
+import { CollaboratorsdialogComponent } from './Component/collaboratorsdialog/collaboratorsdialog.component';
 
 
 @NgModule({
@@ -59,7 +64,10 @@ import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.com
     SearchComponent,
     ImagedialogComponent,
     LabeldialogComponent,
-    LabeldisplayComponent
+    LabeldisplayComponent,
+    ReminderIconComponent,
+    RemindersComponent,
+    CollaboratorsdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -70,10 +78,12 @@ import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.com
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ImageCropperModule 
+    ImageCropperModule,
+    RouterModule,
+    MatNativeDateModule  
   ],
-  entryComponents: [DialogComponent, ImagedialogComponent,LabeldialogComponent],
-  providers: [ UserService, AuthGuard],
+  entryComponents: [DialogComponent, ImagedialogComponent,LabeldialogComponent,CollaboratorsdialogComponent],
+  providers: [ UserService, AuthGuard, MatNativeDateModule ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

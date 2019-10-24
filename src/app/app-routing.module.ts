@@ -12,6 +12,7 @@ import { ArchiveComponent } from './Component/archive/archive.component';
 import { TrashComponent } from './Component/trash/trash.component';
 import { SearchComponent } from './Component/search/search.component';
 import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
+import { RemindersComponent } from './Component/reminders/reminders.component';
 
 
 const routes: Routes = [
@@ -20,11 +21,12 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot', component: ForgotComponent },
-  { path: 'resetpassword/:token', component: ResetComponent },
+  { path: 'resetpassword/:id', component: ResetComponent },
   {
     path: '', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
       { path: 'note', component: NoteComponent },
+      { path: 'reminders', component: RemindersComponent },
       { path: 'archive', component: ArchiveComponent },
       { path: 'trash', component: TrashComponent },
       { path: 'search', component: SearchComponent },

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { CollaboratorsdialogComponent } from '../collaboratorsdialog/collaboratorsdialog.component';
 
 
 @Component({
@@ -14,7 +16,7 @@ export class NotesfooterComponent implements OnInit {
   message: any;
   @Output() messageEvent= new EventEmitter<string>();
   
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
   }
 
@@ -24,6 +26,10 @@ export class NotesfooterComponent implements OnInit {
   receiveMessage($event) {
     this.message = $event;
     this.messageEvent.emit($event);
-    console.log(this.message);
+    //console.log("In notefooter....",this.message);
+  }
+
+  openDialog(noteId){
+    this.dialog.open(CollaboratorsdialogComponent, {data: {noteid: noteId}, width: '600px',height: '257px'});
   }
 }

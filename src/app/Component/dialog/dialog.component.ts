@@ -19,19 +19,18 @@ export class DialogComponent implements OnInit {
   noteId: any;
   title = new FormControl;
   description = new FormControl;
-  message: any;
+  colordialog: any;
   
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService, private dataSvc: DataService, public dialogRef: MatDialogRef<NoteComponent>) {
-   }
+    this.colordialog = data.color;
+  }
 
   ngOnInit() {
   }
   
   receiveMessage($event) {
-    this.message = $event;
-    console.log(this.message);
-    this.dialogRef.close();
-    
+    this.colordialog = $event;
+    console.log(this.colordialog);
   }
 
   updateData() {
@@ -62,5 +61,6 @@ export class DialogComponent implements OnInit {
 
     this.dialogRef.close();
   }
+
 
 }

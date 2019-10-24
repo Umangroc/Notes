@@ -10,14 +10,9 @@ import { HttpHeaders } from '@angular/common/http';
 export class UserService {
   error: any;
   baseUrl = environment.base;
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': localStorage.getItem('id')
-    })
-  }
+  
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {    
   }
 
   print(arg) {
@@ -29,7 +24,13 @@ export class UserService {
       return this.http.post(this.baseUrl + url, userObj);
     }
     else {
-      return this.http.post(this.baseUrl + url, userObj, this.httpOptions);
+      let httpOptions = {    
+        headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          'Authorization': localStorage.getItem('id')
+        })
+      }
+      return this.http.post(this.baseUrl + url, userObj, httpOptions);
     }
   }
 
@@ -38,30 +39,45 @@ export class UserService {
       return this.http.get(this.baseUrl + url);
     }
     else {
-      return this.http.get(this.baseUrl + url, this.httpOptions);
+      let httpOptions = {    
+        headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          'Authorization': localStorage.getItem('id')
+        })
+      }
+      //console.log("In http srvice", httpOptions);
+      return this.http.get(this.baseUrl + url, httpOptions);
     }
   }
 
   postImage(Obj, url) {
-    let httpOptions1 = {
+    let httpOptionsImage = {
       headers: new HttpHeaders({
         'Authorization': localStorage.getItem('id')
       })
     }
 
-    return this.http.post(this.baseUrl + url, Obj, httpOptions1);
+    return this.http.post(this.baseUrl + url, Obj, httpOptionsImage);
+  }
+
+  postreset(userObj,url){
+    let httpOptionsReset = {
+      headers: new HttpHeaders({
+        'Content-type': 'application/x-www-form-urlencoded',
+        'Authorization': localStorage.getItem('id')
+      })
+    }
+      return this.http.post(this.baseUrl + url, userObj, httpOptionsReset);
   }
 
   delete(url) {
-    return this.http.delete(this.baseUrl + url, this.httpOptions)
-  }
-  getEncodedData(data) {
-    const formBody = [];
-    for (const property in data) {
-      const encodedKey = encodeURIComponent(property);
-      const encodedValue = encodeURIComponent(data[property]);
-      formBody.push(encodedKey + '=' + encodedValue);
+    let httpOptions = {    
+      headers: new HttpHeaders({
+        'Content-type': 'application/json',
+        'Authorization': localStorage.getItem('id')
+      })
     }
-    return formBody.join('&');
+    return this.http.delete(this.baseUrl + url, httpOptions)
   }
+ 
 }

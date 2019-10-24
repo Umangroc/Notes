@@ -1,0 +1,20 @@
+<h4>Collaborators</h4>
+<mat-divider></mat-divider>
+<mat-card-header>
+    <img mat-card-avatar [src]= "url? url : 'https://www.w3schools.com/howto/img_avatar.png'">
+    <mat-card-title>{{name}}</mat-card-title>
+    <mat-card-subtitle>{{email}}</mat-card-subtitle>
+  </mat-card-header>
+
+
+  <div>
+    <input matInput placeholder="Person or email to share with" (ngModelChange)="valuechange($event)" [(ngModel)]="searchText" [formControl]="myControl" [matAutocomplete]="auto">
+    <button matSuffix mat-icon-button (click)="addCollaborator()">
+        <mat-icon>done</mat-icon>
+      </button>
+    <mat-autocomplete #auto>
+      <mat-option *ngFor="let option of options" [value]="option.email">
+        {{option.email}}
+      </mat-option>
+    </mat-autocomplete>
+  </div>

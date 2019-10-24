@@ -5,10 +5,18 @@
    
 }
 
-.hide mat-icon{
+.hide-icon mat-icon{
     display: none;
   }
 
-.hide:hover mat-icon{
+.hide-icon:hover mat-icon{
     display: block;
+  }
+
+  .hide{
+    opacity: 0;
+  }
+
+.hide:hover {
+    opacity: 1;
   }

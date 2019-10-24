@@ -24,8 +24,8 @@ export class ResetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.token=this.route.snapshot.paramMap.get('token');
-    localStorage.setItem('token',this.token);
+    this.token=this.route.snapshot.paramMap.get('id');
+    localStorage.setItem('id',this.token);
   }
   PasswordInvalidMessage() {
     if (this.password.hasError("required")) {
@@ -51,8 +51,7 @@ export class ResetComponent implements OnInit {
 
   onResetPassword() {
     this.userObj = {
-      newPassword: this.password.value,
-      service: "basic"
+      newPassword: this.password.value
     }
     this.svc.resetuserservice(this.userObj).subscribe((response) => {
         response = response;

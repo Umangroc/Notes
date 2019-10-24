@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {    
      this.getNoteData();
-    this.dataSvc.currentMessage.subscribe((res: any) => {
+    this.dataSvc.currentMessage.subscribe((res: any) => {      
        this.getNoteData();
      })
   }

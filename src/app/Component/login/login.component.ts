@@ -56,13 +56,12 @@ export class LoginComponent implements OnInit {
       this.response = response;
       console.log(this.response);
       localStorage.setItem('email', response.email);   
-      localStorage.setItem('name', response.firstName+response.lastName);   
+      localStorage.setItem('name', response.firstName+ ' '+response.lastName);   
       localStorage.setItem('id', response.id);   
       localStorage.setItem('imageUrl', response.imageUrl); 
       localStorage.setItem('userId', response.userId);     
-      console.log("1111111111111",response.userId);
+      console.log("1111111111111",response.id);
          
-      this.auth.sendToken(response.id);
       this.router.navigate(['/note']);
     },(error)=>{
       console.log(error);

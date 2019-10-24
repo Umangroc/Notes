@@ -33,7 +33,7 @@ export class ColorIconComponent implements OnInit {
         this.messageEvent.emit(colour);
         //console.log(this.response);
       });
-      this.dataSvc.changeMessage("Hello from Sibling")
+      this.dataSvc.changeMessage(colour);
       
     }else{
       console.log("Helllosadasds");

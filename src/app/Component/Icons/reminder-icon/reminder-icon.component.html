@@ -1,0 +1,52 @@
+<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+
+<button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Remind me">
+  <mat-icon>notifications</mat-icon>
+</button>
+
+<mat-menu #menu [overlapTrigger]="false">
+  <div *ngIf="show" class="accountmatcard">
+  <h3>Reminder:</h3>
+  <button mat-menu-item>Later today</button>
+  <button mat-menu-item>Tomorrow</button>
+  <button mat-menu-item>Next week</button>
+  <button mat-menu-item>Home</button>
+
+  <button mat-menu-item (click)="show=false; $event.stopPropagation();"><i class="material-icons-outlined">access_time</i>Pick date & time</button>
+  <button mat-menu-item><i class="material-icons">room</i>Pick place</button>
+</div>
+
+<div *ngIf="!show">
+    <button mat-icon-button (click)="show=true; $event.stopPropagation();">
+      <i class="material-icons">keyboard_backspace</i></button>Pick date & time
+      <mat-divider></mat-divider>
+      <mat-form-field>
+          <input (click)="$event.stopPropagation();"  matInput [matDatepicker]="picker3" [value]="date.value">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field (click)="$event.stopPropagation();">
+            <mat-select #fontSize value="Custom" >
+              <mat-option value="Morning">Morning</mat-option>
+              <mat-option value="Afternoon">Afternoon</mat-option>
+              <mat-option value="Evening">Evening</mat-option>
+              <mat-option value="Night">Night</mat-option>
+              <mat-option value="Custom">Custom</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field (click)="$event.stopPropagation();">
+            <mat-select #fontSize value="Does not repeat" >
+              <mat-option value="Does not repeat">Does not repeat</mat-option>
+              <mat-option value="Daily">Daily</mat-option>
+              <mat-option value="Weekly">Weekly</mat-option>
+              <mat-option value="Monthly">Monthly</mat-option>
+              <mat-option value="Yearly">Yearly</mat-option>
+              <mat-option value="Custom">Custom</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="save(id,picker3)">Save</button>
+</div>
+
+</mat-menu>

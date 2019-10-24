@@ -20,7 +20,12 @@ export class DashboardComponent implements OnInit {
   labels: any;
   values: any;
 
-  constructor(private dataSvc: DataService, public dialog: MatDialog, private svc: NoteService, private router: Router) { }
+  constructor(private dataSvc: DataService, 
+    public dialog: MatDialog, 
+    private svc: NoteService, 
+    private router: Router) {
+
+     }
 
   ngOnInit() {
     this.getlabellist();
@@ -29,8 +34,10 @@ export class DashboardComponent implements OnInit {
      this.getlabellist();
     this.changeimage();
     });    
- 
+
   }
+
+
 
   logout(){
     localStorage.clear();
@@ -72,7 +79,6 @@ export class DashboardComponent implements OnInit {
     if(newValue.length>2){ 
       this.router.navigate(['/search']);
       this.dataSvc.changeMessage(newValue);
-     // this.router.navigate[("/search")]
       console.log(newValue)
     }   
   }

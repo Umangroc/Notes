@@ -1,8 +1,6 @@
 <div *ngIf="function=='all'" fxLayoutAlign="space-around" style="display:flex">
-  <button mat-icon-button matTooltip="Remind me">
-    <mat-icon>notifications</mat-icon>
-  </button>
-  <button mat-icon-button matTooltip="Collaborator">
+  <app-reminder-icon [id]="noteId"></app-reminder-icon>
+  <button mat-icon-button (click)="openDialog(noteId)" matTooltip="Collaborator">
     <mat-icon>person_add</mat-icon>
   </button>
   <app-color-icon (messageEvent)="receiveMessage($event)" [id]="noteId"></app-color-icon>
@@ -14,13 +12,11 @@
 </div>
 
 <div *ngIf="function=='archive'" fxLayoutAlign="space-around" style="display:flex">
-  <button mat-icon-button matTooltip="Remind me">
-    <mat-icon>notifications</mat-icon>
-  </button>
+    <app-reminder-icon [id]="noteId"></app-reminder-icon>
   <button mat-icon-button matTooltip="Collaborator">
     <mat-icon>person_add</mat-icon>
   </button>
-  <app-color-icon [id]="noteId"></app-color-icon>
+  <app-color-icon (messageEvent)="receiveMessage($event)" [id]="noteId"></app-color-icon>
   <button mat-icon-button matTooltip="Add image">
     <mat-icon>image</mat-icon>
   </button>

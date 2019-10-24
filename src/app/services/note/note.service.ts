@@ -105,4 +105,34 @@ export class NoteService {
     return this.svc.post(Obj,url,auth);
   }
 
+  remindernoteservice(Obj){
+    let url= 'notes/addUpdateReminderNotes'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  deletereminderfromnotesnoteservice(Obj){
+    let url= 'notes/removeReminderNotes'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  reminderdisplaynoteservice(){
+    let url= 'notes/getReminderNotesList'
+    let auth = true;
+    return this.svc.get(url,auth);
+  }
+
+  userlistnoteservice(Obj){
+    let url= 'user/searchUserList'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
+  addcollaboratornoteservice(Obj,id){
+    let url= 'notes/' + id + '/AddcollaboratorsNotes'
+    let auth = true;
+    return this.svc.post(Obj,url,auth);
+  }
+
 }

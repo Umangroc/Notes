@@ -15,6 +15,7 @@ export class DispComponent implements OnInit {
   options: any;
   message: String;
   @Input() trash: any;
+  dialogcolor: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
 
@@ -23,9 +24,9 @@ export class DispComponent implements OnInit {
   }
 
   openDialog(notes) {    
-    this.dialog.open(DialogComponent, {
-      data: { title: notes.title, description: notes.description, noteId: notes.id, dialogfunction: this.component}
-    });
+      this.dialog.open(DialogComponent, {
+        data: { title: notes.title, description: notes.description, noteId: notes.id, dialogfunction: this.component, color: notes.color}
+      });    
   }
 
   receiveMessage($event) {
@@ -43,5 +44,17 @@ export class DispComponent implements OnInit {
       //console.log(response);
     });
 
+  }
+
+  deletereminderfromnotes(deletereminder, noteid){
+    let data = {
+      reminder: deletereminder,
+      noteIdList: [noteid]
+    }
+    //console.log("label value.......", data);
+    this.svc.deletereminderfromnotesnoteservice(data).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling")
+      //console.log(response);
+    });
   }
 }

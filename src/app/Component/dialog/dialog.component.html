@@ -1,7 +1,7 @@
-<div *ngIf="data.dialogfunction=='archive' || data.dialogfunction=='all'">
+<div *ngIf="data.dialogfunction=='archive' || data.dialogfunction=='all'" [ngStyle]="{background:colordialog}" style="padding: 10px;">
     <div>
-        <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{data.title}}"></textarea></p>
+       <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{data.title}}"></textarea>
     </div>
     <div >
         <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
@@ -14,7 +14,7 @@
       <div><button mat-button (click)="updateData()">Close</button></div>
     </div>
   </div>
-  <div *ngIf="data.dialogfunction=='trash'">
+  <div *ngIf="data.dialogfunction=='trash'" [ngStyle]="{background: colordialog}" style="padding: 10px;">
     <div>
         <p>{{data.title}}</p>
     </div>

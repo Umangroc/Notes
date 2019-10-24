@@ -33,14 +33,24 @@ export class UserserviceService {
   }
 
   resetuserservice(Obj){
+    console.log(Obj);
     let url= 'user/reset-password'
-    let auth = true;
-    return this.svc.post(Obj,url,auth);
+    return this.svc.postreset(this.getEncodedData(Obj),url);
   }
 
   profileimageuserservice(Obj){
     let url= '/user/uploadProfileImage';
     return this.svc.postImage(Obj,url);
+  }
+
+  getEncodedData(data) {
+    const formBody = [];
+    for (const property in data) {
+      const encodedKey = encodeURIComponent(property);
+      const encodedValue = encodeURIComponent(data[property]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    return formBody.join('&');
   }
   
 }

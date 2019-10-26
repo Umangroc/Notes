@@ -4,4 +4,5 @@ title : String;
 description : String;
 service : "basic";
 color: any;
+reminder: any;
 }

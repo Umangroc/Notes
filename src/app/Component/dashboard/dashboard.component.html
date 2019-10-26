@@ -23,6 +23,23 @@
   </div>
 
   <div fxFlex="20" fxLayoutAlign="space-around">
+
+    <!-- Grid View -->
+      <div *ngIf="view=='grid'">
+          <button mat-icon-button class="header-hover" matTooltip="List View" (click)=listview()>
+              <i class="material-icons-outlined">view_agenda</i>  
+            </button>
+      </div>
+    
+      <!-- List View -->
+      <div *ngIf="view=='list'">
+          <button mat-icon-button class="header-hover" matTooltip="Grid View" (click)=gridview()>
+              <i class="material-icons-outlined">border_all</i>  
+            </button>
+        </div>
+
+
+
     <button mat-icon-button class="header-hover" matTooltip="Google apps">
       <mat-icon>apps</mat-icon>
     </button>

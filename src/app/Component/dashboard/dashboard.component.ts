@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
   url: any;
   labels: any;
   values: any;
+  view: any = "grid";
 
   constructor(private dataSvc: DataService, 
     public dialog: MatDialog, 
@@ -88,6 +89,16 @@ openlabel(data){
   
   this.dataSvc.changeMessage(data);
   // this.router.navigate[("/label/{{label.label}}")]
+}
+
+listview(){
+  this.view = "list";
+  this.dataSvc.changeView(this.view);
+}
+
+gridview(){
+  this.view = "grid";
+  this.dataSvc.changeView(this.view);
 }
 }
 

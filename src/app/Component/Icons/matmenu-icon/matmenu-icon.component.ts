@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-matmenu-icon',
@@ -14,7 +15,9 @@ export class MatmenuIconComponent implements OnInit {
   response: any;
   labels: any;
 
-  constructor(private svc: NoteService, private dataSvc: DataService) { }
+  constructor(private svc: NoteService,
+     private dataSvc: DataService,
+     private router: Router) { }
 
   ngOnInit() {
     this.getlabellist();
@@ -80,5 +83,10 @@ export class MatmenuIconComponent implements OnInit {
       console.log(response);
     });
 
+  }
+
+  question(id){
+    this.dataSvc.changeMessage(id);
+    this.router.navigate(['/question/' + id]);
   }
 }

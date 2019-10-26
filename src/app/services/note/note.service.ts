@@ -135,4 +135,15 @@ export class NoteService {
     return this.svc.post(Obj,url,auth);
   }
 
+  deletecollaboratorfromnotesnoteservice(userId,id){
+    let url= 'notes/' + id + '/removeCollaboratorsNotes/' + userId;
+    return this.svc.delete(url);
+  }
+
+  getnotedetails(id){
+    let url = 'notes/getNotesDetail/' + id
+    let auth = true;
+    return this.svc.get(url,auth);
+  }
+
 }

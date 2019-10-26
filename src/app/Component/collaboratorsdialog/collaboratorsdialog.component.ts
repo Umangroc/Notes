@@ -3,7 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data/data.service';
 import { NoteService } from 'src/app/services/note/note.service';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-collaboratorsdialog',
@@ -20,7 +21,7 @@ export class CollaboratorsdialogComponent implements OnInit {
   searchPeople: any;
   any: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private svc: NoteService,private dataSvc: DataService,private router: Router) { 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private svc: NoteService,private dataSvc: DataService,private router: Router, public dialogRef: MatDialogRef<DashboardComponent>) { 
       this.backurl = localStorage.getItem('imageUrl');  
       if(this.backurl){
         this.url = 'http://fundoonotes.incubation.bridgelabz.com/' + this.backurl;
@@ -60,7 +61,12 @@ export class CollaboratorsdialogComponent implements OnInit {
     
     this.svc.addcollaboratornoteservice(userObj,this.data.noteid).subscribe((response: any) => {
       console.log(response);
+      this.dataSvc.changeMessage("Hell");
     }) 
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
   

@@ -1,4 +1,4 @@
-<div fxLayout="row wrap">
+<div fxLayout="row wrap" *ngIf="view=='grid'">
   <mat-card fxFlex="33" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}" fxFlex.sm="48"
     fxFlex.xs="80">
     <div (click)="openDialog(note)">
@@ -29,10 +29,10 @@
       </mat-chip-list>
     </div>
 
-    <div *ngFor="let reminder of note.collaborators">
+    <div *ngFor="let collab of note.collaborators">
         <mat-chip-list>
-          <mat-chip class="hide-icon">{{reminder.email}}
-            <button mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+          <mat-chip class="hide-icon">{{collab.email}}
+            <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, note.id)">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip>
@@ -46,3 +46,51 @@
     </div>
   </mat-card>
 </div>
+
+<div fxLayout="row wrap" *ngIf="view=='list'">
+    <mat-card fxFlex="100" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}">
+      <div (click)="openDialog(note)">
+        <p style="word-break: break-all;">{{note.title}}</p>
+      </div>
+      <div (click)="openDialog(note)">
+        <p style="word-break: break-all;">{{note.description}}</p>
+      </div>
+      <div *ngFor="let noteLabel of note.noteLabels">
+        <mat-chip-list>
+          <mat-chip class="hide-icon">{{noteLabel.label}}
+            <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, note.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
+  
+      <div *ngFor="let reminder of note.reminder">
+        <mat-chip-list>
+          <mat-chip class="hide-icon">{{reminder}}
+            <button mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
+  
+      <div *ngFor="let collab of note.collaborators">
+          <mat-chip-list>
+            <mat-chip class="hide-icon">{{collab.email}}
+              <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, note.id)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-chip>
+            <span></span>
+          </mat-chip-list>
+        </div>
+  
+      <div class="hide">
+        <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
+        </app-notesfooter>
+      </div>
+    </mat-card>
+  </div>

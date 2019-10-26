@@ -39,6 +39,7 @@ import { ReminderIconComponent } from './Component/Icons/reminder-icon/reminder-
 import { MatNativeDateModule } from '@angular/material';
 import { RemindersComponent } from './Component/reminders/reminders.component';
 import { CollaboratorsdialogComponent } from './Component/collaboratorsdialog/collaboratorsdialog.component';
+import { QuestionComponent } from './Component/question/question.component';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import { CollaboratorsdialogComponent } from './Component/collaboratorsdialog/co
     LabeldisplayComponent,
     ReminderIconComponent,
     RemindersComponent,
-    CollaboratorsdialogComponent
+    CollaboratorsdialogComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

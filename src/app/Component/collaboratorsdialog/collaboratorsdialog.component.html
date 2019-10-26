@@ -12,6 +12,8 @@
     <button matSuffix mat-icon-button (click)="addCollaborator()">
         <mat-icon>done</mat-icon>
       </button>
+
+      <button mat-button (click)="close()">Done</button>
     <mat-autocomplete #auto>
       <mat-option *ngFor="let option of options" [value]="option.email">
         {{option.email}}

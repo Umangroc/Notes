@@ -3,6 +3,7 @@ import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -14,21 +15,29 @@ export class NoteComponent implements OnInit {
   note: any;
   options: any;
   message: String;
+  view: any;
 
-  constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
+  constructor(private svc: NoteService,
+     private dataSvc: DataService,
+      public dialog: MatDialog,
+      private router: Router) { }
 
-  ngOnInit() {    
-     this.getNoteData();
+  ngOnInit() {
+    this.getNoteData();
+
     this.dataSvc.currentMessage.subscribe((res: any) => {
-       this.getNoteData();
-     })
+      console.log("in  notes", res);
+
+      this.getNoteData();
+    })
+
   }
 
   getNoteData() {
-    
+
     this.svc.displaynoteservice().subscribe((response: any) => {
       this.note = this.filterlist(response.data.data);
-      console.log("in note component",this.note);
+      console.log("in note component", this.note);
       this.note.reverse();
     }, (error) => {
       console.log(error);

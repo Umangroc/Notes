@@ -20,6 +20,8 @@ export class NotesComponent implements OnInit {
   titlemodel: any;
   descriptionmodel: any;
   color: any = '#fff';
+  reminder : any = '';
+  remind: any = false;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -35,6 +37,7 @@ export class NotesComponent implements OnInit {
       title: this.title.value,
       description: this.description.value,
       color: this.color,
+      reminder: this.reminder,
       service: "basic"
     }
     if (this.title.value == null && this.description.value == null) {
@@ -50,13 +53,25 @@ export class NotesComponent implements OnInit {
       this.titlemodel='';
       this.descriptionmodel='';
       this.color='';
+      this.reminder='';
+      this.remind = false;
       this.toggle();
     }
   }
 
   receiveMessage($event) {
     this.color =$event;
-    console.log("hell.....",$event);
+    //console.log("hell.....",$event);
+  }
+
+  receiveReminder($event) {
+    this.remind = true;
+    this.reminder =$event;
+    //console.log("Reminder.....",$event);
+  }
+
+  clear(){
+    this.reminder='';
   }
 
 

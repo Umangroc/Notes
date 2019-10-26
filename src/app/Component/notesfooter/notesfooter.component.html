@@ -1,5 +1,5 @@
 <div *ngIf="function=='all'" fxLayoutAlign="space-around" style="display:flex">
-  <app-reminder-icon [id]="noteId"></app-reminder-icon>
+  <app-reminder-icon (ReminderEvent)="receiveReminder($event)" [id]="noteId"></app-reminder-icon>
   <button mat-icon-button (click)="openDialog(noteId)" matTooltip="Collaborator">
     <mat-icon>person_add</mat-icon>
   </button>
@@ -12,8 +12,8 @@
 </div>
 
 <div *ngIf="function=='archive'" fxLayoutAlign="space-around" style="display:flex">
-    <app-reminder-icon [id]="noteId"></app-reminder-icon>
-  <button mat-icon-button matTooltip="Collaborator">
+    <app-reminder-icon (ReminderEvent)="receiveReminder($event)" [id]="noteId"></app-reminder-icon>
+  <button mat-icon-button (click)="openDialog(noteId)" matTooltip="Collaborator">
     <mat-icon>person_add</mat-icon>
   </button>
   <app-color-icon (messageEvent)="receiveMessage($event)" [id]="noteId"></app-color-icon>

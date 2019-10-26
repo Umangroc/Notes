@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data/data.service';
 })
 export class ReminderIconComponent implements OnInit {
   @Input() id: any;
+  @Output() ReminderEvent= new EventEmitter<string>();
   show: any = true;
   date = new FormControl(new Date());
   
@@ -25,7 +26,8 @@ export class ReminderIconComponent implements OnInit {
 
   save(Noteid,picker3){
     //console.log("date........",picker3._validSelected);
-    let remind = {
+    if(Noteid){
+      let remind = {
       reminder: picker3._validSelected,
       noteIdList: [Noteid],
     }
@@ -36,6 +38,9 @@ export class ReminderIconComponent implements OnInit {
       
       this.dataSvc.changeMessage("Hello from Sibling")
     });
+  }else{
+    //console.log(picker3._validSelected);
+    this.ReminderEvent.emit(picker3._validSelected);
   }
-
+}
 }

@@ -13,6 +13,7 @@ import { TrashComponent } from './Component/trash/trash.component';
 import { SearchComponent } from './Component/search/search.component';
 import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
 import { RemindersComponent } from './Component/reminders/reminders.component';
+import { QuestionComponent } from './Component/question/question.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: 'archive', component: ArchiveComponent },
       { path: 'trash', component: TrashComponent },
       { path: 'search', component: SearchComponent },
-      { path: 'label/:labelname', component: LabeldisplayComponent }
+      { path: 'label/:labelname', component: LabeldisplayComponent },
+      { path: 'question/:id', component: QuestionComponent}
     ]
   },
   { path: '**', redirectTo: '/login' },

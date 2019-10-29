@@ -140,10 +140,16 @@ export class NoteService {
     return this.svc.delete(url);
   }
 
-  getnotedetails(id){
+  getnotedetailsnoteservice(id){
     let url = 'notes/getNotesDetail/' + id
     let auth = true;
     return this.svc.get(url,auth);
+  }
+
+  askquestionnoteservice(data){
+    let url = 'questionAndAnswerNotes/addQuestionAndAnswer'
+    let auth = true;
+    return this.svc.post(data,url,auth);
   }
 
 }

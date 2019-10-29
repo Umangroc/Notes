@@ -20,8 +20,9 @@
 
     <div *ngFor="let reminder of note.reminder">
       <mat-chip-list>
-        <mat-chip class="hide-icon">{{reminder}}
-          <button mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+          
+        <mat-chip ><mat-icon>access_time</mat-icon>{{reminder}}
+          <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
             <mat-icon>close</mat-icon>
           </button>
         </mat-chip>
@@ -30,14 +31,7 @@
     </div>
 
     <div *ngFor="let collab of note.collaborators">
-        <mat-chip-list>
-          <mat-chip class="hide-icon">{{collab.email}}
-            <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, note.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip>
-          <span></span>
-        </mat-chip-list>
+        <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
       </div>
 
     <div class="hide">
@@ -68,8 +62,8 @@
   
       <div *ngFor="let reminder of note.reminder">
         <mat-chip-list>
-          <mat-chip class="hide-icon">{{reminder}}
-            <button mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+          <mat-chip><mat-icon>access_time</mat-icon>{{reminder}}
+            <button  class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip>
@@ -78,14 +72,7 @@
       </div>
   
       <div *ngFor="let collab of note.collaborators">
-          <mat-chip-list>
-            <mat-chip class="hide-icon">{{collab.email}}
-              <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, note.id)">
-                <mat-icon>close</mat-icon>
-              </button>
-            </mat-chip>
-            <span></span>
-          </mat-chip-list>
+          <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
         </div>
   
       <div class="hide">

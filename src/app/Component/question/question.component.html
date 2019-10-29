@@ -1,14 +1,22 @@
-
+<div *ngFor= "let notedetail of notedetails">
 <p>
-  {{notedetails.title}}
+  {{notedetail.title}}
 </p>
 <p>
-    {{notedetails.description}}
+    {{notedetail.description}}
   </p>
+
 
   <mat-divider></mat-divider>
 
   Ask a Question
-
-  <input placeholder="Type something">
-  <button>Ask</button> 
+ 
+  <div *ngFor= "let notequestion of notedetail.questionAndAnswerNotes">
+  <p>
+    {{notequestion.message}}
+  </p>
+</div>
+  <mat-divider></mat-divider>
+  <input [(ngModel)]="question" placeholder="Type something">
+  <button (click)=askquestion(notedetail.id)>Ask</button> 
+</div>

@@ -68,14 +68,4 @@ this.view = "grid";
       //console.log(response);
     });
   }
-
-  deletecollaboratorfromnotes(userId, id) {
-    console.log(userId + id);
-    
-    this.svc.deletecollaboratorfromnotesnoteservice(userId, id).subscribe((response: any) => {
-      //console.log(response);
-      
-      this.dataSvc.changeMessage("Hello from Sibling")
-    });
-  }
 }

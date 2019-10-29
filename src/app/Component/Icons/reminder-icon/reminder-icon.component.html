@@ -20,6 +20,11 @@
     <button mat-icon-button (click)="show=true; $event.stopPropagation();">
       <i class="material-icons">keyboard_backspace</i></button>Pick date & time
       <mat-divider></mat-divider>
+
+      <mat-form-field>
+          <input (click)="$event.stopPropagation();" matInput type="time">
+        </mat-form-field>
+
       <mat-form-field>
           <input (click)="$event.stopPropagation();"  matInput [matDatepicker]="picker3" [value]="date.value">
           <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>

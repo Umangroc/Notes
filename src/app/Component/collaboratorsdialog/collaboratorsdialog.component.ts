@@ -20,6 +20,8 @@ export class CollaboratorsdialogComponent implements OnInit {
   options: any;
   searchPeople: any;
   any: any;
+  notedetails: any;
+  collabs: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private svc: NoteService,private dataSvc: DataService,private router: Router, public dialogRef: MatDialogRef<DashboardComponent>) { 
       this.backurl = localStorage.getItem('imageUrl');  
@@ -28,22 +30,26 @@ export class CollaboratorsdialogComponent implements OnInit {
       }else{
         this.url="";
       }
-    
-
   }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.getnotedetails();
   }
 
   valuechange(newValue) {
-    let userObj = {
-      searchWord: newValue
+    //console.log("value.....", newValue);
+    
+    if(newValue!='' && newValue!=undefined){
+      let userObj = {
+        searchWord: newValue
+      }
+      this.svc.userlistnoteservice(userObj).subscribe((response: any) => {
+        //console.log(response.data.details);
+        this.options = response.data.details;
+        this.any = response.data.details;
+      })
     }
-    this.svc.userlistnoteservice(userObj).subscribe((response: any) => {
-      console.log(response.data.details);
-      this.options = response.data.details;
-      this.any = response.data.details;
-    }) 
+     
   }
 
   addCollaborator(){
@@ -61,12 +67,32 @@ export class CollaboratorsdialogComponent implements OnInit {
     
     this.svc.addcollaboratornoteservice(userObj,this.data.noteid).subscribe((response: any) => {
       console.log(response);
+      this.searchPeople="";
+      this.getnotedetails();
       this.dataSvc.changeMessage("Hell");
     }) 
   }
 
   close() {
     this.dialogRef.close();
+  }
+
+  getnotedetails() {
+    this.svc.getnotedetailsnoteservice(this.data.noteid).subscribe((res: any) => {
+     // console.log("REsult.....",res.data.data[0]);
+      this.notedetails = res.data.data[0];
+      this.collabs = this.notedetails.collaborators;
+    })
+  }
+
+  deletecollaboratorfromnotes(userId, id) {
+   // console.log(userId + id);
+    
+    this.svc.deletecollaboratorfromnotesnoteservice(userId, id).subscribe((response: any) => {
+      //console.log(response);
+      this.getnotedetails();
+      this.dataSvc.changeMessage("Hello from Sibling")
+    });
   }
 
   

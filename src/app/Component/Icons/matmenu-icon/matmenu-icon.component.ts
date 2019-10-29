@@ -14,6 +14,7 @@ export class MatmenuIconComponent implements OnInit {
   result: any;
   response: any;
   labels: any;
+  changed : any = false;
 
   constructor(private svc: NoteService,
      private dataSvc: DataService,
@@ -80,6 +81,7 @@ export class MatmenuIconComponent implements OnInit {
     console.log("label value.......", data);
     this.svc.addlabeltonotesnoteservice(data).subscribe((response: any) => {
       this.dataSvc.changeMessage("Hello from Sibling")
+      this.changed = true;
       console.log(response);
     });
 

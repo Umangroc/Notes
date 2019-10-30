@@ -14,6 +14,8 @@ export class QuestionComponent implements OnInit {
   notedetails: any;
   token: any;
   question : any;
+  show: any = false;
+  answer: any;
 
   constructor(private svc: NoteService,
     private dataSvc: DataService,
@@ -41,11 +43,57 @@ export class QuestionComponent implements OnInit {
       //console.log(this.question);
       
       this.question = "";
+      this.show = false;
       console.log(res);
       })
   }
 
+reply(parentid){
+  this.show = !this.show;
+  if(this.answer){
+    let data ={
+      message: this.answer
+    }
+    this.svc.replynoteservice(data,parentid).subscribe((res: any) => {
+      this.getnotedetails(this.token);
+      //console.log(this.question);
+      
+      this.answer = "";
+      this.show = false;
+      console.log(res);
+      })
+  }
+}
 
+  like(parentid){
+      let data ={
+        "like": true
+      }
+      this.svc.likenoteservice(data,parentid).subscribe((res: any) => {
+        this.getnotedetails(this.token);
+        //console.log(this.question);
+        
+        this.answer = "";
+        this.show = false;
+        console.log(res);
+        })
+  
+}
+
+dislike(parentid){
+  let data ={
+    "like": false
+  }
+  this.svc.likenoteservice(data,parentid).subscribe((res: any) => {
+    this.getnotedetails(this.token);
+    //console.log(this.question);
+    
+    this.answer = "";
+    this.show = false;
+    console.log(res);
+    })
+
+}
 
 
 

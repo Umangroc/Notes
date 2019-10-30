@@ -152,4 +152,16 @@ export class NoteService {
     return this.svc.post(data,url,auth);
   }
 
+  replynoteservice(answer,parentid){
+    let url = 'questionAndAnswerNotes/reply/' + parentid
+    let auth = true;
+    return this.svc.post(answer,url,auth);
+  }
+
+  likenoteservice(like,parentid){
+    let url = 'questionAndAnswerNotes/like/' + parentid
+    let auth = true;
+    return this.svc.post(like,url,auth);
+  }
+
 }

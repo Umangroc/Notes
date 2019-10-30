@@ -40,7 +40,7 @@ import { MatNativeDateModule } from '@angular/material';
 import { RemindersComponent } from './Component/reminders/reminders.component';
 import { CollaboratorsdialogComponent } from './Component/collaboratorsdialog/collaboratorsdialog.component';
 import { QuestionComponent } from './Component/question/question.component';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -82,7 +82,9 @@ import { QuestionComponent } from './Component/question/question.component';
     ReactiveFormsModule,
     ImageCropperModule,
     RouterModule,
-    MatNativeDateModule  
+    MatNativeDateModule,
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot()  
   ],
   entryComponents: [DialogComponent, ImagedialogComponent,LabeldialogComponent,CollaboratorsdialogComponent],
   providers: [ UserService, AuthGuard, MatNativeDateModule ],

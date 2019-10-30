@@ -38,6 +38,14 @@
       <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
       </app-notesfooter>
     </div>
+
+   
+    <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
+      <mat-divider></mat-divider>   
+      Question Asked
+      <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
+    </div>
+
   </mat-card>
 </div>
 

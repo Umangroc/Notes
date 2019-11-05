@@ -28,12 +28,13 @@
   <div *ngFor= "let notequestion of notedetail.questionAndAnswerNotes">
       {{notequestion.user.firstName}} {{notequestion.user.lastName}}
       <button mat-icon-button (click)="reply(notequestion.id)"><mat-icon >reply</mat-icon></button>
-      <div *ngIf="!notequestion.like[0].like">
+      <!-- <div *ngIf="!notequestion.like[0].like">
       <button  mat-icon-button (click)="like(notequestion.id)"><mat-icon>thumb_up_alt</mat-icon></button>
     </div>
     <div *ngIf="notequestion.like[0].like">
       <button  mat-icon-button (click)="dislike(notequestion.id)"><mat-icon>thumb_down_alt</mat-icon></button>
-    </div>
+    </div> -->
+    
       <!-- <div class="rate">
         <input type="radio" id="star5" name="rate" value="5" />
         <label for="star5" title="text">5 stars</label>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { FormControl, Validators } from '@angular/forms';
 import { User } from '../../models/register.model';
+import { DataService } from 'src/app/services/data/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,13 +20,20 @@ export class RegisterComponent implements OnInit {
   lastName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  pack: string;
 
 
-  constructor(private svc: UserserviceService) {
+  constructor(private svc: UserserviceService,
+    private dataSvc: DataService,
+    private router: Router) {
     this.svc.print("inside register");
   }
 
   ngOnInit() {
+    this.dataSvc.currentMessage.subscribe((res: any) => {
+      this.pack = res;
+    console.log("pack....",this.pack);
+    })
   }
 
   FirstNameInvalidMessage() {
@@ -60,12 +69,11 @@ export class RegisterComponent implements OnInit {
       lastName: this.lastName.value,
       email: this.email.value,
       password: this.password.value,
-      service: "advance"
+      service: this.pack
     }
-    this.result = this.svc.registeruserservice(this.userObj);
-    this.result.subscribe((response) => {
-      this.response = response;
-      console.log(this.response);
+    this.svc.registeruserservice(this.userObj).subscribe((response: any) => {
+      this.router.navigate(["/login"]);
+      console.log(response);
     })
   }
 }

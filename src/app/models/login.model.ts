@@ -1,6 +1,6 @@
 export class User
 {
-    email :"string";
-    password: "string";
+    email :String;
+    password: String;
     service:"basic"
 }

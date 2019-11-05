@@ -14,12 +14,14 @@ import { SearchComponent } from './Component/search/search.component';
 import { LabeldisplayComponent } from './Component/labeldisplay/labeldisplay.component';
 import { RemindersComponent } from './Component/reminders/reminders.component';
 import { QuestionComponent } from './Component/question/question.component';
+import { CartComponent } from './Component/cart/cart.component';
 
 
 const routes: Routes = [
 
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/cart', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot', component: ForgotComponent },
   { path: 'resetpassword/:id', component: ResetComponent },

@@ -41,6 +41,7 @@ import { RemindersComponent } from './Component/reminders/reminders.component';
 import { CollaboratorsdialogComponent } from './Component/collaboratorsdialog/collaboratorsdialog.component';
 import { QuestionComponent } from './Component/question/question.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { CartComponent } from './Component/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     ReminderIconComponent,
     RemindersComponent,
     CollaboratorsdialogComponent,
-    QuestionComponent
+    QuestionComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

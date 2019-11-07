@@ -43,6 +43,30 @@ export class UserserviceService {
     return this.svc.postImage(Obj,url);
   }
 
+  placeOrderUserService(data){
+    let url= 'productcarts/placeOrder'
+    let auth = true;
+    return this.svc.post(data,url,auth);
+  }
+
+  myCartUserService(){
+    let url= 'productcarts/myCart'
+    let auth = true;
+    return this.svc.get(url,auth);
+  }
+
+  userTypeUserService(id){
+    let url= 'user/' + id
+    let auth = true;
+    return this.svc.get(url,auth);
+  }
+
+  addToCartUserService(data){
+    let url= 'productcarts/addToCart'
+    let auth = false;
+    return this.svc.post(data,url,auth);
+  }
+
   getEncodedData(data) {
     const formBody = [];
     for (const property in data) {

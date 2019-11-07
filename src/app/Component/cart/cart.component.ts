@@ -18,7 +18,7 @@ export class CartComponent implements OnInit {
   Send(type){
     //console.log("type........",type);
     
-    this.dataSvc.changeMessage(type);
+    this.dataSvc.changeType(type);
     this.router.navigate(["/register"]);
   }
 

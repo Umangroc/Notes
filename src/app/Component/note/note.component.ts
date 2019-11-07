@@ -26,7 +26,7 @@ export class NoteComponent implements OnInit {
     this.getNoteData();
 
     this.dataSvc.currentMessage.subscribe((res: any) => {
-      console.log("in  notes", res);
+     // console.log("in  notes", res);
 
       this.getNoteData();
     })

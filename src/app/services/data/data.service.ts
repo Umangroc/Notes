@@ -25,4 +25,11 @@ currentQuestion = this.questionSource.asObservable();
 changeQuestion(message: string) {
   this.questionSource.next(message)
 }
+
+private typeSource = new BehaviorSubject('default message');
+currentType = this.typeSource.asObservable();
+
+changeType(message: string) {
+  this.typeSource.next(message)
+}
 }

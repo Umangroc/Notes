@@ -61,9 +61,7 @@ export class CollaboratorsdialogComponent implements OnInit {
       lastName: this.any[0].lastName,
       userId: this.any[0].userId
     }
-    console.log(this.data);
     console.log(userObj);
-    
     
     this.svc.addcollaboratornoteservice(userObj,this.data.noteid).subscribe((response: any) => {
       console.log(response);

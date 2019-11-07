@@ -22,6 +22,7 @@ export class NotesComponent implements OnInit {
   color: any = '#fff';
   reminder : any = '';
   remind: any = false;
+  email: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -30,6 +31,9 @@ export class NotesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.dataSvc.currentMessage.subscribe((res: any) => {
+      this.email=res;
+     })
   }
  
   receiveData() {
@@ -37,8 +41,7 @@ export class NotesComponent implements OnInit {
       title: this.title.value,
       description: this.description.value,
       color: this.color,
-      reminder: this.reminder,
-      service: "basic"
+      reminder: this.reminder
     }
     if (this.title.value == null && this.description.value == null) {
       this.toggle();

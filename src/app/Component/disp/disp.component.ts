@@ -23,7 +23,7 @@ export class DispComponent implements OnInit {
 
   ngOnInit() {
     this.dataSvc.currentView.subscribe((res: any) => {
-      console.log("in display", res);
+      //console.log("in display", res);
       if(res=="default message"){
 this.view = "grid";
       }else{

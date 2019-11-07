@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { User } from '../../models/forgot.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-forgot',
@@ -15,7 +16,8 @@ export class ForgotComponent implements OnInit {
   response: any;
   email = new FormControl('', [Validators.required, Validators.email]);
 
-  constructor(private svc: UserserviceService) {
+  constructor(private svc: UserserviceService,
+    private _snackBar: MatSnackBar) {
     this.svc.print("inside forgot password");
   }
 
@@ -32,14 +34,22 @@ export class ForgotComponent implements OnInit {
   onForgotPassword() {
    
     this.userObj = {
-      email: this.email.value,
-      service: "basic"
+      email: this.email.value
     }
     this.result=this.svc.forgotuserservice(this.userObj);
     this.result.subscribe((response) => {
       this.response = response;
+      this.openSnackBar('Reset Link sent to your registered email, please check.',"Close");
       console.log(this.response);
+    },(error)=>{
+      this.openSnackBar('Email not found.',"Close");
     })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
 }

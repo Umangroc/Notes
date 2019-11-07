@@ -30,9 +30,11 @@
       </mat-chip-list>
     </div>
 
-    <div *ngFor="let collab of note.collaborators">
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div *ngFor="let collab of note.collaborators" >
         <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
       </div>
+    </div>
 
     <div class="hide">
       <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
@@ -79,7 +81,7 @@
         </mat-chip-list>
       </div>
   
-      <div *ngFor="let collab of note.collaborators">
+      <div *ngFor="let collab of note.collaborators" >
           <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
         </div>
   

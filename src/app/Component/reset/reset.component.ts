@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { User } from '../../models/reset.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-reset',
@@ -13,13 +14,14 @@ export class ResetComponent implements OnInit {
 
   userObj: User = new User();
   hide = true;
-  result: any;
-  response: any;
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.password.value)]);
   token : string;
 
-  constructor(private svc: UserserviceService,private route : ActivatedRoute) {
+  constructor(private svc: UserserviceService,
+    private route : ActivatedRoute,
+    private router: Router,
+    private _snackBar: MatSnackBar) {
     this.svc.print("inside reset password");
   }
 
@@ -54,8 +56,16 @@ export class ResetComponent implements OnInit {
       newPassword: this.password.value
     }
     this.svc.resetuserservice(this.userObj).subscribe((response) => {
-        response = response;
-        console.log(response);
+        //console.log(response);
+        this.router.navigate(["/login"]);
+      },(error)=>{
+        this.openSnackBar('Wrong Entry',"Close");
       })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

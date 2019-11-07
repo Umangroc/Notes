@@ -4,6 +4,7 @@ import { UserserviceService } from 'src/app/services/user/userservice.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from '../../models/login.model';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   constructor(private svc: UserserviceService,
     private auth: AuthService, 
     private router: Router,
+    private _snackBar: MatSnackBar
     ) {
     this.svc.print("inside login");
   }
@@ -52,8 +54,7 @@ export class LoginComponent implements OnInit {
 
     this.userObj = {
       email: this.email.value,
-      password: this.password.value,
-      service: "basic"
+      password: this.password.value
     }
     this.result = this.svc.loginuserservice(this.userObj);
     this.result.subscribe((response) => {
@@ -64,13 +65,18 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('id', response.id);   
       localStorage.setItem('imageUrl', response.imageUrl); 
       localStorage.setItem('userId', response.userId);     
-      console.log("1111111111111",response.id);
+      //console.log("1111111111111",response.id);
          
       this.router.navigate(['/note']);
     },(error)=>{
-      console.log(error);
-      
+      this.openSnackBar('Incorrect email or password',"Close");
     })
+  }
+  
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 }

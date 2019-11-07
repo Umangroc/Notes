@@ -1,5 +1,3 @@
 export class User
 {
-    email :String;
-    service:"basic"
-}
+    email :String;}

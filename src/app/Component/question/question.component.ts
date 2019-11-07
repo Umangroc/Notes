@@ -16,6 +16,7 @@ export class QuestionComponent implements OnInit {
   question : any;
   show: any = false;
   answer: any;
+  openid: any;
 
   constructor(private svc: NoteService,
     private dataSvc: DataService,
@@ -49,6 +50,7 @@ export class QuestionComponent implements OnInit {
   }
 
 reply(parentid){
+  this.openid = parentid;
   this.show = !this.show;
   if(this.answer){
     let data ={

@@ -1,41 +1,54 @@
-<div *ngFor= "let notedetail of notedetails">
-<p>
-  {{notedetail.title}}
-</p>
-<p>
+<div *ngFor="let notedetail of notedetails">
+  <p>
+    {{notedetail.title}}
+  </p>
+  <p>
     {{notedetail.description}}
   </p>
 
 
   <mat-divider></mat-divider>
 
-<div *ngIf="notedetail.questionAndAnswerNotes==''">
-  Ask a Question
+  <div *ngIf="notedetail.questionAndAnswerNotes==''">
+    Ask a Question
 
-  <div placeholder="Type something" [(froalaModel)]="question" [froalaEditor]></div>
-  <div fxLayoutAlign="end center">
-  <button (click)=askquestion(notedetail.id)>Ask</button> 
-</div>
-</div>
+    <div placeholder="Type something" [(froalaModel)]="question" [froalaEditor]></div>
+    <div fxLayoutAlign="end center">
+      <button (click)=askquestion(notedetail.id)>Ask</button>
+    </div>
+  </div>
 
-<div *ngIf="notedetail.questionAndAnswerNotes!=''">
-  Question Asked
-  <div innerHTML="{{notedetail.questionAndAnswerNotes[0].message}}"></div>
+  <div *ngIf="notedetail.questionAndAnswerNotes!=''">
+    Question Asked
+    <div innerHTML="{{notedetail.questionAndAnswerNotes[0].message}}"></div>
     <mat-divider></mat-divider>
   </div>
- 
- 
-  <div *ngFor= "let notequestion of notedetail.questionAndAnswerNotes">
-      {{notequestion.user.firstName}} {{notequestion.user.lastName}}
-      <button mat-icon-button (click)="reply(notequestion.id)"><mat-icon >reply</mat-icon></button>
-      <!-- <div *ngIf="!notequestion.like[0].like">
+
+
+  <div *ngFor="let notequestion of notedetail.questionAndAnswerNotes">
+    <div *ngIf="notequestion.isApproved==true">
+    {{notequestion.user.firstName}} {{notequestion.user.lastName}}
+    <button mat-icon-button (click)="reply(notequestion.id)">
+      <mat-icon>reply</mat-icon>
+    </button>
+    <div innerHTML="{{notequestion.message}}"></div>
+
+
+    <div *ngIf="notequestion.id==openid && show==true">
+      <div placeholder="Type something" [(froalaModel)]="answer" [froalaEditor]></div>
+      <div fxLayoutAlign="end center">
+        <button (click)=reply(notequestion.id)>Ask</button>
+      </div>
+    </div>
+    </div>
+    <!-- <div *ngIf="!notequestion.like[0].like">
       <button  mat-icon-button (click)="like(notequestion.id)"><mat-icon>thumb_up_alt</mat-icon></button>
     </div>
     <div *ngIf="notequestion.like[0].like">
       <button  mat-icon-button (click)="dislike(notequestion.id)"><mat-icon>thumb_down_alt</mat-icon></button>
     </div> -->
-    
-      <!-- <div class="rate">
+
+    <!-- <div class="rate">
         <input type="radio" id="star5" name="rate" value="5" />
         <label for="star5" title="text">5 stars</label>
         <input type="radio" id="star4" name="rate" value="4" />
@@ -47,15 +60,8 @@
         <input type="radio" id="star1" name="rate" value="1" />
         <label for="star1" title="text">1 star</label>
       </div> -->
-      <div innerHTML="{{notequestion.message}}"></div>
 
 
-      <div *ngIf="show">
-        <div placeholder="Type something" [(froalaModel)]="answer" [froalaEditor]></div>
-        <div fxLayoutAlign="end center">
-          <button (click)=reply(notequestion.id)>Ask</button> 
-        </div>
-      </div>
-</div>
+  </div>
 
 </div>

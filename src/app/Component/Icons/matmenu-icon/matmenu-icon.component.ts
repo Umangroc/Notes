@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./matmenu-icon.component.scss']
 })
 export class MatmenuIconComponent implements OnInit {
+  show: any = false;
   @Input() id: any;
   @Input() mat: any;
   labels: any;
@@ -100,5 +101,14 @@ export class MatmenuIconComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
+  }
+
+  checkbox(noteid){
+    this.show = !this.show;
+    let data = {
+      "show": this.show,
+      "id": noteid
+    }
+    this.dataSvc.changeChecklist(data);
   }
 }

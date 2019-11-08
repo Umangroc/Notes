@@ -164,4 +164,22 @@ export class NoteService {
     return this.svc.post(like,url,auth);
   }
 
+  addchecklistnoteservice(data,noteid){
+    let url = 'notes/' + noteid + '/checklist/add'
+    let auth = true;
+    return this.svc.post(data,url,auth);
+  }
+
+  deletechecklistnoteservice(data){
+    let url = 'notes/' + data.noteId + '/checklist/' + data.checklistId + '/remove'
+    let auth = true;
+    return this.svc.post(data,url,auth);
+  }
+
+  updatechecklistnoteservice(data){
+    let url = 'notes/' + data.noteId + '/checklist/' + data.checklistId + '/update'
+    let auth = true;
+    return this.svc.post(data,url,auth);
+  }
+
 }

@@ -32,4 +32,12 @@ currentType = this.typeSource.asObservable();
 changeType(message: string) {
   this.typeSource.next(message)
 }
+
+// Checklist
+private checklistSource = new BehaviorSubject('default message');
+currentChecklist = this.checklistSource.asObservable();
+
+changeChecklist(message: any) {
+  this.checklistSource.next(message)
+}
 }

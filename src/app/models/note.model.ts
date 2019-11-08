@@ -4,4 +4,5 @@ title : String;
 description : String;
 color: any;
 reminder: any;
+checklist: any;
 }

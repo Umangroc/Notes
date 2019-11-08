@@ -53,20 +53,29 @@
 
             <!-- Like and dislike -->
             <div *ngIf="notequestion.like!=''">
-              <div *ngIf="!notequestion.like[0].like">
+              <div *ngFor="let likes of notequestion.like">
+              <div *ngIf="likes.userId==userId && likes.like==false">
                 <button mat-icon-button (click)="like(notequestion.id)">
                   <mat-icon>thumb_up_alt</mat-icon>
                 </button>
               </div>
-              <div *ngIf="notequestion.like[0].like">
-                <button mat-icon-button (click)="dislike(notequestion.id)">
-                  <mat-icon>thumb_down_alt</mat-icon>
-                </button>
-              </div>
+
+              <div *ngIf="likes.userId==userId && likes.like==true">
+                  <button mat-icon-button (click)="dislike(notequestion.id)">
+                    <mat-icon>thumb_down_alt</mat-icon>
+                  </button>
+                </div>
             </div>
           </div>
 
-          <!-- COunt of Like -->
+          </div>
+
+          <!-- Count of Like -->
+          <!-- <div *ngFor="let likes of notequestion.like">
+            <div *ngIf="likes.likes">
+              console.count();
+            </div>
+          </div> -->
           <div>{{notequestion.like.length}} likes</div>
 
           <!-- Rating -->

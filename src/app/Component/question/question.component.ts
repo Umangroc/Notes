@@ -17,6 +17,7 @@ export class QuestionComponent implements OnInit {
   show: any = false;
   answer: any;
   openid: any;
+  userId = localStorage.getItem('userId'); 
 
   constructor(private svc: NoteService,
     private dataSvc: DataService,

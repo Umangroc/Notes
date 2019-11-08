@@ -4,7 +4,12 @@
         <button mat-menu-item (click)="trash(id)">Delete Note</button>
         <button mat-menu-item [matMenuTriggerFor]="addlabel">Add label</button>
         <button mat-menu-item (click)=question(id)>Ask question</button>
-        <button mat-menu-item>Show checkboxes</button>
+        <div *ngIf="!show">
+        <button mat-menu-item (click)=checkbox(id)>Show checkboxes</button>
+      </div>
+      <div *ngIf="show">
+          <button mat-menu-item (click)=checkbox(id)>Hide checkboxes</button>
+        </div>
       </mat-menu>
     </div>
     <div *ngIf="mat=='trash'">

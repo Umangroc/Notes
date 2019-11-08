@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { Note } from '../../models/note.model';
 import { FormControl } from '@angular/forms';
@@ -20,9 +20,14 @@ export class NotesComponent implements OnInit {
   titlemodel: any;
   descriptionmodel: any;
   color: any = '#fff';
-  reminder : any = '';
+  reminder: any = '';
   remind: any = false;
   email: any;
+  checklistShow: any = false;
+  item = new FormControl;
+  itemmodel: any;
+  itemArray = [];
+  checklistIndex: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -32,17 +37,30 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.dataSvc.currentMessage.subscribe((res: any) => {
-      this.email=res;
-     })
+      this.email = res;
+    })
+    this.dataSvc.currentChecklist.subscribe((res: any) => {
+      console.log("checklist", res);
+      if(!res.id){
+        if (res.show == "default message") {
+          this.checklistShow = false;
+        } else {
+          this.checklistShow = res.show;
+        }
+      }
+    })
   }
- 
+
   receiveData() {
     this.note = {
       title: this.title.value,
       description: this.description.value,
       color: this.color,
-      reminder: this.reminder
+      reminder: this.reminder,
+      checklist: JSON.stringify(this.itemArray)
     }
+    console.log("Note Data.......",this.note);
+    
     if (this.title.value == null && this.description.value == null) {
       this.toggle();
     }
@@ -53,29 +71,52 @@ export class NotesComponent implements OnInit {
         this.dataSvc.changeMessage("Hello from Sibling")
         console.log(this.response);
       });
-      this.titlemodel='';
-      this.descriptionmodel='';
-      this.color='';
-      this.reminder='';
+      this.titlemodel = '';
+      this.descriptionmodel = '';
+      this.color = '';
+      this.reminder = '';
       this.remind = false;
       this.toggle();
     }
   }
 
   receiveMessage($event) {
-    this.color =$event;
+    this.color = $event;
     //console.log("hell.....",$event);
   }
 
   receiveReminder($event) {
     this.remind = true;
-    this.reminder =$event;
+    this.reminder = $event;
     //console.log("Reminder.....",$event);
   }
 
-  clear(){
-    this.reminder='';
+  clear() {
+    this.reminder = '';
   }
 
+  listitem(){
+    console.log("lenght...",this.itemArray.length);
+
+    this.itemArray[this.itemArray.length]= {itemName: this.item.value,status:"open"};
+    this.itemmodel='';
+    console.log("Array...",this.itemArray);
+  }
+
+  updatestatus(itemname,status){
+
+    this.checklistIndex = this.itemArray.findIndex(i => i.itemName === itemname);
+    if(status=='open'){
+      this.itemArray[this.checklistIndex].status = 'close';
+    }else{
+      this.itemArray[this.checklistIndex].status = 'open';
+    }
+  }
+
+  deletechecklist(itemname){
+    this.checklistIndex = this.itemArray.findIndex(i => i.itemName === itemname);
+    console.log("index....", this.itemArray.findIndex(i => i.itemName === itemname));
+    this.itemArray.splice(this.checklistIndex, 1);
+  }
 
 }

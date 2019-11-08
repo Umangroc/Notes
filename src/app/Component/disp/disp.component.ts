@@ -3,6 +3,7 @@ import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-disp',
@@ -12,12 +13,15 @@ import { MatDialog } from '@angular/material/dialog';
 export class DispComponent implements OnInit {
   @Input() display: any;
   @Input() component: any;
-
+  item = new FormControl;
   options: any;
   message: String;
   @Input() trash: any;
   dialogcolor: any;
   view: any;
+  checklistShow: any;
+  checklistnoteid: any;
+  itemmodel: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
 
@@ -30,6 +34,16 @@ this.view = "grid";
         this.view = res;
       }
       
+    })
+
+    this.dataSvc.currentChecklist.subscribe((res: any) => {
+      console.log("checklist", res);
+      if (res.show == "default message") {
+        this.checklistShow = false;
+      } else {
+        this.checklistShow = res.show;
+        this.checklistnoteid = res.id;
+      }
     })
     this.display;
   }
@@ -67,5 +81,53 @@ this.view = "grid";
       this.dataSvc.changeMessage("Hello from Sibling")
       //console.log(response);
     });
+  }
+
+  addchecklist(noteid){
+    let data = {
+      status: "open",
+      itemName: this.item.value
+    }
+    this.svc.addchecklistnoteservice(data,noteid).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling");
+      this.itemmodel = '';
+      console.log(response);
+    });
+
+  }
+
+  deletechecklist(noteid,checklistid){
+    let data = {
+      noteId: noteid,
+      checklistId: checklistid
+    }
+    this.svc.deletechecklistnoteservice(data).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling");
+      console.log(response);
+    });
+  }
+
+  updatestatus(itemname,status,noteid,checklistid){
+    let data;
+    if(status=='open'){
+       data = {
+        status: "close",
+        itemName: itemname,
+        noteId: noteid,
+      checklistId: checklistid
+      }
+    }else{
+       data = {
+        status: "open",
+        itemName: itemname,
+        noteId: noteid,
+      checklistId: checklistid
+      }
+    }
+    this.svc.updatechecklistnoteservice(data).subscribe((response: any) => {
+      this.dataSvc.changeMessage("Hello from Sibling");
+      console.log(response);
+    });
+    
   }
 }

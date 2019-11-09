@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data/data.service';
 import { NoteService } from 'src/app/services/note/note.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-question',
@@ -17,7 +18,10 @@ export class QuestionComponent implements OnInit {
   show: any = false;
   answer: any;
   openid: any;
-  userId = localStorage.getItem('userId'); 
+  userId = localStorage.getItem('userId');
+  counting = 0; 
+  state =false;
+  flag =false;
 
   constructor(private svc: NoteService,
     private dataSvc: DataService,
@@ -40,6 +44,8 @@ export class QuestionComponent implements OnInit {
       message: this.question,
       notesId: id
     }
+    console.log("dtaa....",data);
+    
     this.svc.askquestionnoteservice(data).subscribe((res: any) => {
       this.getnotedetails(this.token);
       //console.log(this.question);
@@ -96,6 +102,37 @@ dislike(parentid){
     console.log(res);
     })
 
+}
+
+count(likes){
+  //console.log("likes....",likes);
+  this.counting = 0;
+  for(let i=0;i<likes.length;i++){
+    if(likes[i].like==true){
+      this.counting++;
+    }
+    
+  }
+ // console.log(this.counting);
+  
+}
+
+displayIcon(likes){
+  //console.log("likes....",likes);
+  this.flag=false;
+  for(let i=0;i<likes.length;i++){
+    if(likes[i].userId==this.userId){
+    console.log(likes[i].like);
+    this.flag=true;
+      if(likes[i].like){
+        this.state = true;
+      }else{
+        this.state = false;
+      }
+      break;
+    }
+  }
+  return true;
 }
 
 

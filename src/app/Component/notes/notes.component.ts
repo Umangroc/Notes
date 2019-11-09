@@ -28,6 +28,8 @@ export class NotesComponent implements OnInit {
   itemmodel: any;
   itemArray = [];
   checklistIndex: any;
+  arch = false;
+  collabArray = [];
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -49,6 +51,14 @@ export class NotesComponent implements OnInit {
         }
       }
     })
+
+    this.dataSvc.currentCollaborator.subscribe((res: any) => {
+      console.log("Collaborator Data...",res);
+      if(res!="default message"){
+        this.collabArray.push(res);
+      }
+      
+    })
   }
 
   receiveData() {
@@ -57,7 +67,9 @@ export class NotesComponent implements OnInit {
       description: this.description.value,
       color: this.color,
       reminder: this.reminder,
-      checklist: JSON.stringify(this.itemArray)
+      checklist: JSON.stringify(this.itemArray),
+      isArchived: this.arch,
+      collaberators: JSON.stringify(this.collabArray)
     }
     console.log("Note Data.......",this.note);
     
@@ -76,6 +88,9 @@ export class NotesComponent implements OnInit {
       this.color = '';
       this.reminder = '';
       this.remind = false;
+      this.itemArray = [];
+      this.checklistShow = false;
+      this.collabArray = [];
       this.toggle();
     }
   }
@@ -91,8 +106,15 @@ export class NotesComponent implements OnInit {
     //console.log("Reminder.....",$event);
   }
 
+  receiveArchive($event) {
+    console.log("Archive.....",$event);
+    this.arch = $event;
+    this.receiveData();
+  }
+
   clear() {
     this.reminder = '';
+    this.remind = false;
   }
 
   listitem(){

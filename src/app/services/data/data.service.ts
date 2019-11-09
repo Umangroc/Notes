@@ -40,4 +40,12 @@ currentChecklist = this.checklistSource.asObservable();
 changeChecklist(message: any) {
   this.checklistSource.next(message)
 }
+
+// Collaborator
+private collaboratorSource = new BehaviorSubject('default message');
+currentCollaborator = this.collaboratorSource.asObservable();
+
+changeCollaborator(message: any) {
+  this.collaboratorSource.next(message)
+}
 }

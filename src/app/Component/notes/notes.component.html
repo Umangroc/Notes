@@ -65,10 +65,16 @@
         </mat-chip-list>
      </div>
 
+     <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div *ngFor="let collab of collabArray" >
+            <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
+          </div>
+        </div>
+
       <!-- Notes Footer -->
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
-          <app-notesfooter (ReminderEvent)="receiveReminder($event)" (messageEvent)="receiveMessage($event)" [function]=component></app-notesfooter>
+          <app-notesfooter (ArchiveEvent)="receiveArchive($event)" (ReminderEvent)="receiveReminder($event)" (messageEvent)="receiveMessage($event)" [function]=component></app-notesfooter>
         </div>
         <div><button mat-button (click)="receiveData()">Close</button></div>
       </div>

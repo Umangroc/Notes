@@ -43,7 +43,7 @@
     <div *ngFor="let reminder of note.reminder">
       <mat-chip-list>
           
-        <mat-chip ><mat-icon>access_time</mat-icon>{{reminder}}
+        <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
           <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
             <mat-icon>close</mat-icon>
           </button>

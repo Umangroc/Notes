@@ -22,6 +22,7 @@ export class CollaboratorsdialogComponent implements OnInit {
   any: any;
   notedetails: any;
   collabs: any;
+  collabArray = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private svc: NoteService,private dataSvc: DataService,private router: Router, public dialogRef: MatDialogRef<DashboardComponent>) { 
       this.backurl = localStorage.getItem('imageUrl');  
@@ -63,12 +64,20 @@ export class CollaboratorsdialogComponent implements OnInit {
     }
     console.log(userObj);
     
-    this.svc.addcollaboratornoteservice(userObj,this.data.noteid).subscribe((response: any) => {
-      console.log(response);
+    if(this.data.noteid){
+      this.svc.addcollaboratornoteservice(userObj,this.data.noteid).subscribe((response: any) => {
+        console.log(response);
+        this.searchPeople="";
+        this.getnotedetails();
+        this.dataSvc.changeMessage("Hell");
+      })
+    }
+    else{
       this.searchPeople="";
-      this.getnotedetails();
-      this.dataSvc.changeMessage("Hell");
-    }) 
+      this.dataSvc.changeCollaborator(userObj);
+      this.collabArray.push(userObj);
+    }
+    
   }
 
   close() {

@@ -7,7 +7,7 @@
   <button mat-icon-button matTooltip="Add image">
     <mat-icon>image</mat-icon>
   </button>
-  <app-archive-icon [id]="noteId"></app-archive-icon>
+  <app-archive-icon (ArchiveEvent)="receiveArchive($event)" [id]="noteId"></app-archive-icon>
   <app-matmenu-icon [mat]=function [id]="noteId"></app-matmenu-icon>
 </div>
 

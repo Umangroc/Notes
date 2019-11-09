@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { MatSnackBar } from '@angular/material';
@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ArchiveIconComponent implements OnInit {
   @Input() id: any;
-
+  @Output() ArchiveEvent= new EventEmitter<string>();
   constructor(private svc: NoteService, 
     private dataSvc: DataService,
     private _snackBar: MatSnackBar) { }
@@ -19,6 +19,7 @@ export class ArchiveIconComponent implements OnInit {
   }
 
   archive(noteId){
+    if(noteId){
     let archive = {
       isArchived: true,
       noteIdList: [noteId],
@@ -31,6 +32,10 @@ export class ArchiveIconComponent implements OnInit {
     },(error)=>{
       this.openSnackBar('Error',"Close");
     })
+  }
+    else{
+      this.ArchiveEvent.emit('true');
+    }
   }
 
   openSnackBar(message: string, action: string) {

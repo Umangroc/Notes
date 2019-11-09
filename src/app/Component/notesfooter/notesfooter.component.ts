@@ -16,6 +16,7 @@ export class NotesfooterComponent implements OnInit {
   message: any;
   @Output() messageEvent= new EventEmitter<string>();
   @Output() ReminderEvent= new EventEmitter<string>();
+  @Output() ArchiveEvent= new EventEmitter<string>();
 
   constructor(public dialog: MatDialog) {
 
@@ -32,6 +33,11 @@ export class NotesfooterComponent implements OnInit {
   receiveReminder($event){
     this.ReminderEvent.emit($event);
     console.log("In notefooter, receive Reminder....",$event);
+  }
+
+  receiveArchive($event){
+    this.ArchiveEvent.emit($event);
+    console.log("In notefooter, receive Archive....",$event);
   }
 
   openDialog(noteId){

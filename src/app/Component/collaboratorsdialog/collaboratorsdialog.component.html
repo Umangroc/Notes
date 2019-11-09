@@ -6,6 +6,8 @@
     <mat-card-subtitle>{{email}}</mat-card-subtitle>
   </mat-card-header>
 
+
+
 <div *ngFor="let collab of collabs" fxLayout="row" fxLayoutAlign="space-between">
   <mat-card-header>
     <img mat-card-avatar [src]= "url? 'https://www.w3schools.com/howto/img_avatar.png' : 'https://www.w3schools.com/howto/img_avatar.png'">
@@ -15,6 +17,18 @@
   <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, notedetails.id)">
     <mat-icon>close</mat-icon>
   </button>
+</div>
+
+
+<div *ngFor="let collab of collabArray">
+    <mat-card-header>
+        <img mat-card-avatar [src]= "url? 'https://www.w3schools.com/howto/img_avatar.png' : 'https://www.w3schools.com/howto/img_avatar.png'">
+        <mat-card-title>{{collab.firstName}}</mat-card-title>
+        <mat-card-subtitle>{{collab.email}}</mat-card-subtitle>
+      </mat-card-header>
+      <button mat-icon-button (click)="deletecollaboratorfromnotes(collab.userId, notedetails.id)">
+        <mat-icon>close</mat-icon>
+      </button>
 </div>
 
   <div fxLayout="row">

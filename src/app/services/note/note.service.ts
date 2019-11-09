@@ -13,7 +13,7 @@ export class NoteService {
   addnoteservice(Obj){
     let url= 'notes/addNotes'
     let auth = true;
-    return this.svc.post(Obj,url,auth);
+    return this.svc.postreset(this.getEncodedData(Obj),url);
   }
 
   displaynoteservice(){
@@ -180,6 +180,16 @@ export class NoteService {
     let url = 'notes/' + data.noteId + '/checklist/' + data.checklistId + '/update'
     let auth = true;
     return this.svc.post(data,url,auth);
+  }
+
+  getEncodedData(data) {
+    const formBody = [];
+    for (const property in data) {
+      const encodedKey = encodeURIComponent(property);
+      const encodedValue = encodeURIComponent(data[property]);
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    return formBody.join('&');
   }
 
 }

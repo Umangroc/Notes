@@ -29,20 +29,26 @@
 
     <div *ngFor="let notequestion of notedetail.questionAndAnswerNotes">
       <div *ngIf="notequestion.isApproved==true && notequestion.parentId==notedetail.questionAndAnswerNotes[0].id">
-
+        <!-- First Row of answers -->
         <div fxLayout="row">
+          <!-- UserDetails -->
           <div>
             {{notequestion.user.firstName}} {{notequestion.user.lastName}}
           </div>
 
-          <!-- froala editor -->
+          <!-- Time -->
+          <div style="padding-left: 10px">
+              {{notequestion.createdDate | date:'short'}}
+            </div>
+
+          <!-- Reply -->
           <div>
             <button mat-icon-button (click)="reply(notequestion.id)">
               <mat-icon>reply</mat-icon>
             </button>
           </div>
 
-          <!-- Like -->
+          <!-- Like Action -->
           <div>
             <!-- First Like -->
             <div *ngIf="notequestion.like==''">
@@ -53,34 +59,36 @@
 
             <!-- Like and dislike -->
             <div *ngIf="notequestion.like!=''">
-              <div *ngFor="let likes of notequestion.like">
-              <div *ngIf="likes.userId==userId && likes.like==false">
-                <button mat-icon-button (click)="like(notequestion.id)">
-                  <mat-icon>thumb_up_alt</mat-icon>
-                </button>
-              </div>
+              <div *ngIf="displayIcon(notequestion.like)">
+                <!-- Like -->
+                <div *ngIf="!state || !flag">
+                  <button mat-icon-button (click)="like(notequestion.id)">
+                    <mat-icon>thumb_up_alt</mat-icon>
+                  </button>
+                </div>
 
-              <div *ngIf="likes.userId==userId && likes.like==true">
+                <!-- Dislike -->
+                <div *ngIf="state">
                   <button mat-icon-button (click)="dislike(notequestion.id)">
                     <mat-icon>thumb_down_alt</mat-icon>
                   </button>
                 </div>
+
+              </div>
+
             </div>
-          </div>
 
           </div>
 
           <!-- Count of Like -->
-          <!-- <div *ngFor="let likes of notequestion.like">
-            <div *ngIf="likes.likes">
-              console.count();
-            </div>
-          </div> -->
-          <div>{{notequestion.like.length}} likes</div>
+          <div *ngIf="count(notequestion.like)">
+            sadsa
+          </div>
+          <div>{{counting}} likes</div>
 
           <!-- Rating -->
-          <div class="rate" >
-            <input type="radio" id="star5" name="rate" value="5"  />
+          <div class="rate">
+            <input type="radio" id="star5" name="rate" value="5" />
             <label for="star5" title="5 stars">5 stars</label>
             <input type="radio" id="star4" name="rate" value="4" />
             <label for="star4" title="4 stars">4 stars</label>
@@ -93,13 +101,65 @@
           </div>
 
         </div>
-
+        <!-- Second Row of Answer -->
         <div innerHTML="{{notequestion.message}}"></div>
 
         <!-- Replies of answers -->
         <div *ngFor="let question of notedetail.questionAndAnswerNotes" class="reply">
           <div *ngIf="question.isApproved==true && question.parentId==notequestion.id">
-            {{notequestion.user.firstName}} {{notequestion.user.lastName}}
+            <!-- First Row of answers -->
+            <div fxLayout="row">
+              <!-- UserDetails -->
+              <div>
+                {{question.user.firstName}} {{question.user.lastName}}
+              </div>
+
+              <!-- Time -->
+          <div style="padding-left: 10px">
+              {{question.createdDate | date:'short'}}
+            </div>
+
+              <!-- Like Action -->
+              <div>
+                <!-- First Like -->
+                <div *ngIf="question.like==''">
+                  <button mat-icon-button (click)="like(question.id)">
+                    <mat-icon>thumb_up_alt</mat-icon>
+                  </button>
+                </div>
+
+                <!-- Like and dislike -->
+                <div *ngIf="question.like!=''">
+                  <div *ngIf="displayIcon(question.like)">
+                    <!-- Like -->
+                    <div *ngIf="!state">
+                      <button mat-icon-button (click)="like(question.id)">
+                        <mat-icon>thumb_up_alt</mat-icon>
+                      </button>
+                    </div>
+
+                    <!-- Dislike -->
+                    <div *ngIf="state">
+                      <button mat-icon-button (click)="dislike(question.id)">
+                        <mat-icon>thumb_down_alt</mat-icon>
+                      </button>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+               <!-- Count of Like -->
+          <div *ngIf="count(question.like)">
+              sadsa
+            </div>
+            <div>{{counting}} likes</div>
+
+            </div>
+
+            <!-- Second Row of Answer -->
             <div innerHTML="{{question.message}}"></div>
           </div>
         </div>

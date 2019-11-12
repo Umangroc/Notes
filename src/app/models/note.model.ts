@@ -7,4 +7,5 @@ reminder: any;
 checklist: any;
 isArchived: any;
 collaberators: any;
+labelIdList: any;
 }

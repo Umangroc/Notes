@@ -30,6 +30,9 @@ export class NotesComponent implements OnInit {
   checklistIndex: any;
   arch = false;
   collabArray = [];
+  labelDataArray = [];
+  labelIdArray = [];
+  labelIndex: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService) { }
 
@@ -59,6 +62,20 @@ export class NotesComponent implements OnInit {
       }
       
     })
+
+    this.dataSvc.currentlabel.subscribe((res: any) => {
+      console.log("Label Data...",res);
+      if(res!="default message"){
+        if(res.labelstatus==true){
+          this.labelDataArray.push(res.label);
+          this.labelIdArray.push(res.label.id);
+          console.log("Label Data array...",this.labelDataArray);
+          console.log("Label Data Id...",this.labelIdArray);
+        }else{
+          this.clearlabel(res.label.label)
+        }   
+    }
+    })
   }
 
   receiveData() {
@@ -69,7 +86,8 @@ export class NotesComponent implements OnInit {
       reminder: this.reminder,
       checklist: JSON.stringify(this.itemArray),
       isArchived: this.arch,
-      collaberators: JSON.stringify(this.collabArray)
+      collaberators: JSON.stringify(this.collabArray),
+      labelIdList: JSON.stringify(this.labelIdArray)
     }
     console.log("Note Data.......",this.note);
     
@@ -139,6 +157,14 @@ export class NotesComponent implements OnInit {
     this.checklistIndex = this.itemArray.findIndex(i => i.itemName === itemname);
     console.log("index....", this.itemArray.findIndex(i => i.itemName === itemname));
     this.itemArray.splice(this.checklistIndex, 1);
+  }
+
+  clearlabel(labelName){
+    this.labelIndex = this.labelDataArray.findIndex(i => i.label === labelName);
+    // console.log("lebelName....",labelName);
+    // console.log("labelIndex....",this.labelIndex);
+    this.labelDataArray.splice(this.labelIndex, 1);
+    this.labelIdArray.splice(this.labelIndex, 1);
   }
 
 }

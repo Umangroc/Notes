@@ -35,7 +35,7 @@ export class ReminderIconComponent implements OnInit {
     
     this.svc.remindernoteservice(remind).subscribe((response:any) => {
       console.log("succcessss.....",response);
-      
+      this.getNoteDetails(Noteid)
       this.dataSvc.changeMessage("Hello from Sibling")
     });
   }else{
@@ -43,4 +43,12 @@ export class ReminderIconComponent implements OnInit {
     this.ReminderEvent.emit(picker3._validSelected);
   }
 }
+
+getNoteDetails(noteid){
+  this.svc.getnotedetailsnoteservice(noteid).subscribe((res: any) => {
+     console.log(res.data.data[0]);
+      this.dataSvc.changedialog(res.data.data[0]);
+})
+}
+
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NoteService } from 'src/app/services/note/note.service';
 import { DataService } from 'src/app/services/data/data.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatListOption } from '@angular/material';
 
 @Component({
   selector: 'app-matmenu-icon',
@@ -14,7 +14,7 @@ export class MatmenuIconComponent implements OnInit {
   @Input() id: any;
   @Input() mat: any;
   labels: any;
-  changed : any = false;
+  labelstatus:any;
 
   constructor(private svc: NoteService,
      private dataSvc: DataService,
@@ -79,16 +79,25 @@ export class MatmenuIconComponent implements OnInit {
   }
 
   addlabeltonotes(label, noteid) {
-    let data = {
-      id: label.id,
-      noteId: noteid
+    if(noteid){
+      let data = {
+        id: label.id,
+        noteId: noteid
+      }
+      console.log("label value.......", data);
+      this.svc.addlabeltonotesnoteservice(data).subscribe((response: any) => {
+        this.dataSvc.changeMessage("Hello from Sibling")
+        console.log(response);
+      });
     }
-    console.log("label value.......", data);
-    this.svc.addlabeltonotesnoteservice(data).subscribe((response: any) => {
-      this.dataSvc.changeMessage("Hello from Sibling")
-      this.changed = true;
-      console.log(response);
-    });
+    else{
+      let data ={
+        label: label,
+        labelstatus: this.labelstatus
+      }
+      this.dataSvc.changelabel(data);
+    }
+  
 
   }
 
@@ -111,4 +120,9 @@ export class MatmenuIconComponent implements OnInit {
     }
     this.dataSvc.changeChecklist(data);
   }
+
+  selectionChange(option: MatListOption) {
+    this.labelstatus = option.selected;
+    console.log(option.selected);
+ }
 }

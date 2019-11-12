@@ -22,6 +22,7 @@ export class DispComponent implements OnInit {
   checklistShow: any;
   checklistnoteid: any;
   itemmodel: any;
+  notedetails: any;
 
   constructor(private svc: NoteService, private dataSvc: DataService, public dialog: MatDialog) { }
 
@@ -45,12 +46,22 @@ this.view = "grid";
         this.checklistnoteid = res.id;
       }
     })
+
+    this.dataSvc.currentMessage.subscribe((res: any) => {
+      console.log("res......",res);         
+    })
     this.display;
   }
 
   openDialog(notes) {
+    console.log("color in opendialog function....",notes);
+    
     this.dialog.open(DialogComponent, {
-      data: { title: notes.title, description: notes.description, noteId: notes.id, dialogfunction: this.component, color: notes.color }
+      data: { 
+        dialogfunction: this.component, 
+        color: notes.color,
+        notes: notes
+       }
     });
   }
 

@@ -48,4 +48,20 @@ currentCollaborator = this.collaboratorSource.asObservable();
 changeCollaborator(message: any) {
   this.collaboratorSource.next(message)
 }
+
+// Labels
+private labelSource = new BehaviorSubject('default message');
+currentlabel = this.labelSource.asObservable();
+
+changelabel(message: any) {
+  this.labelSource.next(message)
+}
+
+// Dialog Reminder
+private dialogSource = new BehaviorSubject('default message');
+currentdialog = this.dialogSource.asObservable();
+
+changedialog(message: any) {
+  this.dialogSource.next(message)
+}
 }

@@ -29,6 +29,7 @@
         <button (click)=addchecklist(note.id)>add</button>
       </div>
 
+      <div fxLayout="row wrap" fxLayoutGap="5px">
     <div *ngFor="let noteLabel of note.noteLabels">
       <mat-chip-list>
         <mat-chip class="hide-icon">{{noteLabel.label}}
@@ -39,6 +40,7 @@
         <span></span>
       </mat-chip-list>
     </div>
+      </div>
 
     <div *ngFor="let reminder of note.reminder">
       <mat-chip-list>
@@ -65,7 +67,8 @@
 
    
     <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
-      <mat-divider></mat-divider>   
+      <mat-divider></mat-divider>  
+      <br> 
       Question Asked
       <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
     </div>
@@ -81,6 +84,29 @@
       <div (click)="openDialog(note)">
         <p style="word-break: break-all;">{{note.description}}</p>
       </div>
+  
+      <div *ngFor="let checklist of note.noteCheckLists">
+        <div *ngIf="checklist.status=='open' && checklist.isDeleted==false">  
+        <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box_outline_blank</mat-icon>
+        {{checklist.itemName}}
+          <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
+      </div>
+  
+      <div *ngIf="checklist.status=='close' && checklist.isDeleted==false">  
+          <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box</mat-icon>
+          <s>{{checklist.itemName}}</s>
+          <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
+        </div>
+          
+          
+      </div>
+      
+      <div *ngIf="checklistShow && checklistnoteid==note.id" style="outline: orange;">
+          <mat-icon>add</mat-icon><textarea [formControl]="item" placeholder="List item" [(ngModel)]="itemmodel"></textarea>
+          <button (click)=addchecklist(note.id)>add</button>
+        </div>
+  
+        <div fxLayout="row wrap" fxLayoutGap="5px">
       <div *ngFor="let noteLabel of note.noteLabels">
         <mat-chip-list>
           <mat-chip class="hide-icon">{{noteLabel.label}}
@@ -91,11 +117,13 @@
           <span></span>
         </mat-chip-list>
       </div>
+        </div>
   
       <div *ngFor="let reminder of note.reminder">
         <mat-chip-list>
-          <mat-chip><mat-icon>access_time</mat-icon>{{reminder}}
-            <button  class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+            
+          <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
+            <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
               <mat-icon>close</mat-icon>
             </button>
           </mat-chip>
@@ -103,13 +131,25 @@
         </mat-chip-list>
       </div>
   
+      <div fxLayout="row wrap" fxLayoutGap="5px">
       <div *ngFor="let collab of note.collaborators" >
           <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
         </div>
+      </div>
   
       <div class="hide">
         <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
         </app-notesfooter>
       </div>
+  
+     
+      <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
+        <mat-divider></mat-divider>   
+        Question Asked
+        <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
+      </div>
+  
     </mat-card>
   </div>
+
+   

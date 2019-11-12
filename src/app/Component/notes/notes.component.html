@@ -66,6 +66,19 @@
      </div>
 
      <div fxLayout="row wrap" fxLayoutGap="5px">
+      <div *ngFor="let label of labelDataArray" >
+        <mat-chip-list>
+          <mat-chip class="hide-icon">{{label.label}}
+            <button mat-icon-button (click)="clearlabel(label.label)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
+      </div>
+
+     <div fxLayout="row wrap" fxLayoutGap="5px">
         <div *ngFor="let collab of collabArray" >
             <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
           </div>

@@ -1,27 +1,66 @@
+<!-- For Notes And Archive -->
 <div *ngIf="data.dialogfunction=='archive' || data.dialogfunction=='all'" [ngStyle]="{background:colordialog}" style="padding: 10px;">
     <div>
        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{data.title}}"></textarea>
+          cdkAutosizeMaxRows="20" [formControl]="title" placeholder="Title" value="{{noteData.title}}"></textarea>
     </div>
     <div >
         <p> <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="description" value="{{data.description}}"></textarea></p>
+          cdkAutosizeMaxRows="20" [formControl]="description" placeholder="description" value="{{noteData.description}}"></textarea></p>
     </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div *ngFor="let noteLabel of noteData.noteLabels">
+        <mat-chip-list>
+          <mat-chip class="hide-icon">{{noteLabel.label}}
+            <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, noteData.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
+      </div>
+
+    <!-- Reminder -->
+    <div *ngFor="let reminder of noteData.reminder">
+      <div *ngIf="data.notes.id == noteData.id">
+        <mat-chip-list>
+          <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
+            <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, noteData.id)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-chip>
+          <span></span>
+        </mat-chip-list>
+      </div>
+      </div>
+
+    <!-- Collaborator -->
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+        <div *ngFor="let collab of noteData.collaborators" >
+            <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
+          </div>
+        </div>
+
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div>
-        <app-notesfooter [function]="data.dialogfunction" (messageEvent)="receiveMessage($event)" [noteId]="data.noteId"></app-notesfooter>
+        <app-notesfooter [function]="data.dialogfunction" (messageEvent)="receiveMessage($event)" [noteId]="noteData.id"></app-notesfooter>
       </div>
       <div><button mat-button (click)="updateData()">Close</button></div>
     </div>
   </div>
+
+
+  <!-- Trash -->
   <div *ngIf="data.dialogfunction=='trash'" [ngStyle]="{background: colordialog}" style="padding: 10px;">
     <div>
-        <p>{{data.title}}</p>
+        <p>{{noteData.title}}</p>
     </div>
     <div >
-        <p>{{data.description}}</p>
+        <p>{{noteData.description}}</p>
     </div>
     <div>
-      <app-notesfooter [function]="data.dialogfunction" (messageEvent)="receiveMessage($event)" [noteId]="data.noteId"></app-notesfooter>
+      <app-notesfooter [function]="data.dialogfunction" (messageEvent)="receiveMessage($event)" [noteId]="noteData.id"></app-notesfooter>
     </div>
   </div>

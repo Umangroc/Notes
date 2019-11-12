@@ -22,7 +22,9 @@
 
     <mat-menu #addlabel [overlapTrigger]="false">
         <button mat-menu-item>Add label</button>
-      <div *ngFor="let label of labels">
-        <mat-checkbox [(ngModel)]="changed" (click)="addlabeltonotes(label,id)">{{label.label}}</mat-checkbox>
-      </div>
+      <mat-selection-list (selectionChange)="selectionChange($event.option)">
+        <mat-list-option *ngFor="let label of labels" (click)="addlabeltonotes(label,id)">
+          {{label.label}}
+        </mat-list-option>
+      </mat-selection-list>
       </mat-menu>

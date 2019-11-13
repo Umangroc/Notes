@@ -29,6 +29,7 @@ export class ArchiveIconComponent implements OnInit {
     this.svc.archivenoteservice(archive).subscribe((response) => {
       this.openSnackBar('Archived',"Close");
       this.dataSvc.changeMessage("Hello from Sibling")
+      this.dataSvc.changeclosedialog("CLOSE");
     },(error)=>{
       this.openSnackBar('Error',"Close");
     })

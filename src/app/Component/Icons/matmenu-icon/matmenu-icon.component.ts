@@ -28,11 +28,14 @@ export class MatmenuIconComponent implements OnInit {
   trash(noteId) {
     let trash = {
       isDeleted: true,
+      reminder: [],
+      collaborators: [],
       noteIdList: [noteId],
     }
     this.svc.trashnoteservice(trash).subscribe((response) => {
       this.dataSvc.changeMessage("Hello from Sibling")
       this.openSnackBar('Deleted',"Close");
+      this.dataSvc.changeclosedialog("CLOSE");
       //console.log(this.response);
     },(error)=>{
       this.openSnackBar('Error',"Close");
@@ -49,6 +52,7 @@ export class MatmenuIconComponent implements OnInit {
     this.svc.deleteforevernoteservice(delfor).subscribe((response) => {
       this.dataSvc.changeMessage("Hello from Sibling")
       this.openSnackBar('Deleted permanently',"Close");
+      this.dataSvc.changeclosedialog("CLOSE");
       //console.log(response);
     },(error)=>{
       this.openSnackBar('Error',"Close");
@@ -64,6 +68,7 @@ export class MatmenuIconComponent implements OnInit {
  this.svc.trashnoteservice(delfor).subscribe((response) => {
       this.openSnackBar('Restored',"Close");
       this.dataSvc.changeMessage("Hello from Sibling")
+      this.dataSvc.changeclosedialog("CLOSE");
       console.log(response);
     },(error)=>{
       this.openSnackBar('Error',"Close");
@@ -87,6 +92,7 @@ export class MatmenuIconComponent implements OnInit {
       console.log("label value.......", data);
       this.svc.addlabeltonotesnoteservice(data).subscribe((response: any) => {
         this.dataSvc.changeMessage("Hello from Sibling")
+        this.getNoteDetails(noteid)
         console.log(response);
       });
     }
@@ -99,6 +105,13 @@ export class MatmenuIconComponent implements OnInit {
     }
   
 
+  }
+
+  getNoteDetails(noteid){
+    this.svc.getnotedetailsnoteservice(noteid).subscribe((res: any) => {
+       console.log(res.data.data[0]);
+        this.dataSvc.changedialog(res.data.data[0]);
+  })
   }
 
   question(id){

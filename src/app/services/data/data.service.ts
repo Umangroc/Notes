@@ -64,4 +64,20 @@ currentdialog = this.dialogSource.asObservable();
 changedialog(message: any) {
   this.dialogSource.next(message)
 }
+
+//Close Dialog Reminder
+private closedialogSource = new BehaviorSubject('default message');
+currentclosedialog = this.closedialogSource.asObservable();
+
+changeclosedialog(message: any) {
+  this.closedialogSource.next(message)
+}
+
+//Navbar Label
+private navlabelSource = new BehaviorSubject('default message');
+currentnavlabel = this.navlabelSource.asObservable();
+
+changenavlabel(message: any) {
+  this.navlabelSource.next(message)
+}
 }

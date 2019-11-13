@@ -88,7 +88,7 @@
       <h6 mat-subheader>LABELS</h6>
 
       <div *ngFor="let label of labels">
-          <div class="hover-round" routerLinkActive="cd" routerLink="/label/{{label.label}}" fxLayoutAlign="none center" (click)=openlabel(label.label)>
+          <div class="hover-round" routerLinkActive="cd" routerLink="/label/{{label.label}}" fxLayoutAlign="none center">
             <i class="material-icons-outlined icon-spacer">label</i>{{label.label}}
           </div>
       </div>

@@ -7,6 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { NoteComponent } from '../note/note.component';
 import { Dialog } from '../../models/dialog.model';
 import { Note } from 'src/app/models/note.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
@@ -23,8 +24,16 @@ export class DialogComponent implements OnInit {
   colordialog: any;
   noteData: any;
   noteDetails: any;
+  checklistShow: any;
+  checklistnoteid: any;
+  itemmodel: any;
+  item = new FormControl;
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private svc: NoteService, private dataSvc: DataService, public dialogRef: MatDialogRef<NoteComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+   private svc: NoteService,
+    private dataSvc: DataService,
+     public dialogRef: MatDialogRef<NoteComponent>,
+     private router: Router) {
     this.colordialog = data.color;
   }
 
@@ -35,17 +44,43 @@ export class DialogComponent implements OnInit {
     this.dataSvc.currentdialog.subscribe((res:any)=>{
       console.log("res............",res);
       if(res!="default message" && res.id == this.noteData.id){
-        console.log("in");
+        //console.log("in");
         
         this.noteData = res;
       }
     })   
+
+    this.dataSvc.currentclosedialog.subscribe((res:any)=>{
+      console.log("res............",res);
+      if(res=="CLOSE"){
+        //console.log("in");
+        this.dialogRef.close();
+        this.dataSvc.changeclosedialog("OPEN");
+      }
+    })
+
+    this.dataSvc.currentChecklist.subscribe((res: any) => {
+      //console.log("checklist", res);
+      if (res.show == "default message") {
+        this.checklistShow = false;
+      } else {
+        this.checklistShow = res.show;
+        this.checklistnoteid = res.id;
+        //console.log("data...",this.noteData);
+        
+      }
+    })
 
   }
   
   receiveMessage($event) {
     this.colordialog = $event;
     console.log(this.colordialog);
+  }
+
+  openlabel(label){
+    this.router.navigate(['/label/'+label]);
+    this.dialogRef.close();
   }
 
   updateData() {
@@ -107,6 +142,57 @@ export class DialogComponent implements OnInit {
        console.log(res.data.data[0]);
         this.dataSvc.changedialog(res.data.data[0]);
   })
+}
+
+addchecklist(noteid){
+  let data = {
+    status: "open",
+    itemName: this.item.value
+  }
+  this.svc.addchecklistnoteservice(data,noteid).subscribe((response: any) => {
+    this.dataSvc.changeMessage("Hello from Sibling");
+    this.getNoteDetails(noteid);
+    this.itemmodel = '';
+    console.log(response);
+  });
+
+}
+
+deletechecklist(noteid,checklistid){
+  let data = {
+    noteId: noteid,
+    checklistId: checklistid
+  }
+  this.svc.deletechecklistnoteservice(data).subscribe((response: any) => {
+    this.dataSvc.changeMessage("Hello from Sibling");
+    this.getNoteDetails(noteid);
+    console.log(response);
+  });
+}
+
+updatestatus(itemname,status,noteid,checklistid){
+  let data;
+  if(status=='open'){
+     data = {
+      status: "close",
+      itemName: itemname,
+      noteId: noteid,
+    checklistId: checklistid
+    }
+  }else{
+     data = {
+      status: "open",
+      itemName: itemname,
+      noteId: noteid,
+    checklistId: checklistid
+    }
+  }
+  this.svc.updatechecklistnoteservice(data).subscribe((response: any) => {
+    this.dataSvc.changeMessage("Hello from Sibling");
+    this.getNoteDetails(noteid);
+    console.log(response);
+  });
+  
 }
 
 }

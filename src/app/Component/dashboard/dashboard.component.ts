@@ -83,14 +83,6 @@ export class DashboardComponent implements OnInit {
       console.log(newValue)
     }   
   }
-  
-openlabel(data){
-  //console.log("lgagggggggggggggggggg",data);
-  
-  this.dataSvc.changeMessage(data);
-  // this.router.navigate[("/label/{{label.label}}")]
-}
-
 listview(){
   this.view = "list";
   this.dataSvc.changeView(this.view);

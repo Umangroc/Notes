@@ -1,6 +1,7 @@
-<div fxLayout="row wrap" *ngIf="view=='grid'">
-  <mat-card fxFlex="33" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}" fxFlex.sm="48"
-    fxFlex.xs="80">
+<div fxLayout="row">
+<div fxFlex=5></div>
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="12px" *ngIf="view=='grid'" fxLayoutAlign="space-around none">
+  <mat-card class="dcard" fxFlex.xs="80" *ngFor="let note of display" [ngStyle]="{background:note.color}"  >
     <div (click)="openDialog(note)">
       <p style="word-break: break-all;">{{note.title}}</p>
     </div>
@@ -29,12 +30,13 @@
         <button (click)=addchecklist(note.id)>add</button>
       </div>
 
+      <br>
       <div fxLayout="row wrap" fxLayoutGap="5px">
     <div *ngFor="let noteLabel of note.noteLabels">
       <mat-chip-list>
-        <mat-chip class="hide-icon">{{noteLabel.label}}
+        <mat-chip [ngStyle]="{background:note.color}" style="filter: brightness(90%);"><i style="outline: none;" routerLink="/label/{{noteLabel.label}}">{{noteLabel.label}}</i> 
           <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, note.id)">
-            <mat-icon>close</mat-icon>
+            <mat-icon class="hide">close</mat-icon>
           </button>
         </mat-chip>
         <span></span>
@@ -42,10 +44,10 @@
     </div>
       </div>
 
-    <div *ngFor="let reminder of note.reminder">
+    <div *ngFor="let reminder of note.reminder" style="padding-top: 5px;">
       <mat-chip-list>
           
-        <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
+        <mat-chip [ngStyle]="{background:note.color}" style="filter: brightness(90%);"><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
           <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
             <mat-icon>close</mat-icon>
           </button>
@@ -55,7 +57,7 @@
     </div>
 
     <div fxLayout="row wrap" fxLayoutGap="5px">
-    <div *ngFor="let collab of note.collaborators" >
+    <div *ngFor="let collab of note.collaborators" style="padding-top: 5px;">
         <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
       </div>
     </div>
@@ -74,6 +76,8 @@
     </div>
 
   </mat-card>
+</div>
+<div fxFlex=5></div>
 </div>
 
 <div fxLayout="row wrap" *ngIf="view=='list'">

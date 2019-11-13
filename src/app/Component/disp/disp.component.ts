@@ -61,7 +61,7 @@ this.view = "grid";
         dialogfunction: this.component, 
         color: notes.color,
         notes: notes
-       }
+       }, width: '598px'
     });
   }
 

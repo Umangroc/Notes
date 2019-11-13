@@ -2,3 +2,17 @@
     padding: 0px;
     border-radius: 5px;
   }
+
+  .hide{
+    opacity: 0;
+  }
+
+.hide:hover {
+    opacity: 1;
+  }
+
+  mat-chip{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+  }

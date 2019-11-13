@@ -88,6 +88,7 @@ export class CollaboratorsdialogComponent implements OnInit {
     this.svc.getnotedetailsnoteservice(this.data.noteid).subscribe((res: any) => {
      // console.log("REsult.....",res.data.data[0]);
       this.notedetails = res.data.data[0];
+      this.dataSvc.changedialog(res.data.data[0]);
       this.collabs = this.notedetails.collaborators;
     })
   }

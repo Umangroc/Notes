@@ -41,6 +41,6 @@ export class NotesfooterComponent implements OnInit {
   }
 
   openDialog(noteId){
-    this.dialog.open(CollaboratorsdialogComponent, {data: {noteid: noteId}, width: '600px',height: '257px'});
+    this.dialog.open(CollaboratorsdialogComponent, {data: {noteid: noteId}, width: '600px'});
   }
 }

@@ -9,12 +9,34 @@
           cdkAutosizeMaxRows="20" [formControl]="description" placeholder="description" value="{{noteData.description}}"></textarea></p>
     </div>
 
+    <div *ngFor="let checklist of noteData.noteCheckLists">
+      <div *ngIf="checklist.status=='open' && checklist.isDeleted==false">  
+      <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,noteData.id,checklist.id)>check_box_outline_blank</mat-icon>
+      {{checklist.itemName}}
+        <mat-icon (click)=deletechecklist(noteData.id,checklist.id)>delete</mat-icon>
+    </div>
+
+    <div *ngIf="checklist.status=='close' && checklist.isDeleted==false">  
+        <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,noteData.id,checklist.id)>check_box</mat-icon>
+        <s>{{checklist.itemName}}</s>
+        <mat-icon (click)=deletechecklist(noteData.id,checklist.id)>delete</mat-icon>
+      </div>
+        
+        
+    </div>
+
+    <div *ngIf="checklistShow && checklistnoteid==noteData.id" style="outline: orange;">
+      <mat-icon>add</mat-icon><textarea [formControl]="item" placeholder="List item" [(ngModel)]="itemmodel"></textarea>
+      <button (click)=addchecklist(noteData.id)>add</button>
+    </div>
+
+    <br>
     <div fxLayout="row wrap" fxLayoutGap="5px">
     <div *ngFor="let noteLabel of noteData.noteLabels">
         <mat-chip-list>
-          <mat-chip class="hide-icon">{{noteLabel.label}}
+          <mat-chip [ngStyle]="{background:colordialog}" style="filter: brightness(90%);"><i style="outline: none;" (click)="openlabel(noteLabel.label)">{{noteLabel.label}}</i>
             <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, noteData.id)">
-              <mat-icon>close</mat-icon>
+              <mat-icon class="hide">close</mat-icon>
             </button>
           </mat-chip>
           <span></span>
@@ -23,12 +45,12 @@
       </div>
 
     <!-- Reminder -->
-    <div *ngFor="let reminder of noteData.reminder">
+    <div *ngFor="let reminder of noteData.reminder" style="padding-top: 5px;">
       <div *ngIf="data.notes.id == noteData.id">
         <mat-chip-list>
-          <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
-            <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, noteData.id)">
-              <mat-icon>close</mat-icon>
+          <mat-chip [ngStyle]="{background:colordialog}" style="filter: brightness(90%);"><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
+            <button mat-icon-button (click)="deletereminderfromnotes(reminder, noteData.id)">
+              <mat-icon class="hide">close</mat-icon>
             </button>
           </mat-chip>
           <span></span>
@@ -37,7 +59,7 @@
       </div>
 
     <!-- Collaborator -->
-    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div fxLayout="row wrap" fxLayoutGap="5px" style="padding-top: 5px;">
         <div *ngFor="let collab of noteData.collaborators" >
             <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
           </div>
@@ -60,6 +82,30 @@
     <div >
         <p>{{noteData.description}}</p>
     </div>
+
+    <div *ngFor="let checklist of noteData.noteCheckLists">
+      <div *ngIf="checklist.status=='open' && checklist.isDeleted==false">  
+      <mat-icon >check_box_outline_blank</mat-icon>
+      {{checklist.itemName}}
+    </div>
+
+    <div *ngIf="checklist.status=='close' && checklist.isDeleted==false">  
+        <mat-icon >check_box</mat-icon>
+        <s>{{checklist.itemName}}</s>
+      </div>
+        
+        
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+      <div *ngFor="let noteLabel of noteData.noteLabels">
+          <mat-chip-list>
+            <mat-chip class="hide-icon" [ngStyle]="{background:colordialog}" style="filter: brightness(90%);">{{noteLabel.label}}
+            </mat-chip>
+            <span></span>
+          </mat-chip-list>
+        </div>
+        </div>
     <div>
       <app-notesfooter [function]="data.dialogfunction" (messageEvent)="receiveMessage($event)" [noteId]="noteData.id"></app-notesfooter>
     </div>

@@ -28,8 +28,6 @@ export class MatmenuIconComponent implements OnInit {
   trash(noteId) {
     let trash = {
       isDeleted: true,
-      reminder: [],
-      collaborators: [],
       noteIdList: [noteId],
     }
     this.svc.trashnoteservice(trash).subscribe((response) => {

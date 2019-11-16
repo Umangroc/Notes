@@ -1,22 +1,40 @@
-.dcard{ 
-    border-radius: 10px;
-    // transform: scaleX(0.94) scaleY(0.8);
-    height: fit-content;
-   min-width: 240px;
-   max-width: 280px;
-   margin-top: 10px;
+.gridcard{ 
+  border-radius: 10px;
+  // transform: scaleX(0.94) scaleY(0.8);
+  height: fit-content;
+  min-width: 240px;
+  max-width: 280px;
+  margin-top: 10px;
 }
 
-  .hide{
-    opacity: 0;
-  }
+.listcard{ 
+  border-radius: 10px;
+  //transform: scaleX(0.94) scaleY(0.8);
+  height: fit-content;
+  margin-top: 10px;
+}
 
-.hide:hover {
-    opacity: 1;
-  }
+// .hide{
+//   opacity: 0;
+// }
 
-  mat-chip{
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-  }
+.hide {
+  opacity: 0;
+}
+.hide:not(:focus):hover {
+  opacity: 1;
+}
+.hide:focus {
+  opacity: 1;
+  outline: none;
+}
+
+// .hide:hover {
+//   opacity: 1;
+// }
+
+mat-chip{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+}

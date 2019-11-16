@@ -1,74 +1,122 @@
 <div class="container" fxLayout.xs="column" fxLayout.sm="column">
 
   <!-- Right Side -->
-  <mat-card class="round-card" fxFlex="40">
+  <mat-card class="round-card">
     <div class="center">
-      <img src='../../assets/Note-taking.png' class="logo">
-      <h1>Sign Up</h1>
+      <h1>fundooNotes</h1>
     </div>
 
+    <h4>Create your fundooNotes Account</h4>
     <form novalidate name="registerForm">
-    <!-- First Name -->
-    <mat-form-field class="text" appearance="outline">
-      <mat-icon matPrefix>person</mat-icon>
-      <mat-label class="space">First Name</mat-label>
-      <input matInput class="space" placeholder="First Name "[formControl]="firstName" required> 
-      <mat-error *ngIf="firstName.invalid">{{FirstNameInvalidMessage()}}</mat-error>
-    </mat-form-field>
+      <div fxLayout="row" fxLayoutGap="20px">
+      <!-- First Name -->
+      <mat-form-field class="text" appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label class="space">First Name</mat-label>
+        <input matInput class="space" placeholder="First Name " [formControl]="firstName" required>
+        <mat-error *ngIf="firstName.invalid">{{FirstNameInvalidMessage()}}</mat-error>
+      </mat-form-field>
 
-    <!-- Last Name -->
-    <mat-form-field class="text" appearance="outline">
-      <mat-icon matPrefix>person</mat-icon>
-      <mat-label class="space">Last Name</mat-label>
-      <input matInput class="space" placeholder="Last Name" [formControl]="lastName" required>
-      <mat-error *ngIf="lastName.invalid">{{LastNameInvalidMessage()}}</mat-error>
-    </mat-form-field>
-  
-    <!-- Email -->
-    <mat-form-field class="text" appearance="outline">
-      <mat-icon matPrefix>email</mat-icon>
-      <mat-label class="space">Email</mat-label>
-      <input matInput class="space" placeholder="Email" [formControl]="email" type="email" required>
-      <mat-error *ngIf="email.invalid">{{EmailInvalidMessage()}}</mat-error>
-    </mat-form-field>
-    
-    <!-- Password -->
-    <mat-form-field class="text" appearance="outline">
-      <mat-icon matPrefix>lock</mat-icon>
-      <mat-label class="space">Password</mat-label>
-      <input matInput class="space" placeholder="Password" [formControl]="password" required minlength="8" [type]="hide ? 'password' : 'text'">
-      <mat-error *ngIf="password.invalid">{{PasswordInvalidMessage()}} </mat-error>
-      <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-      <mat-hint>Password must be 8 characters long</mat-hint>
-    </mat-form-field>
+      <!-- Last Name -->
+      <mat-form-field class="text" appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label class="space">Last Name</mat-label>
+        <input matInput class="space" placeholder="Last Name" [formControl]="lastName" required>
+        <mat-error *ngIf="lastName.invalid">{{LastNameInvalidMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
 
-    <!-- Confirm-Password -->
-    <mat-form-field class="text" appearance="outline">
+      <!-- Email -->
+      <mat-form-field class="text" appearance="outline">
+        <mat-icon matPrefix>email</mat-icon>
+        <mat-label class="space">Email</mat-label>
+        <input matInput class="space" placeholder="Email" [formControl]="email" type="email" required>
+        <mat-error *ngIf="email.invalid">{{EmailInvalidMessage()}}</mat-error>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+      <!-- Password -->
+      <mat-form-field class="text" appearance="outline">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-label class="space">Password</mat-label>
+        <input matInput class="space" placeholder="Password" [formControl]="password" required minlength="8"
+          [type]="hide ? 'password' : 'text'">
+        <mat-error *ngIf="password.invalid">{{PasswordInvalidMessage()}} </mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint>Password must be 8 characters long</mat-hint>
+      </mat-form-field>
+
+      <!-- Confirm-Password -->
+      <mat-form-field class="text" appearance="outline">
         <mat-icon matPrefix>lock_open</mat-icon>
         <mat-label class="space">Confirm-Password</mat-label>
         <input matInput class="space" placeholder="Confirm-Password">
-        
+
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          [attr.aria-pressed]="hide">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
+    </div>
     </form>
-   
-  <mat-radio-group [(ngModel)]="pack">
-    <mat-radio-button value="Advance" disabled>Advance</mat-radio-button>
-    <mat-radio-button value="basic" disabled>Basic</mat-radio-button>
-  </mat-radio-group>
 
-      <div class="login">
-          <button mat-raised-button color="warn" (click)="onRegister()">Register</button>
+    <!-- Cards -->
+    <br><br>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="80px">
+      <div class="hover">
+          <div *ngIf="pack=='basic'">
+              <mat-card class="back">
+                <br><br><br><br><br><br><br><br><br>
+                Add to Cart
+              </mat-card>
+            </div>
+            <div *ngIf="pack=='Advance'">
+              <mat-card class="backSelected">
+                <br><br><br><br><br><br><br><br><br>
+                Selected
+              </mat-card>
+            </div>
+        <mat-card (click)="openDialog('Advance')" class="card">
+          <h4>Advance Package</h4>
+          Price: $99 per month
+          <ul>
+            <li>$99/month</li>
+            <li> Ability to add title, description, images, labels, checklist and colors</li>
+          </ul>
+        </mat-card>
+      </div>
+
+      <div class="hover">
+        <div *ngIf="pack=='Advance'">
+          <mat-card class="back">
+            <br><br><br><br><br><br><br><br><br>
+            Add to Cart
+          </mat-card>
         </div>
-      
-    <br><a>Already have an account??</a>
-    <br><a routerLink="/login">Sign In</a>
-    
+        <div *ngIf="pack=='basic'">
+          <mat-card class="backSelected">
+            <br><br><br><br><br><br><br><br><br>
+            Selected
+          </mat-card>
+        </div>
+        <mat-card class="card" (click)="openDialog('Basic')">
+          <h4>Basic Package</h4>
+          Price: $49 per month
+          <ul>
+            <li>$49/month</li>
+            <li> Ability to add title, description</li>
+          </ul>
+        </mat-card>
+      </div>
+    </div>
+
+    <div fxLayoutAlign="center center" fxLayoutGap="350px">
+      <a routerLink="/login">Sign in instead</a>
+      <button mat-raised-button color="warn" (click)="onRegister()">Register</button>
+    </div>
+
   </mat-card>
 </div>

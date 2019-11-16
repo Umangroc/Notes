@@ -45,7 +45,7 @@ export class CollaboratorsdialogComponent implements OnInit {
         searchWord: newValue
       }
       this.svc.userlistnoteservice(userObj).subscribe((response: any) => {
-        //console.log(response.data.details);
+        console.log(response.data.details);
         this.options = response.data.details;
         this.any = response.data.details;
       })

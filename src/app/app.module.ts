@@ -43,6 +43,7 @@ import { QuestionComponent } from './Component/question/question.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { CartComponent } from './Component/cart/cart.component';
 import { ShoppingcartComponent } from './Component/shoppingcart/shoppingcart.component';
+import { CartdialogComponent } from './Component/cartdialog/cartdialog.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { ShoppingcartComponent } from './Component/shoppingcart/shoppingcart.com
     CollaboratorsdialogComponent,
     QuestionComponent,
     CartComponent,
-    ShoppingcartComponent
+    ShoppingcartComponent,
+    CartdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,13 @@ import { ShoppingcartComponent } from './Component/shoppingcart/shoppingcart.com
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot()  
   ],
-  entryComponents: [DialogComponent, ImagedialogComponent,LabeldialogComponent,CollaboratorsdialogComponent],
+  entryComponents: [
+    DialogComponent,
+    ImagedialogComponent,
+    LabeldialogComponent,
+    CollaboratorsdialogComponent,
+    CartdialogComponent
+  ],
   providers: [ UserService, AuthGuard, MatNativeDateModule ],
   bootstrap: [AppComponent]
 })

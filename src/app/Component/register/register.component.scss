@@ -8,13 +8,12 @@
     border-radius: 50px;
   }
   .round-card {
-      width: 400px;
-      background-color: #d7e6e3;
-      border-radius: 50px;
+    width: 600px;
     }
   
   .center{
       text-align: center;
+      color: #FFBA33;
     }
   
   .logo {
@@ -24,10 +23,13 @@
       border-radius: 50%;
     }
   
-  .login button{
+
+    .mat-raised-button {
+      background-color: #0C65D0;
+      color: #FFF;
       margin-right: 8px;
-      border-radius: 20%;
-    }
+      border-radius: 10%;
+  }
   
   .text{
     width: 100%;
@@ -36,3 +38,28 @@
   .space{
       margin-left: 4px;
   }
+
+  // Product Card
+  .card{
+    width: 160px;
+    height: 170px;  
+    position: relative;
+    top: -260px;
+    right: 20px;
+}
+
+.hover{
+  height: 250px;
+  }
+
+  .back{
+    width: 160px;
+    height: 180px;
+    background-color: grey;
+}
+
+.backSelected{
+  width: 160px;
+  height: 180px;
+  background-color: #FFBA33;
+}

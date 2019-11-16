@@ -1,7 +1,7 @@
 <div fxLayout="row">
 <div fxFlex=5></div>
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="12px" *ngIf="view=='grid'" fxLayoutAlign="space-around none">
-  <mat-card class="dcard" fxFlex.xs="80" *ngFor="let note of display" [ngStyle]="{background:note.color}"  >
+  <mat-card class="gridcard" fxFlex.xs="80" *ngFor="let note of display" [ngStyle]="{background:note.color}"  >
     <div (click)="openDialog(note)">
       <p style="word-break: break-all;">{{note.title}}</p>
     </div>
@@ -21,8 +21,6 @@
         <s>{{checklist.itemName}}</s>
         <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
       </div>
-        
-        
     </div>
     
     <div *ngIf="checklistShow && checklistnoteid==note.id" style="outline: orange;">
@@ -45,8 +43,7 @@
       </div>
 
     <div *ngFor="let reminder of note.reminder" style="padding-top: 5px;">
-      <mat-chip-list>
-          
+      <mat-chip-list>     
         <mat-chip [ngStyle]="{background:note.color}" style="filter: brightness(90%);"><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
           <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
             <mat-icon>close</mat-icon>
@@ -66,7 +63,6 @@
       <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
       </app-notesfooter>
     </div>
-
    
     <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
       <mat-divider></mat-divider>  
@@ -74,86 +70,85 @@
       Question Asked
       <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
     </div>
-
   </mat-card>
 </div>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="12px" *ngIf="view=='list'" fxLayoutAlign="space-around none">
+  <mat-card class="listcard" fxFlex=100 fxFlex.xs="80" *ngFor="let note of display" [ngStyle]="{background:note.color}"  >
+    <div (click)="openDialog(note)">
+      <p style="word-break: break-all;">{{note.title}}</p>
+    </div>
+    <div (click)="openDialog(note)">
+      <p style="word-break: break-all;">{{note.description}}</p>
+    </div>
+
+    <div *ngFor="let checklist of note.noteCheckLists">
+      <div *ngIf="checklist.status=='open' && checklist.isDeleted==false">  
+      <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box_outline_blank</mat-icon>
+      {{checklist.itemName}}
+        <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
+    </div>
+
+    <div *ngIf="checklist.status=='close' && checklist.isDeleted==false">  
+        <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box</mat-icon>
+        <s>{{checklist.itemName}}</s>
+        <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
+      </div>
+    </div>
+    
+    <div *ngIf="checklistShow && checklistnoteid==note.id" style="outline: orange;">
+        <mat-icon>add</mat-icon><textarea [formControl]="item" placeholder="List item" [(ngModel)]="itemmodel"></textarea>
+        <button (click)=addchecklist(note.id)>add</button>
+      </div>
+
+      <br>
+      <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div *ngFor="let noteLabel of note.noteLabels">
+      <mat-chip-list>
+        <mat-chip [ngStyle]="{background:note.color}" style="filter: brightness(90%);"><i style="outline: none;" routerLink="/label/{{noteLabel.label}}">{{noteLabel.label}}</i> 
+          <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, note.id)">
+            <mat-icon class="hide">close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+      </div>
+
+    <div *ngFor="let reminder of note.reminder" style="padding-top: 5px;">
+      <mat-chip-list>     
+        <mat-chip [ngStyle]="{background:note.color}" style="filter: brightness(90%);"><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
+          <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-chip>
+        <span></span>
+      </mat-chip-list>
+    </div>
+
+    <div fxLayout="row wrap" fxLayoutGap="5px">
+    <div *ngFor="let collab of note.collaborators" style="padding-top: 5px;">
+        <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
+      </div>
+    </div>
+
+    <div class="hide">
+      <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
+      </app-notesfooter>
+    </div>
+   
+    <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
+      <mat-divider></mat-divider>  
+      <br> 
+      Question Asked
+      <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
+    </div>
+  </mat-card>
+</div>
+
 <div fxFlex=5></div>
 </div>
 
-<div fxLayout="row wrap" *ngIf="view=='list'">
-    <mat-card fxFlex="100" class="dcard" *ngFor="let note of display" [ngStyle]="{background:note.color}">
-      <div (click)="openDialog(note)">
-        <p style="word-break: break-all;">{{note.title}}</p>
-      </div>
-      <div (click)="openDialog(note)">
-        <p style="word-break: break-all;">{{note.description}}</p>
-      </div>
-  
-      <div *ngFor="let checklist of note.noteCheckLists">
-        <div *ngIf="checklist.status=='open' && checklist.isDeleted==false">  
-        <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box_outline_blank</mat-icon>
-        {{checklist.itemName}}
-          <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
-      </div>
-  
-      <div *ngIf="checklist.status=='close' && checklist.isDeleted==false">  
-          <mat-icon (click)=updatestatus(checklist.itemName,checklist.status,note.id,checklist.id)>check_box</mat-icon>
-          <s>{{checklist.itemName}}</s>
-          <mat-icon (click)=deletechecklist(note.id,checklist.id)>delete</mat-icon>
-        </div>
-          
-          
-      </div>
-      
-      <div *ngIf="checklistShow && checklistnoteid==note.id" style="outline: orange;">
-          <mat-icon>add</mat-icon><textarea [formControl]="item" placeholder="List item" [(ngModel)]="itemmodel"></textarea>
-          <button (click)=addchecklist(note.id)>add</button>
-        </div>
-  
-        <div fxLayout="row wrap" fxLayoutGap="5px">
-      <div *ngFor="let noteLabel of note.noteLabels">
-        <mat-chip-list>
-          <mat-chip class="hide-icon">{{noteLabel.label}}
-            <button mat-icon-button (click)="deletelabelfromnotes(noteLabel.id, note.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip>
-          <span></span>
-        </mat-chip-list>
-      </div>
-        </div>
-  
-      <div *ngFor="let reminder of note.reminder">
-        <mat-chip-list>
-            
-          <mat-chip ><mat-icon>access_time</mat-icon>{{reminder | date:'short'}}
-            <button class="hide" mat-icon-button (click)="deletereminderfromnotes(reminder, note.id)">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-chip>
-          <span></span>
-        </mat-chip-list>
-      </div>
-  
-      <div fxLayout="row wrap" fxLayoutGap="5px">
-      <div *ngFor="let collab of note.collaborators" >
-          <button mat-mini-fab color="accent" matTooltip="{{collab.email}}">{{collab.firstName[0] | uppercase}}</button>
-        </div>
-      </div>
-  
-      <div class="hide">
-        <app-notesfooter [function]="component" (messageEvent)="receiveMessage($event)" [noteId]="note.id">
-        </app-notesfooter>
-      </div>
-  
-     
-      <div *ngIf="note.questionAndAnswerNotes.length>0" routerLink="/question/{{note.id}}">
-        <mat-divider></mat-divider>   
-        Question Asked
-        <div innerHTML="{{note.questionAndAnswerNotes[0].message}}"></div>
-      </div>
-  
-    </mat-card>
-  </div>
+
 
    

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data/data.service';
 import { Router } from '@angular/router';
+import { CartdialogComponent } from '../cartdialog/cartdialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-cart',
@@ -10,16 +12,19 @@ import { Router } from '@angular/router';
 export class CartComponent implements OnInit {
 
   constructor(private router: Router,
+    public dialog: MatDialog,
     private dataSvc: DataService) { }
 
   ngOnInit() {
   }
 
-  Send(type){
-    //console.log("type........",type);
-    
-    this.dataSvc.changeType(type);
-    this.router.navigate(["/register"]);
+  openDialog(choice){
+    this.dialog.open(CartdialogComponent, {
+      data: {
+        type: choice
+       }, width: '600px'
+    });
   }
+
 
 }

@@ -1,7 +1,6 @@
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayout.sm="column">
+<div class="container" fxLayoutAlign="center center">
   <!-- Right Side -->
-  <div fxFlex.sm="column" fxFlex.sm="100" fxFlex.xs="100">
-    <mat-card class="round-card" fxLayout="column" fxFlex.xs="100" fxFlex.sm="100">
+    <mat-card class="round-card">
       <div class ="center">
             <h1>Login</h1>
             </div>
@@ -26,12 +25,11 @@
               </button>
               </mat-form-field>
     
-              <div class="login" fxLayout="row" fxLayoutAlign="space-between center">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
                   <button mat-raised-button color="warn" (click)="onLogin()">Login</button>
           <a routerLink = "/forgot">Forgot Email?</a>
         </div>
           <br><br><a>Don't have an account??</a>
          <div fxLayout="row" fxLayoutGap="5px"><a routerLink = "/cart">Sign Up</a> <div>here</div></div>
     </mat-card>
-  </div>
   </div>

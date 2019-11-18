@@ -1,33 +1,15 @@
 .container{
-    display: flex;
     justify-content: center;
     align-items: stretch;
+    height: 90vh;
   }
-  
-  .left-image{
-    border-radius: 50px;
-  }
+
   .round-card {
-      width: 400px;
-      background-color: #d7e6e3;
-      border-radius: 50px;
-      flex-basis: 10%;
+      width: 350px;
     }
   
   .center{
       text-align: center;
-    }
-  
-  .logo {
-      width: 100px;
-      height: 100px;
-      display: inline-block;
-      border-radius: 50%;
-    }
-  
-  .reset button{
-      margin-right: 8px;
-      border-radius: 20%;
     }
   
   .text{
@@ -37,3 +19,14 @@
   .space{
       margin-left: 4px;
   }
+
+  .mat-raised-button {
+    background-color: #0C65D0;
+    color: #FFF;
+    margin-right: 8px;
+    border-radius: 10%;
+    }
+  
+  h1{
+    color: #FFBA33;
+   }

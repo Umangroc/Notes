@@ -11,9 +11,7 @@ import { MatDialog } from '@angular/material';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private router: Router,
-    public dialog: MatDialog,
-    private dataSvc: DataService) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }

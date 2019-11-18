@@ -14,24 +14,13 @@
   margin-top: 10px;
 }
 
-// .hide{
-//   opacity: 0;
-// }
-
 .hide {
   opacity: 0;
 }
-.hide:not(:focus):hover {
-  opacity: 1;
-}
-.hide:focus {
-  opacity: 1;
-  outline: none;
-}
 
-// .hide:hover {
-//   opacity: 1;
-// }
+.hide:hover {
+  opacity: 1;
+}
 
 mat-chip{
   padding-top: 0px;

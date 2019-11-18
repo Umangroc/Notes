@@ -44,6 +44,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { CartComponent } from './Component/cart/cart.component';
 import { ShoppingcartComponent } from './Component/shoppingcart/shoppingcart.component';
 import { CartdialogComponent } from './Component/cartdialog/cartdialog.component';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 @NgModule({
   declarations: [
@@ -90,7 +91,8 @@ import { CartdialogComponent } from './Component/cartdialog/cartdialog.component
     RouterModule,
     MatNativeDateModule,
     FroalaEditorModule.forRoot(), 
-    FroalaViewModule.forRoot()  
+    FroalaViewModule.forRoot(),
+    NgxMasonryModule  
   ],
   entryComponents: [
     DialogComponent,

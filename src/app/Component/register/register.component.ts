@@ -19,9 +19,10 @@ export class RegisterComponent implements OnInit {
   lastName = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
+  confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.password.value)]);
   pack: string;
   cartid: any;
-productid: any;
+  productid: any;
 
   constructor(private svc: UserserviceService,
     private dataSvc: DataService,
@@ -68,6 +69,15 @@ productid: any;
     }
     if (this.password.hasError("minlength")) {
       return "Password must be 8 characters"
+    }
+  }
+
+  ConfirmPasswordInvalidMessage() {
+    if (this.confirmPassword.hasError("required")) {
+      return "Password is required"
+    }
+    if (this.confirmPassword.hasError("pattern")) {
+      return "Password did not match"
     }
   }
 

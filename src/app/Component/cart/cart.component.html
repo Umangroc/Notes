@@ -5,12 +5,12 @@
 <br><br><br><br>
 
 <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="80px">
-<div class="hover">
+<div class="hover" (click)="openDialog('Advance')">
     <mat-card class="back">
       <br><br><br><br><br><br><br><br><br>
         Add to Cart
          </mat-card>
-  <mat-card (click)="openDialog('Advance')" class="card">
+  <mat-card class="card">
   <h4>Advance Package</h4>
   Price: $99 per month
   <ul>
@@ -20,12 +20,12 @@
  </mat-card>
 </div>
 
-<div class="hover">
+<div class="hover" (click)="openDialog('Basic')">
     <mat-card class="back">
         <br><br><br><br><br><br><br><br><br>
           Add to Cart
            </mat-card>
-<mat-card class="card" (click)="openDialog('Basic')">
+<mat-card class="card" >
   <h4>Basic Package</h4>
   Price: $49 per month
   <ul>

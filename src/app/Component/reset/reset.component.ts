@@ -43,9 +43,6 @@ export class ResetComponent implements OnInit {
     if (this.confirmPassword.hasError("required")) {
       return "Password is required"
     }
-    if (this.confirmPassword.hasError("minlength")) {
-      return "Password must be 8 characters"
-    }
     if (this.confirmPassword.hasError("pattern")) {
       return "Password did not match"
     }

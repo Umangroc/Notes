@@ -1,5 +1,6 @@
 <div fxLayout="row">
 <div fxFlex=5></div>
+
 <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="12px" *ngIf="view=='grid'" fxLayoutAlign="space-around none">
   <mat-card class="gridcard" fxFlex.xs="80" *ngFor="let note of display" [ngStyle]="{background:note.color}"  >
     <div (click)="openDialog(note)">
